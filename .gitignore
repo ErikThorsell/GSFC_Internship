@@ -1,5 +1,6 @@
 ## own entries
 libmsock
+*.swp
 
 # Object files
 *.o
