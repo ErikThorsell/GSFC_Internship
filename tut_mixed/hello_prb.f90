@@ -2,7 +2,8 @@ program main
 
 !*****************************************************************************80
 !
-!! MAIN is the main program for HELLO_PRB. test
+!! MAIN is the main program for HELLO_PRB.
+! This is a comment from Simon
 !
 !  Licensing:
 !
