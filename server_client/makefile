@@ -2,12 +2,12 @@
 CC=gcc
 FC=gfortran
 
-hello : hello_prb.o hello.o
-	$(FC) -o hello hello_prb.o hello.o
+calc : calcf.o fclient.o
+	$(FC) -o calc calcf.o fclient.o
 
-hello.o : hello.c
-	$(CC) -Wall -c hello.c
+fclient.o : fclient.c
+	$(CC) -Wall -c fclient.c
 
-hello_prb.o: hello_prb.f90
-	$(FC) -c hello_prb.f90
+calcf.o: calcf.f90
+	$(FC) -c calcf.f90
 
