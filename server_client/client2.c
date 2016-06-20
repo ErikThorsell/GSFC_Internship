@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 
    /* All of this code is the same as that in the server. */
     char buffer[256];
+    char *indata;
     if (argc < 3) {
        fprintf(stderr,"usage %s hostname port\n", argv[0]);
        exit(0);
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
    /* The last part prompts the user to enter a message, uses fgets to read the message
     * from stdin, writes the message to the socket, reads the reply from the
     * socket, and displays this reply on the screen. */
-    printf("Please enter what you want to do (for instance: 3, 5, add): ");
+    //printf("Please enter what you want to do (for instance: 3, 5, add): ");
     memset((buffer), 0, (256));
     fgets(buffer,255,stdin);
     n = write(sockfd,buffer,strlen(buffer));

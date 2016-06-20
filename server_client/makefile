@@ -2,11 +2,11 @@
 CC=gcc
 FC=gfortran
 
-calc : calcf.o fclient.o
-	$(FC) -o calc calcf.o fclient.o
+calc : calcf.o client.o
+	$(FC) -o calc calcf.o client.o
 
-fclient.o : fclient.c
-	$(CC) -Wall -c fclient.c
+client.o : client.c
+	$(CC) -Wall -c client.c
 
 calcf.o: calcf.f90
 	$(FC) -c calcf.f90

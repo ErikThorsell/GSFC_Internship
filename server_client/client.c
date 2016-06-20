@@ -4,36 +4,36 @@
 #include <netinet/in.h>
 #include <netdb.h> 
 
-
-/*
-int main()
-{
-    calc_("Hello world.", "localhost", 55555);
-    return 0;
-}
-*/
+// Static variables
+static int sockfd;
 
 void error(char *msg)
 {
     perror(msg);
     exit(0);
 }
-
-int calc_(char *indata, char *ipaddr, int *in_portno)
+/*
+int main()
 {
-    int sockfd, portno, n;
+    client("localhost", 55555);
+    calc("1 2 add");
+    return 0;
+}
+*/
+int client(char *ipaddr, int in_portno)
+{
+    int portno;
 
     struct sockaddr_in serv_addr;
     struct hostent *server;
 
-    char buffer[256];
-    //portno = *in_portno;
+    printf("Port number is: %d\n", in_portno);
     portno = in_portno;
+    printf("Port number2 is: %d\n", portno);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
         error("ERROR opening socket");
 
-    //server = gethostbyname(*ipaddr);
     server = gethostbyname(ipaddr);
     if (server == NULL) {
         fprintf(stderr,"ERROR, no such host\n");
@@ -50,12 +50,20 @@ int calc_(char *indata, char *ipaddr, int *in_portno)
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
 
-    printf("ackd");
+    return 0;
+}
+
+int calc(char *indata)
+{
+    char buffer[256];
+    //char *indata = "1 2 add";
+    int n;
+
+    //printf("Please enter what you want to do (for instance: 3, 5, add): ");
     memset((buffer), 0, (256));
-    //strcpy(buffer, *indata);
+    //fgets(buffer,255,stdin);
     strcpy(buffer, indata);
-    //fgets(buffer, 255, *indata);
-    n = write(sockfd, buffer, strlen(buffer));
+    n = write(sockfd,buffer,strlen(buffer));
     if (n < 0) 
          error("ERROR writing to socket");
     memset((buffer), 0, (256));

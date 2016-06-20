@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
         array_length++;
     }
 
-    if(strncmp(operator, " add\n", 5) == 0)
+    if(strncmp(operator, " add", 4) == 0)
     {
 
         for (int i = 0; i < array_length; i++)
