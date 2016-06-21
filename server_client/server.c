@@ -47,48 +47,32 @@ int server(int in_portno)
     listen(sockfd,5);
 
     clilen = sizeof(cli_addr);
+
+    while(1)
+    {
+
     newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
     if (newsockfd < 0) 
          error("ERROR on accept");
 
     memset((buffer),0,(256));
+
+    // Here comes data from client.c
     n = read(newsockfd, buffer, 255);
     char *p = buffer;
-    printf("Buffer: %s\n", buffer);
     if (n < 0) error("ERROR reading from socket");
     long list[2];
     long sum = 0;
     char c_sum[255];
     int array_length = 0;
 
-    for (long i = strtol(p, &operator, 10); p != operator; i = strtol(p, &operator, 10))
-    {
-        list[array_length] = i;
-        p = operator;
-        if (errno == ERANGE)
-        {
-            printf("range error, got ");
-            errno = 0;
-        }
-        array_length++;
-    }
+    sum = calculate(p);
 
-    printf("The operator is: %s", operator);
-    if(strncmp(operator, " add", 4) == 0)
-    {
-
-        for (int i = 0; i < array_length; i++)
-        {
-            sum += list[i];
-        }
-        char ans[255];
-        sprintf(ans, "%d", sum);
-        n = write(newsockfd, ans, 255);
-    } else {
-        n = write(newsockfd, "Sorry, I can only add. (Usage: 1 2 add)", 255);
-    }
+    char ans[255];
+    sprintf(ans, "%d", sum);
+    n = write(newsockfd, ans, 255);
 
     if (n < 0) error("ERROR writing to socket");
-
+    }
     return 0;
 }

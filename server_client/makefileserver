@@ -13,5 +13,5 @@ calcs.o: calcs.f90
 	$(FC) -c calcs.f90
 
 clean:
-	rm *.mod, rm *.o
+	rm *.o
 # End of makefileserver

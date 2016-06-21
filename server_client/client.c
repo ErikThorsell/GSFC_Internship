@@ -20,9 +20,7 @@ int client(char *ipaddr, int in_portno)
     struct sockaddr_in serv_addr;
     struct hostent *server;
 
-    printf("Port number is: %d\n", in_portno);
     portno = in_portno;
-    printf("Port number2 is: %d\n", portno);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
         error("ERROR opening socket");
@@ -53,14 +51,16 @@ int calc(char *indata)
     int ans;
     memset((buffer), 0, (256));
     strcpy(buffer, indata);
+
     n = write(sockfd,buffer,strlen(buffer));
     if (n < 0) 
          error("ERROR writing to socket");
     memset((buffer), 0, (256));
+
     n = read(sockfd,buffer,255);
     if (n < 0) 
         error("ERROR reading from socket");
-    printf("Ans: %s\n", buffer);
+
     ans = strtol(buffer, (char **)NULL, 10);
     printf("Ans: %d\n",ans);
     return ans;
