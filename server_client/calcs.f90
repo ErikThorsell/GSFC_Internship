@@ -1,5 +1,7 @@
 program name
+use strings
 use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT
+
 implicit none
 
     ! type declaration statements
@@ -30,41 +32,10 @@ implicit none
     call parse(query, ' ', inputarray, length)
 
     do i=1,size(inputarray)
-        print *, inputarray(i)
+        print *, inputarray(i, 1)
     end do
 
     calculate = 5
 
 end function calculate
-
-
-subroutine parse(str, delims, args, nargs)
-implicit none
-
-    character(len=*) :: str, delims
-    character(len=len_trim(str)) :: strsav
-    character(len=*),dimension(:) :: args
-    integer na, nargs, i, lenstr, k
-
-    strsav=str
-    call compact(str)
-    na=size(args)
-    do i=1,na
-      args(i)=' '
-    end do  
-    nargs=0
-    lenstr=len_trim(str)
-    if(lenstr==0) return
-    k=0
-
-    do
-       if(len_trim(str) == 0) exit
-       nargs=nargs+1
-       call split(str,delims,args(nargs))
-       call removebksl(args(nargs))
-    end do
-    str=strsav
-
-end subroutine parse
-
 

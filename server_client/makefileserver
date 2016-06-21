@@ -1,3 +1,4 @@
+# Beginning of makefileserver
 # Use gcc for C and gfortran for Fortran code.
 CC=gcc
 FC=gfortran
@@ -11,3 +12,6 @@ server.o : server.c
 calcs.o: calcs.f90
 	$(FC) -c calcs.f90
 
+clean:
+	rm *.mod, rm *.o
+# End of makefileserver
