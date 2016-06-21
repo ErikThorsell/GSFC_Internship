@@ -12,14 +12,7 @@ void error(char *msg)
     perror(msg);
     exit(0);
 }
-/*
-int main()
-{
-    client("localhost", 55555);
-    calc("1 2 add");
-    return 0;
-}
-*/
+
 int client(char *ipaddr, int in_portno)
 {
     int portno;
@@ -56,12 +49,9 @@ int client(char *ipaddr, int in_portno)
 int calc(char *indata)
 {
     char buffer[256];
-    //char *indata = "1 2 add";
     int n;
-
-    //printf("Please enter what you want to do (for instance: 3, 5, add): ");
+    int ans;
     memset((buffer), 0, (256));
-    //fgets(buffer,255,stdin);
     strcpy(buffer, indata);
     n = write(sockfd,buffer,strlen(buffer));
     if (n < 0) 
@@ -69,7 +59,9 @@ int calc(char *indata)
     memset((buffer), 0, (256));
     n = read(sockfd,buffer,255);
     if (n < 0) 
-         error("ERROR reading from socket");
-    printf("%s\n",buffer);
-    return 0;
+        error("ERROR reading from socket");
+    printf("Ans: %s\n", buffer);
+    ans = strtol(buffer, (char **)NULL, 10);
+    printf("Ans: %d\n",ans);
+    return ans;
 }

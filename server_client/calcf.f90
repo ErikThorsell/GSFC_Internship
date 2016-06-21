@@ -3,7 +3,7 @@ use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT
 implicit none
 
     ! type declaration statements
-    character query
+    character*255 query
     integer calc, ans
 
     interface
@@ -15,16 +15,20 @@ implicit none
     end interface
 
     interface
-        integer(c_int) function calc(indata) bind(C, name="calc")
+        function calc(indata) bind(C, name="calc") result (ans)
             use iso_c_binding, only: c_char
             character(kind=c_char) :: indata(*)
         end function calc
     end interface
 
     ! executable statements
+    ans = 0
     call client(C_CHAR_"localhost"//C_NULL_CHAR,55555)
-    ans = calc(C_CHAR_"1 2 add"//C_NULL_CHAR)
+    print *, "What would you like to sum? (Usage: m n ... add)"
+    read (*,'(A)') query
+    ans = calc(query//C_NULL_CHAR)
     print *, ans
+    print *, "The answer is: ", ans+1
 
 end program name
 
