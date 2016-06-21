@@ -61,34 +61,37 @@ use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT
 
     operator = inputarray(nargs)
 
-    if (index(operator, "add") /= 0) then
-        do k=1, 2
-            read (inputarray(k),*) tmp
-            calculate = calculate + tmp
-        end do
-    end if
+    select case(operator)
 
-    if (index(operator, "sub") /= 0) then
-        read (inputarray(1),*) tmp
-        calculate = tmp
-        read (inputarray(2),*) tmp
-        calculate = calculate - tmp
-    end if
+        case("add")
+            do k=1, 2
+                read (inputarray(k),*) tmp
+                calculate = calculate + tmp
+            end do
 
-    if (index(operator, "mul") /= 0) then
-        calculate = 1
-        do k=1, 2
-            read (inputarray(k),*) tmp
-            calculate = calculate * tmp
-        end do
-    end if
+        case("sub")
+            read (inputarray(1),*) tmp
+            calculate = tmp
+            read (inputarray(2),*) tmp
+            calculate = calculate - tmp
 
-    if (index(operator, "div") /= 0) then
-        read (inputarray(1),*) tmp
-        calculate = tmp
-        read (inputarray(2),*) tmp
-        calculate = calculate/tmp
-    end if
+        case("mul")
+            calculate = 1
+            do k=1, 2
+                read (inputarray(k),*) tmp
+                calculate = calculate * tmp
+            end do
+
+        case("div")
+            read (inputarray(1),*) tmp
+            calculate = tmp
+            read (inputarray(2),*) tmp
+            calculate = calculate/tmp
+
+        case default
+            calculate = 0
+
+    end select
 
 
 end function calculate

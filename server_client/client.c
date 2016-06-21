@@ -1,3 +1,7 @@
+/* The original code for this server can be found here:
+ * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/server.c
+ * and the comments are taken from:
+ * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html */
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -7,12 +11,17 @@
 // Static variables
 static int sockfd;
 
+
+/* This function is called when a system call fails. It displays a message about
+ * the error on stderr and then aborts the program. */
 void error(char *msg)
 {
     perror(msg);
     exit(0);
 }
 
+/* Callable function from Fortran, used by calcf.f90, to connect to a server.
+ */
 int client(char *ipaddr, int in_portno)
 {
     int portno;
@@ -44,6 +53,9 @@ int client(char *ipaddr, int in_portno)
     return 0;
 }
 
+/* Callable function from Fortran, used by calcf.f90, as a calculator.
+ * calc passes the query stored in buffer to server and returns the
+ * answer. */
 int calc(char *indata)
 {
     char buffer[256];
@@ -62,6 +74,6 @@ int calc(char *indata)
         error("ERROR reading from socket");
 
     ans = strtol(buffer, (char **)NULL, 10);
-    printf("Ans: %d\n",ans);
+
     return ans;
 }

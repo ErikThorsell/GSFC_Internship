@@ -3,8 +3,8 @@
 CC=gcc
 FC=gfortran
 
-calculator_server : calcs.o server.o
-	$(FC) -o calculator_server calcs.o server.o
+calculator_server.out : calcs.o server.o
+	$(FC) -o calculator_server.out calcs.o server.o
 
 server.o : server.c
 	$(CC) -Wall -c server.c
