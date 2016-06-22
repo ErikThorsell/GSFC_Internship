@@ -61,16 +61,16 @@ int server(int in_portno)
         if (n < 0) error("ERROR reading from socket");
         char *p = buffer;
         long list[2];
-        long sum = 0;
+        long result = 0;
         char c_sum[255];
         int array_length = 0;
 
         // calculate is a function in calcs.f90 that interprets a query and
         // returns the answer
-        sum = calculate(p);
+        result = calculate(p);
 
         char ans[255];
-        sprintf(ans, "%d", sum);
+        sprintf(ans, "%d", result);
 
         // write returns the data to the client
         n = write(newsockfd, ans, 255);
