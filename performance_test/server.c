@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <math.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -47,21 +48,27 @@ int server(int in_portno)
 
     while(1)
     {
+        printf("KOM IN I SERVERV");
         int indata[2500];
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (newsockfd < 0)
              error("ERROR on accept");
 
         // Here comes the query from client.c
-        n = read(newsockfd, indata, 2500);
+        n = read(newsockfd, indata, sizeof(int)*2500);
         if (n < 0) error("ERROR reading from socket");
 
         // calculate is a function in calcs.f90 that interprets a query and
         // returns the answer
         //result = calculate(p);
 
+        for(int i=0; i<2500; i++)
+        {
+            printf(indata[i]);
+        }
+
         // write returns the data to the client
-        n = write(newsockfd, indata, 2500);
+        //n = write(newsockfd, indata, 2500);
 
         if (n < 0) error("ERROR writing to socket");
     }

@@ -1,16 +1,12 @@
-program calculator_client
+program performance_test
 !
 ! Client side of the Server/Client calculator, written in Fortran and C
 ! Authors:
 !   Lina Olandersson, Simon Strandberg, Erik Thorsell
 !   2016-06-21
 !
-use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT
+use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT, C_PTR, C_LOC
 implicit none
-
-    ! type declaration statements
-    integer(4), dimension(2500) :: array, ans
-    integer portno, i
 
     ! Interfaces that ensure type compatability between Fortran and C.
     interface
@@ -19,15 +15,28 @@ implicit none
             character(kind=c_char) :: ipaddr(*)
             integer(kind=c_int), value :: portnum
         end subroutine client
+
+        subroutine calc(indata, length) bind(C, name="calc")
+            use iso_c_binding, only: c_ptr, c_int
+            implicit none
+            integer(c_int), value :: length
+            type(c_ptr), value :: indata
+        end subroutine calc
+
     end interface
 
-    interface
-        function calc(indata, length) bind(C, name="calc") result (ans)
-            use iso_c_binding, only: c_int
-            integer(kind=c_int), dimension(2500) :: indata
-            integer(kind=c_int) :: length
-        end function calc
-    end interface
+!    interface
+!        function calc(indata) bind(C, name="calc")
+!            use iso_c_binding, only: c_int
+!           integer(kind=c_int), dimension(2500), intent(in) :: indata
+!           integer(kind=c_int) :: length, calc
+!       end function calc
+!   end interface
+
+    ! type declaration statements
+    integer(c_int), allocatable, target :: array(:)
+    type(c_ptr) :: cptr
+    integer portno, length, i
 
     ! executable statements
     print *, "Please enter the same port number as for the server (e.g. 55555)."
@@ -35,8 +44,12 @@ implicit none
     ! Call client.c and connect to localhost on port number `portno'.
     call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
 
-    ! Put numbers int the matrix
-    do i=1,2500
+    ! Put numbers in the array
+    length = 2500
+    allocate(array(0:length))
+    cptr=c_loc(array(1))
+
+    do i=1,length
         array(i) = i
     end do
 
@@ -44,9 +57,15 @@ implicit none
 
     print *, "KOM HIT"
 
-    array = calc(array, 2500)
+    call calc(cptr, length)
+
+    do i=1,(length/10)
+        print *, array(i)
+    end do
+
+    deallocate(array)
 
     print *, "KOM DIT"
 
-end program calculator_client
+end program performance_test
 

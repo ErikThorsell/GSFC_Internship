@@ -54,25 +54,34 @@ int client(char *ipaddr, int in_portno)
 /* Callable function from Fortran, used by calcf.f90, as a calculator.
  * calc passes the query stored in buffer to server and returns the
  * answer. */
-int * calc(int *indata, const int length)
+int *calc(int *indata, int length)
 {
     printf("Jag kom in i calc!!");
 
+    for(int i=0; i<(length/100); i++)
+    {
+        printf("%d\n", indata[i]);
+    }
+
     int n;
-    n = write(sockfd, matrix, length);
+    n = write(sockfd, indata, sizeof(int)*length);
     if (n < 0) 
          error("ERROR writing to socket");
 
-/*
-    n = read(sockfd, indata, length);
+    printf("\nJag har skickat!!\n\n");
+
+
+    n = read(sockfd, indata, sizeof(int)*length);
     if (n < 0) 
         error("ERROR reading from socket");
 
-    for(int i=0; i<length; i++)
+    printf("\nJag har tagit emot.\n\n");
+
+    for(int i=0; i<length/100; i++)
     {
-        printf('%d', indata[i]);
+        printf("%d", indata[i]);
     }
-*/
+
     return indata;
 }
 
