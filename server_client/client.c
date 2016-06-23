@@ -1,7 +1,5 @@
-/* The original code for this server can be found here:
- * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/server.c
- * and the comments are taken from:
- * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html */
+/* The original code for this client can be found here:
+ * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/client.c */
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>

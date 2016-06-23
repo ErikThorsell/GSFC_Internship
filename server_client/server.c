@@ -77,5 +77,7 @@ int server(int in_portno)
 
         if (n < 0) error("ERROR writing to socket");
     }
+
     return 0;
+
 }

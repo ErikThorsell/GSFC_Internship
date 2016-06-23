@@ -93,7 +93,6 @@ use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT
 
     end select
 
-
 end function calculate
 
 

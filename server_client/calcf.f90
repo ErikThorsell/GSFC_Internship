@@ -31,7 +31,7 @@ implicit none
     ! executable statements
     ans = 0
     print *, "Please enter the same port number as for the server (e.g. 55555)."
-    read *, portno
+    read "(1i9)", portno
     ! Call client.c and connect to localhost on port number `portno'.
     call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
     print *, "Usage: Write two numbers followed by an operator (add, sub, mul, div)."
