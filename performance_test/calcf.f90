@@ -24,15 +24,7 @@ implicit none
         end subroutine calc
 
     end interface
-
-!    interface
-!        function calc(indata) bind(C, name="calc")
-!            use iso_c_binding, only: c_int
-!           integer(kind=c_int), dimension(2500), intent(in) :: indata
-!           integer(kind=c_int) :: length, calc
-!       end function calc
-!   end interface
-
+    
     ! type declaration statements
     integer(c_int), allocatable, target :: array(:)
     type(c_ptr) :: cptr
@@ -55,17 +47,13 @@ implicit none
 
     ! Call client.c and pass the query on towards calcs.f90.
 
-    print *, "KOM HIT"
-
     call calc(cptr, length)
 
-    do i=1,(length/10)
-        print *, array(i)
-    end do
+   ! do i=1,length
+   !     print *, array(i)
+   ! end do
 
     deallocate(array)
-
-    print *, "KOM DIT"
 
 end program performance_test
 

@@ -56,32 +56,29 @@ int client(char *ipaddr, int in_portno)
  * answer. */
 int *calc(int *indata, int length)
 {
-    printf("Jag kom in i calc!!");
 
+/*
     for(int i=0; i<(length/100); i++)
     {
         printf("%d\n", indata[i]);
     }
+*/
 
     int n;
     n = write(sockfd, indata, sizeof(int)*length);
     if (n < 0) 
          error("ERROR writing to socket");
 
-    printf("\nJag har skickat!!\n\n");
-
-
     n = read(sockfd, indata, sizeof(int)*length);
     if (n < 0) 
         error("ERROR reading from socket");
 
-    printf("\nJag har tagit emot.\n\n");
-
+/*
     for(int i=0; i<length/100; i++)
     {
         printf("%d", indata[i]);
     }
-
+*/
     return indata;
 }
 

@@ -48,8 +48,8 @@ int server(int in_portno)
 
     while(1)
     {
-        printf("KOM IN I SERVERV");
         int indata[2500];
+        int *result;
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (newsockfd < 0)
              error("ERROR on accept");
@@ -58,17 +58,15 @@ int server(int in_portno)
         n = read(newsockfd, indata, sizeof(int)*2500);
         if (n < 0) error("ERROR reading from socket");
 
-        // calculate is a function in calcs.f90 that interprets a query and
-        // returns the answer
-        //result = calculate(p);
-
-        for(int i=0; i<2500; i++)
+        result = square(indata);
+    /*
+        for(int i=0; i<10; i++)
         {
-            printf(indata[i]);
+            result[i];
         }
-
+    */
         // write returns the data to the client
-        //n = write(newsockfd, indata, 2500);
+        n = write(newsockfd, indata, sizeof(int)*2500);
 
         if (n < 0) error("ERROR writing to socket");
     }
