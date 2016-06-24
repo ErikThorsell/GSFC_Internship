@@ -38,7 +38,7 @@ implicit none
     call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
 
     ! Put numbers in the array
-    length = 2500
+    length = 25000
     allocate(array(0:length))
     cptr=c_loc(array(1))
 

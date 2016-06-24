@@ -72,11 +72,12 @@ subroutine square(cptr) bind(C, name="square")
     type(c_ptr) :: cptr
     integer*8 :: iptr
     integer :: length, i
-    integer pointee(2500)
+    integer pointee(250000)
     pointer(iptr, pointee)
     iptr = loc(cptr)
+    length = 250000
 
-    do i = 1, 2500
+    do i = 1, length
         pointee(i)= pointee(i)**2
     end do
 

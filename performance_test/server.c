@@ -48,13 +48,14 @@ int server(int in_portno)
 
     while(1)
     {
-        int indata[2500];
+        int length = 250000;
+        int indata[length];
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (newsockfd < 0)
              error("ERROR on accept");
 
         // Here comes the query from client.c
-        n = read(newsockfd, indata, sizeof(int)*2500);
+        n = read(newsockfd, indata, sizeof(int)*length);
         if (n < 0) error("ERROR reading from socket");
 
         /*
@@ -74,7 +75,7 @@ int server(int in_portno)
         }
 */
         // write returns the data to the client
-        n = write(newsockfd, indata, sizeof(int)*2500);
+        n = write(newsockfd, indata, sizeof(int)*length);
 
         if (n < 0) error("ERROR writing to socket");
     }
