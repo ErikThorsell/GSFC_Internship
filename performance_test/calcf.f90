@@ -31,9 +31,10 @@ implicit none
     integer portno, length, i
 
     ! executable statements
-    print *, "Please enter the same port number as for the server (e.g. 55555)."
-    read "(1i9)", portno
+    !print *, "Please enter the same port number as for the server (e.g. 55555)."
+    !read "(1i9)", portno
     ! Call client.c and connect to localhost on port number `portno'.
+    portno=55555
     call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
 
     ! Put numbers in the array
@@ -49,9 +50,9 @@ implicit none
 
     call calc(cptr, length)
 
-   ! do i=1,length
-   !     print *, array(i)
-   ! end do
+    !do i=1,length
+    !    print *, array(i)
+    !end do
 
     deallocate(array)
 

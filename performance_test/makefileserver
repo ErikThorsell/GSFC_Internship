@@ -10,7 +10,7 @@ server.o : server.c
 	$(CC) -Wall -c server.c
 
 calcs.o: calcs.f90
-	$(FC) -c calcs.f90
+	$(FC) -c calcs.f90 -fcray-pointer
 
 clean:
 	rm *.o
