@@ -48,7 +48,7 @@ int server(int in_portno)
 
     while(1)
     {
-        int length = 250000;
+        int length = 100000;
         int indata[length];
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (newsockfd < 0)
@@ -58,22 +58,8 @@ int server(int in_portno)
         n = read(newsockfd, indata, sizeof(int)*length);
         if (n < 0) error("ERROR reading from socket");
 
-        /*
-        for(int i=0; i<10; i++)
-        {
-            printf("%d\n",indata[i]);
-        }
-        */
-        //
-        // HIT FUNKAR DET
-
         square(indata);
- /*
-        for(int i=0; i<10; i++)
-        {
-            printf("%d\n", indata[i]);
-        }
-*/
+
         // write returns the data to the client
         n = write(newsockfd, indata, sizeof(int)*length);
 

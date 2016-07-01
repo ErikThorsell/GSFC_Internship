@@ -57,12 +57,6 @@ int client(char *ipaddr, int in_portno)
 int *calc(int *indata, int length)
 {
 
-    /*
-    for(int i=0; i<(length/100); i++)
-    {
-        printf("%d\n", indata[i]);
-    }
-  */
     int n;
     n = write(sockfd, indata, sizeof(int)*length);
     if (n < 0) 
@@ -72,13 +66,11 @@ int *calc(int *indata, int length)
     if (n < 0) 
         error("ERROR reading from socket");
 
-/*
-    for(int i=0; i<length/100; i++)
-    {
-        printf("%d\n", indata[i]);
-    }
-*/
     return indata;
 }
 
-
+int close_connection()
+{
+    close(sockfd);
+    return 0;
+}

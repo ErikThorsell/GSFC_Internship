@@ -1,0 +1,11 @@
+ COMM:            0
+ NEWCOMM:        32729
+ COMM:            0
+ NEWCOMM:        32567
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 20771 on node Antergos-Laptop exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+ COMM:            0
+ COMM:            0
+ NEWCOMM:        32661
+ NEWCOMM:        32634

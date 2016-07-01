@@ -13,7 +13,6 @@ use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT, C_PTR
 implicit none
 
     ! type declaration statements
-    character(255) query
     integer calc, ans, portnum, calculate
 
     ! Interface that ensures type compatibility between Fortran and C
@@ -38,32 +37,6 @@ end program calculator_server
 
 
 ! **********************************************************************
-
-!integer(c_int) function square(intarray) bind(C, name="square")
-!    use iso_c_binding, only: C_PTR, C_INT, C_LOC
-!    implicit none
-!
-!    ! Variable declarations
-!    integer(c_int), allocatable, target :: intarray(:)
-!    integer :: i, length
-!
-!    length = 2500
-!    !allocate(intarray(0:length))
-!
-!    do i=1,3
-!        print *, intarray(i)
-!    end do
-!    
-!    do i=1,length
-!        intarray(i)=intarray(i)**2
-!    end do
-!
-!    do i=1,3
-!        print *, intarray(i)
-!    end do
-!
-!end function square
-
 subroutine square(cptr) bind(C, name="square")
     use iso_c_binding
     implicit none
@@ -72,19 +45,14 @@ subroutine square(cptr) bind(C, name="square")
     type(c_ptr) :: cptr
     integer*8 :: iptr
     integer :: length, i
-    integer pointee(250000)
+    integer pointee(100000)
     pointer(iptr, pointee)
     iptr = loc(cptr)
-    length = 250000
+    length = 100000
 
+    ! Execution
     do i = 1, length
         pointee(i)= pointee(i)**2
     end do
-
-!    do i = 1, 50
-!        print *, pointee(i)
-!    end do
-
-
 end subroutine square
 
