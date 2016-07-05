@@ -48,6 +48,8 @@ int client(char *ipaddr, int in_portno)
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
 
+    //close(sockfd);
+
     return 0;
 }
 
@@ -69,8 +71,3 @@ int *calc(int *indata, int length)
     return indata;
 }
 
-int close_connection()
-{
-    close(sockfd);
-    return 0;
-}

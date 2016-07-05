@@ -2,6 +2,7 @@
  * http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/server.c */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
 #include <math.h>
 #include <sys/types.h>
@@ -20,7 +21,7 @@ void error(char *msg)
  * can recieve queries. */
 int server(int in_portno)
 {
-   int sockfd, newsockfd, portno, clilen;
+    int sockfd, newsockfd, portno, clilen, errno;
 
     struct sockaddr_in serv_addr, cli_addr; int n;
 
@@ -46,13 +47,14 @@ int server(int in_portno)
 
     clilen = sizeof(cli_addr);
 
-    while(1)
-    {
-        int length = 100000;
+        int length = (4000000/4);
         int indata[length];
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (newsockfd < 0)
              error("ERROR on accept");
+
+    while(1)
+    {
 
         // Here comes the query from client.c
         n = read(newsockfd, indata, sizeof(int)*length);

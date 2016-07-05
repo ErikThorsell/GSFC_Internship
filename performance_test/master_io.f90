@@ -5,54 +5,38 @@ program master
 ! Date: 2016-06-22
 implicit none
 
-integer*4, dimension (2500) :: matrix     
-integer :: length, i
+integer*4, dimension (2000000/4) :: matrix
+integer :: length, i, j, exitstatus, cmdstatus, count1, count2
+real :: start_time, stop_time
+logical :: waistatus
 
 ! put integers in matrix and output data into a file 
-open(1, file='matrixdata.dat', status='new')
+do j=1,1000
+open(1, file='matrixdata.dat', status='old')
 
-length = 2500
+length = size(matrix)
 
 do i=1,length
-    matrix(i) = i
+    matrix(i) = 2
     write(1,*) matrix(i)
 end do
 
 close(1)
 
-call slave
+call execute_command_line("./slave.out", wait = .true., exitstat=exitstatus)
 
-! open and read the file changed by subroutine slave
-open(1, file= 'matrixdata.dat', status='old')
-do i = 1, 100
-    read(1,*) matrix(i)
-end do
-close(1)
+if(exitstatus .eq. 0) then
+    ! open and read the file changed by subroutine slave
+    open(1, file= 'matrixdata.dat', status='old')
+    do i = 1, length
+        read(1,*) matrix(i)
+    end do
+    close(1)
+endif
+
+enddo
 
 end program master
 
 ! ********************************************************************
-subroutine slave
-implicit none
 
-integer*4, dimension (2500) :: matrix
-integer :: length, i
-
-! Open and read the file made by master into a matrix
-open (1, file= 'matrixdata.dat', status = 'old')
-length = 2500
-
-do i = 1, length
-    read(1,*) matrix(i)
-end do
-close(1)
-
-! Square all numbers and write over the file with new data
-open(1, file= 'matrixdata.dat', status = 'old')
-do i=1,length
-    matrix(i) = matrix(i)**2
-    write(1,*) matrix(i)     
-end do 
-close(1) 
-
-end subroutine slave

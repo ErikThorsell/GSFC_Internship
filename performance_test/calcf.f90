@@ -40,28 +40,21 @@ implicit none
     !read "(1i9)", portno
     ! Call client.c and connect to localhost on port number `portno'.
     portno=55555
-    do j=1,500
-        call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
+    call client(C_CHAR_"localhost"//C_NULL_CHAR, portno)
 
-        ! Put numbers in the array
-        length = 100000
-        allocate(array(0:length))
-        cptr=c_loc(array(1))
+    ! Put numbers in the array
+    length = (4000000/4)
+    allocate(array(0:length))
+!    do j=1,1000
+    cptr=c_loc(array(1))
 
-        do i=1, length
-            array(i) = 2
-        end do
+    do i=1, length
+        array(i) = 2
+    end do
 
-        ! Call client.c and pass the query on towards calcs.f90.
-        call calc(cptr, length)
-
-       ! do i=1,2
-       !     print *, array(i)
-       ! end do
-
-!        call close_connection()
-
-        deallocate(array)
-    enddo
-end program performance_test
+    ! Call client.c and pass the query on towards calcs.f90.
+    call calc(cptr, length)
+!    enddo
+    deallocate(array)
+ end program performance_test
 

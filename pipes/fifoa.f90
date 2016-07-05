@@ -1,24 +1,34 @@
 program testfifoa
     implicit none
 
-    integer(4), dimension(2500) :: array
-    integer :: length, i
-    length = 2500
+    integer(4), dimension(400000/4) :: array
+    integer :: length, i, exitstatus, j
+    length = size(array)
 
-    open(1, file="test1.pipe", form="formatted", status="old", action="write")
-    open(2, file="test2.pipe", form="formatted", status="old", action="read")
+    open(1, file="test1.pipe", form="formatted", status="old", action="read")
+    open(2, file="test2.pipe", form="formatted", status="old", action="write")
+
+do j=1,1000
 
     do i=1,length
-        array(i) = i
+        array(i) = 2
     end do
 
-    write(1,*) array
-    flush(1)
+    write(2,*) array
+    flush(2)
 
-    read(2,*) array
+    if(exitstatus .eq. 0) then
+        read(1,*) array
+    endif
 
-    close(1)
+   ! do i=1,length
+   !     print *, "Print in server:", array(i)
+   ! enddo
+
+enddo
+
     close(2)
+    close(1)
 
 end program testfifoa
 

@@ -1,4 +1,3 @@
-
 program calculator_server
 ! 
 ! Authors:
@@ -13,7 +12,7 @@ use iso_c_binding, only: C_CHAR, C_NULL_CHAR, C_INT, C_PTR
 implicit none
 
     ! type declaration statements
-    integer calc, ans, portnum, calculate
+    integer calc, ans, portnum, calculate, exitstatus
 
     ! Interface that ensures type compatibility between Fortran and C
     interface
@@ -45,10 +44,10 @@ subroutine square(cptr) bind(C, name="square")
     type(c_ptr) :: cptr
     integer*8 :: iptr
     integer :: length, i
-    integer pointee(100000)
+    integer pointee(4000000/4)
     pointer(iptr, pointee)
     iptr = loc(cptr)
-    length = 100000
+    length = (4000000/4)
 
     ! Execution
     do i = 1, length
