@@ -9,7 +9,7 @@ EXE=hwserver hwclient
 default: $(EXE)
 
 %: %.f f77_zmq.h libf77zmq.a
-	$(FC) $*.f -o $@ $(LIBS)
+	$(FC) $*.f -o $@ $(LIBS) -ffree-form
 
 #libf77zmq.a: libf77zmq.a
 #	$(MAKE) -C ..

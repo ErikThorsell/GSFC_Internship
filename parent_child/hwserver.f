@@ -1,22 +1,24 @@
       program server
         implicit none
+        include 'solve.i'
+        include 'oborg.i'
         include 'f77_zmq.h'
         integer(ZMQ_PTR)        context
         integer(ZMQ_PTR)        responder
         character*(64)          address
         !integer, dimension(:), allocatable :: buffer
-        integer, dimension(20) :: buffer
+        integer, dimension(22) :: buffer
         integer, dimension(20) :: array1, array2, array3
-        integer                 rc, sbuf, i, lbuf
+        integer                 rc, sbuf, i, lbuf, c
 
 
         !allocate(buffer(3))
         lbuf = size(buffer)
         sbuf = lbuf*4
-        do i=1,lbuf
-            array1(i) = 1
-            array2(i) = 2
-            array3(i) = 3
+        do i=1,(lbuf-2)
+            array1(i) = 11
+            array2(i) = 12
+            array3(i) = 13
         enddo
 
         address = 'tcp://*:55555'
@@ -25,7 +27,7 @@
         responder = f77_zmq_socket(context, ZMQ_REP)
         rc        = f77_zmq_bind(responder,address)
 
-        print *,  "Waiting for Child to acknowledge existence. RC: ", rc
+        print *,  "Waiting for Child to ack its existence. RC: ", rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 2
         print *,  'Received ack from Child. RC: ', rc
 
@@ -34,23 +36,64 @@
         ! be followed by a recv as seen below.
         buffer(1) = 9
         rc = f77_zmq_send(responder, buffer, sbuf, 0) ! 4
-        print *,  'Waiting for Child. RC: ', rc
+
+        print *,  'Waiting for Child to perform operation. RC: ', rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 6
-        print *, "Received: ", (buffer(1:3))
+        print *, "Received operation code: ", (buffer(1:2))
 
         select case (buffer(1))
           case (1)
             print *, "Child asked for Parent to send array: ", buffer(2)
-            select case (buffer(2))
+            c = buffer(2)
+            buffer(1) = 9
+            buffer(2) = 9
+            select case (c)
               case (1)
-                  buffer = array1
+                  buffer(3:lbuf) = array1
               case (2)
-                  buffer = array2
+                  buffer(3:lbuf) = array2
               case (3)
-                  buffer = array3
+                  buffer(3:lbuf) = array3
             end select
             rc = f77_zmq_send(responder, buffer, sbuf, 0)
             print *, "Sending array. RC: ", rc
+
+          case (2)
+            print *, "Child asked Parent to get array", buffer(2)
+            c = buffer(2)
+            buffer(1) = 9
+            rc = f77_zmq_send(responder, buffer, sbuf, 0)
+            print *, "Parent acked that data can be sent. RC: ", rc
+            rc = f77_zmq_recv(responder, buffer, sbuf, 0)
+            !do i=3,(lbuf)
+            !  print *, buffer(i)
+            !enddo
+            select case (c)
+              case (1)
+                array1 = buffer(3:lbuf)
+                do i=1,(lbuf-2)
+                  print *, array1(i)
+                enddo
+              case (2)
+                array2 = buffer(3:lbuf)
+                do i=1,(lbuf-2)
+                  print *, array2(i)
+                enddo
+              case (3)
+                array3 = buffer(3:lbuf)
+                do i=1,(lbuf-2)
+                  print *, array3(i)
+                enddo
+            end select
+            buffer(1) = 9
+            rc = f77_zmq_send(responder, buffer, sbuf, 0)
+            print *, "Parent acked that it got the data!"
+
+          case(3)
+          case(4)
+          case(5)
+          case(6)
+          case(7)
         end select
 
 
