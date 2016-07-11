@@ -8,7 +8,7 @@
         character*(64)          address
         integer, dimension(22) :: buffer
         integer, dimension(20) :: array1, array2, array3
-        integer                 rc, sbuf, i, lbuf, c
+        integer                 rc, sbuf, i, lbuf, c, size_commonblock
 
 
         !allocate(buffer(3))
@@ -26,11 +26,14 @@
         responder = f77_zmq_socket(context, ZMQ_REP)
         rc        = f77_zmq_bind(responder,address)
         
+       ! Find size of commonblock, add 2 for size of ILAST_OBORG_I2
+       size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
+ 
         print *, OBORG_IFILL_LEN
         print *,  "Waiting for Child to ack its existence. RC: ", rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 2
         print *,  'Received ack from Child. RC: ', rc
-
+  
         ! buffer(1) = 9 will be used as an ack throughout the program.
         ! ZeroMQ does not allow consecuetive sends/recvs, why each send has to
         ! be followed by a recv as seen below.
@@ -95,12 +98,31 @@
             print *, buffer(2)
             c=buffer(2)
             buffer(1) = 9
-            buffer(2) = 9
-            FJD = 3
-            FRACT = 9
-            rc = f77_zmq_send(responder, FJD, 830, 0)
-            print *, FJD, FRACT
+
+            ! Assign values to forst and last entries for sanity check
+            FJD = 1
+            ILAST_OBORG_I2 = 999
+            
+            ! Send commonblock to child
+            rc = f77_zmq_send(responder, FJD, size_commonblock, 0)
+            FJD = 100
+
           case(4)
+            print *, "Child wants to send common block for obs:"
+            print *, buffer(2)
+            c=buffer(2)
+            buffer(1) = 9
+            
+            ! Acknomledgement, ready to receive again
+            rc = f77_zmq_send(responder, buffer, sbuf, 0)
+            
+            ! Receive commonblock
+            rc = f77_zmq_recv(responder, FJD, size_commonblock, 0)
+            
+            ! Acknowledge that transfer is done.
+            buffer(1) = 9
+            rc = f77_zmq_send(responder, buffer, sbuf, 0)
+
           case(5)
           case(6)
           case(7)

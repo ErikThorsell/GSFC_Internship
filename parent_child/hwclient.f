@@ -1,8 +1,8 @@
 ! ************************ Pre program ******************* !!
       program server
         implicit none
-!        include 'solve.i'
-!        include 'oborg.i'
+        include 'solve.i'
+        include 'oborg.i'
         include 'f77_zmq.h'
         integer(ZMQ_PTR)        context
         integer(ZMQ_PTR)        requester
@@ -76,12 +76,16 @@
               call get(buffNumber, buffer, array)
 
             case (3)
-!              print *,"Which observation's common block would you like?"
-!              print *, "Must choose 1 for now"
-!              read(*,*) iobsNumber
-!              call sendObsN(buffer, iobsNumber)
+              print *,"Which observation's common block would you like?"
+              print *, "Must choose 1 for now"
+              read(*,*) iobsNumber
+              call sendObsN(buffer, iobsNumber)
 
             case (4)
+              print *, "Which observation's common block shall I send?"
+              read(*,*) iobsNumber
+              call getObsN(buffer, iobsNumber)
+
             case (5)
             case (6)
             case (7)
@@ -229,7 +233,9 @@
 
         buffer(1) = 7
         
+! Tell parent that child is done
         rc = f77_zmq_send(requester, buffer, sbuf, 0)
+! Receive confirmation from parent
         rc = f77_zmq_recv(requester, buffer, sbuf ,0)
 
      end
@@ -237,34 +243,79 @@
 ! *********************************************************************
       subroutine sendobsN(buffer, iobsNumber)
         
-!        implicit none
-!        include 'f77_zmq.h'
-!        include 'oborg.i'
-!        include 'solve.i'
-!        integer(ZMQ_PTR)        context
-!        integer(ZMQ_PTR)        requester
-!        character*(64)          address
-!        integer, dimension(22) :: buffer
-!        integer                 rc, lbuf, sbuf, i, iobsNumber
-!
-!        address = 'tcp://localhost:55555'
-!
-!        context   = f77_zmq_ctx_new()
-!        requester = f77_zmq_socket(context, ZMQ_REQ)
-!        rc = f77_zmq_connect(requester, address)
-!
-!
-!        lbuf = size(buffer)
-!        sbuf = lbuf * 4
-!        
-!        print *, ""
-!
-!        buffer(1) = 3
-!        buffer(2) = iobsNumber
-!        rc = f77_zmq_send(requester, buffer, sbuf, 0)
-!        rc = f77_zmq_recv(requester, FJD, 830, 0)
-!        buffer(1) = 9
-!        print *, FJD,FRACT
-!
+        implicit none
+        include 'solve.i'
+        include 'oborg.i'
+        include 'f77_zmq.h'
+        integer(ZMQ_PTR)        context
+        integer(ZMQ_PTR)        requester
+        character*(64)          address
+        integer, dimension(22) :: buffer
+        integer                 rc, lbuf, sbuf, i, iobsNumber, size_commonblock
+
+        address = 'tcp://localhost:55555'
+
+        context   = f77_zmq_ctx_new()
+        requester = f77_zmq_socket(context, ZMQ_REQ)
+        rc = f77_zmq_connect(requester, address)
+
+
+        lbuf = size(buffer)
+        sbuf = lbuf * 4
+        
+        print *, ""
+
+        buffer(1) = 3
+        buffer(2) = iobsNumber
+        rc = f77_zmq_send(requester, buffer, sbuf, 0)
+
+! Find size of commonblock. add 2 for  size of ILAST_OBORG_I2
+        size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
+
+        rc = f77_zmq_recv(requester, FJD, size_commonblock, 0)
+
+! Assign value 9 to buffer(1) so that loop may continue
+        buffer(1) = 9
+
+
+      end
+
+! *********************************************************************
+
+      subroutine getobsN(buffer, iobsNumber)  
+        implicit none
+        include 'solve.i'
+        include 'oborg.i'
+        include 'f77_zmq.h'
+        integer(ZMQ_PTR)        context
+        integer(ZMQ_PTR)        requester
+        character*(64)          address
+        integer, dimension(22) :: buffer
+        integer                 rc, lbuf, sbuf, i, iobsNumber, size_commonblock
+
+        address = 'tcp://localhost:55555'
+
+        context   = f77_zmq_ctx_new()
+        requester = f77_zmq_socket(context, ZMQ_REQ)
+        rc = f77_zmq_connect(requester, address)
+
+
+        lbuf = size(buffer)
+        sbuf = lbuf * 4
+        
+        buffer(1) =4 
+        buffer(2) = iobsNumber
+        rc = f77_zmq_send(requester, buffer, sbuf, 0)
+
+        ! Find size of commonblock. add 2 for  size of ILAST_OBORG_I2
+        size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
+        
+        ! Receive acknowledgement, now ready to send 
+        rc = f77_zmq_recv(requester, buffer, sbuf, 0)
+
+        ! Send commonblock
+        rc = f77_zmq_send(requester, FJD, size_commonblock, 0)
+
+        rc = f77_zmq_recv(requester, buffer, sbuf, 0)
 
       end
