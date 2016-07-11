@@ -1,12 +1,13 @@
-! ************************ Pre program ******************* !!
+! ************************ Pre program ******************* !
       program server
         implicit none
         include 'solve.i'
         include 'oborg.i'
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
         integer, dimension(20) :: array, array1, array2, array3
         integer                 rc
@@ -93,7 +94,8 @@
               exit
           end select
         else
-          print *, "Something went wrong."
+          print *, "Something went wrong. Buffer(1) = ", &
+          & buffer(1), ", rc: ", rc
         endif
       enddo
 
@@ -111,19 +113,20 @@
       subroutine init(buffer, rc)
         implicit none
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
         integer, dimension(20) :: array1, array2, array3
         integer                 rc
         integer                 i, lbuf, c, sbuf, buffNumber
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc        = f77_zmq_connect(requester,address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc        = f77_zmq_connect(requester,address)
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
@@ -138,22 +141,23 @@
         rc = f77_zmq_recv(requester, buffer, sbuf, 0)
         print *,  "Received dummy. RC: ", rc
       end
-
+!*************************************************************************!
       subroutine send(buffNumber, buffer)
-        implicit none
+        !implicit none
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
         integer                 rc
         integer                 i, lbuf, c, sbuf, buffNumber
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc        = f77_zmq_connect(requester,address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc        = f77_zmq_connect(requester,address)
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
@@ -173,19 +177,20 @@
       subroutine get(buffNumber, buffer, array)
         implicit none
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
         integer, dimension(20) :: array
         integer                 rc
         integer                 i, lbuf, c, sbuf, buffNumber
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc        = f77_zmq_connect(requester,address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc        = f77_zmq_connect(requester,address)
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
@@ -212,20 +217,21 @@
 
         implicit none
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
-        integer                 rc, lbuf, sbuf, i
+        integer                 rc
         integer, dimension(8) :: t
-        integer                 ms1, ms2
+        integer                 ms1, ms2, lbuf, sbuf, i
         real                    dt
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc        = f77_zmq_connect(requester,address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc        = f77_zmq_connect(requester,address)
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
@@ -246,17 +252,19 @@
         include 'solve.i'
         include 'oborg.i'
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
-        integer                 rc, lbuf, sbuf, i, iobsNumber, size_commonblock
+        integer                  rc
+        integer                  lbuf, sbuf, i, iobsNumber, size_commonblock
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc = f77_zmq_connect(requester, address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc = f77_zmq_connect(requester, address)
 
 
         lbuf = size(buffer)
@@ -289,17 +297,19 @@
         include 'solve.i'
         include 'oborg.i'
         include 'f77_zmq.h'
-        integer(ZMQ_PTR)        context
-        integer(ZMQ_PTR)        requester
-        character*(64)          address
+        include 'variables_client.i'
+        !integer(ZMQ_PTR)        context
+        !integer(ZMQ_PTR)        requester
+        !character*(64)          address
         integer, dimension(22) :: buffer
-        integer                 rc, lbuf, sbuf, i, iobsNumber, size_commonblock
+        integer                  rc
+        integer                  lbuf, sbuf, i, iobsNumber, size_commonblock
 
-        address = 'tcp://localhost:55555'
+        !address = 'tcp://localhost:55555'
 
-        context   = f77_zmq_ctx_new()
-        requester = f77_zmq_socket(context, ZMQ_REQ)
-        rc = f77_zmq_connect(requester, address)
+        !context   = f77_zmq_ctx_new()
+        !requester = f77_zmq_socket(context, ZMQ_REQ)
+        !rc = f77_zmq_connect(requester, address)
 
 
         lbuf = size(buffer)
