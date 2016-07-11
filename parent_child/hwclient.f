@@ -232,18 +232,6 @@
         rc = f77_zmq_send(requester, buffer, sbuf, 0)
         rc = f77_zmq_recv(requester, buffer, sbuf ,0)
 
-      ! Sleep for dt milliseconds
-!      call date_and_time(values=t)
-!      ms1=(t(5)*3600+t(6)*60+t(7))*1000+t(8)
-!
-!      dt = 1
-!
-!      do ! check time:
-!       call date_and_time(values=t)
-!       ms2=(t(5)*3600+t(6)*60+t(7))*1000+t(8)
-!       if(ms2-ms1>=dt)exit
-!      enddo
-
      end
 
 ! *********************************************************************

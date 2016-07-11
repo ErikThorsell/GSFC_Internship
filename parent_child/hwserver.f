@@ -6,7 +6,6 @@
         integer(ZMQ_PTR)        context
         integer(ZMQ_PTR)        responder
         character*(64)          address
-        !integer, dimension(:), allocatable :: buffer
         integer, dimension(22) :: buffer
         integer, dimension(20) :: array1, array2, array3
         integer                 rc, sbuf, i, lbuf, c
