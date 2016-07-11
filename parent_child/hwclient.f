@@ -1,5 +1,5 @@
 ! ************************ Pre program ******************* !
-      program server
+      program client
         implicit none
         include 'solve.i'
         include 'oborg.i'
@@ -59,7 +59,7 @@
               enddo
 
             case (2)
-              print *, "Which i_array do you want to Parent to get? (1-3)"
+              print *,"Which i_array do you want to Parent to get?(1-3)"
               read(*,*) buffNumber
               print *, "Child wants parent to get i_array: ", buffNumber
               select case (buffNumber)
@@ -96,9 +96,6 @@
         endif
       enddo
 
-        !i_rc = f77_zmq_send(requester, "end", 3, 0)
-        !i_rc = f77_zmq_recv(requester, i_buffer, 20, 0)
-
         i_rc = f77_zmq_close(requester)
         i_rc = f77_zmq_ctx_destroy(context)
 
@@ -111,19 +108,10 @@
         implicit none
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer, dimension(20) :: i_array1, i_array2, i_array3
         integer                 i_rc
         integer                 i, i_lbuf, c, i_sbuf, buffNumber
-
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc        = f77_zmq_connect(requester,address)
 
         i_lbuf = size(i_buffer)
         i_sbuf = i_lbuf * 4
@@ -143,18 +131,9 @@
         !implicit none
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer                 i_rc
         integer                 i, i_lbuf, c, i_sbuf, buffNumber
-
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc        = f77_zmq_connect(requester,address)
 
         i_lbuf = size(i_buffer)
         i_sbuf = i_lbuf * 4
@@ -175,24 +154,15 @@
         implicit none
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer, dimension(20) :: i_array
         integer                 i_rc
         integer                 i, i_lbuf, c, i_sbuf, buffNumber
 
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc        = f77_zmq_connect(requester,address)
-
         i_lbuf = size(i_buffer)
         i_sbuf = i_lbuf * 4
 
-!! Actual function !!
+        !! Actual function !!
 
         i_buffer(1) = 2
         i_buffer(2) = buffNumber
@@ -215,29 +185,20 @@
         implicit none
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer                 i_rc
         integer, dimension(8) :: t
         integer                 ms1, ms2, i_lbuf, i_sbuf, i
         real                    dt
 
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc        = f77_zmq_connect(requester,address)
-
         i_lbuf = size(i_buffer)
         i_sbuf = i_lbuf * 4
 
         i_buffer(1) = 7
 
-! Tell parent that child is done
+        ! Tell parent that child is done
         i_rc = f77_zmq_send(requester, i_buffer, i_sbuf, 0)
-! Receive confirmation from parent
+        ! Receive confirmation from parent
         i_rc = f77_zmq_recv(requester, i_buffer, i_sbuf ,0)
 
      end
@@ -250,19 +211,9 @@
         include 'oborg.i'
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer                  i_rc
         integer                  i_lbuf, i_sbuf, i, i_obsNumber, i_blocksize
-
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc = f77_zmq_connect(requester, address)
-
 
         i_lbuf = size(i_buffer)
         i_sbuf = i_lbuf * 4
@@ -273,7 +224,7 @@
         i_buffer(2) = i_obsNumber
         i_rc = f77_zmq_send(requester, i_buffer, i_sbuf, 0)
 
-! Find size of commonblock. add 2 for  size of ILAST_OBORG_I2
+        ! Find size of commonblock. add 2 for  size of ILAST_OBORG_I2
         i_blocksize = loc(ILAST_OBORG_I2)-loc(FJD) + 2
 
         i_rc = f77_zmq_recv(requester, FJD, i_blocksize, 0)
@@ -281,9 +232,8 @@
         FJD = 33
         ILAST_OBORG_I2 = 888
 
-! Assign value 9 to i_buffer(1) so that loop may continue
+        ! Assign value 9 to i_buffer(1) so that loop may continue
         i_buffer(1) = 9
-
 
       end
 
@@ -295,18 +245,9 @@
         include 'oborg.i'
         include 'f77_zmq.h'
         include 'variables_client.i'
-        !integer(ZMQ_PTR)        context
-        !integer(ZMQ_PTR)        requester
-        !character*(64)          address
         integer, dimension(22) :: i_buffer
         integer                  i_rc
         integer                  i_lbuf, i_sbuf, i, i_obsNumber, i_blocksize
-
-        !address = 'tcp://localhost:55555'
-
-        !context   = f77_zmq_ctx_new()
-        !requester = f77_zmq_socket(context, ZMQ_REQ)
-        !i_rc = f77_zmq_connect(requester, address)
 
 
         i_lbuf = size(i_buffer)
