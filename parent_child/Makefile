@@ -2,7 +2,7 @@
 FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp
 LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq 
 
-EXE=hwserver hwclient 
+EXE=hwserver hwclient
 
 .PHONY: default
 
@@ -19,4 +19,4 @@ default: $(EXE)
 	#cp ../f77_zmq.h .
 
 clean:
-	$(RM) -f -- $(EXE) f77_zmq.o f77_zmq.h *.ipc
+	$(RM) -f -- $(EXE) *.ipc

@@ -35,7 +35,7 @@
 
 !! Aaand go program, go !!
         call init(buffer, rc)
-      
+
       do while (.true.)
         if ((buffer(1) .eq. 9) .and. (rc .ge. 0)) then
           print *, "All is good, please chose between the options below"
@@ -43,7 +43,7 @@
           print *, "(1) Send"
           print *, "(2) Get"
           print *, "(3) Send Obs"
-          print *, "n/a (4) Get Obs"
+          print *, "(4) Get Obs"
           print *, "n/a (5) Get Size"
           print *, "n/a (6) Done"
           print *, "(7) Exit"
@@ -59,7 +59,6 @@
               do i=3,lbuf
                 print *, buffer(i)
               enddo
-
 
             case (2)
               print *, "Which array do you want to Parent to get? (1-3)"
@@ -149,7 +148,7 @@
         integer, dimension(22) :: buffer
         integer                 rc
         integer                 i, lbuf, c, sbuf, buffNumber
-        
+
         address = 'tcp://localhost:55555'
 
         context   = f77_zmq_ctx_new()
@@ -227,12 +226,12 @@
         context   = f77_zmq_ctx_new()
         requester = f77_zmq_socket(context, ZMQ_REQ)
         rc        = f77_zmq_connect(requester,address)
-        
+
         lbuf = size(buffer)
         sbuf = lbuf * 4
 
         buffer(1) = 7
-        
+
 ! Tell parent that child is done
         rc = f77_zmq_send(requester, buffer, sbuf, 0)
 ! Receive confirmation from parent
@@ -241,8 +240,8 @@
      end
 
 ! *********************************************************************
-      subroutine sendobsN(buffer, iobsNumber)
-        
+      subroutine sendobsN(buffer, iobsNumber) ! CASE 3
+
         implicit none
         include 'solve.i'
         include 'oborg.i'
@@ -262,7 +261,7 @@
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
-        
+
         print *, ""
 
         buffer(1) = 3
@@ -274,6 +273,9 @@
 
         rc = f77_zmq_recv(requester, FJD, size_commonblock, 0)
 
+        FJD = 33
+        ILAST_OBORG_I2 = 888
+
 ! Assign value 9 to buffer(1) so that loop may continue
         buffer(1) = 9
 
@@ -282,7 +284,7 @@
 
 ! *********************************************************************
 
-      subroutine getobsN(buffer, iobsNumber)  
+      subroutine getobsN(buffer, iobsNumber)
         implicit none
         include 'solve.i'
         include 'oborg.i'
@@ -302,15 +304,15 @@
 
         lbuf = size(buffer)
         sbuf = lbuf * 4
-        
-        buffer(1) =4 
+
+        buffer(1) =4
         buffer(2) = iobsNumber
         rc = f77_zmq_send(requester, buffer, sbuf, 0)
 
         ! Find size of commonblock. add 2 for  size of ILAST_OBORG_I2
         size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
-        
-        ! Receive acknowledgement, now ready to send 
+
+        ! Receive acknowledgement, now ready to send
         rc = f77_zmq_recv(requester, buffer, sbuf, 0)
 
         ! Send commonblock

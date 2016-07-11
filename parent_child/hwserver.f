@@ -25,22 +25,24 @@
         context   = f77_zmq_ctx_new()
         responder = f77_zmq_socket(context, ZMQ_REP)
         rc        = f77_zmq_bind(responder,address)
-        
-       ! Find size of commonblock, add 2 for size of ILAST_OBORG_I2
-       size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
- 
+
+        !call execute_command_line("./hwclient", wait=.false.)
+
+        ! Find size of commonblock, add 2 for size of ILAST_OBORG_I2
+        size_commonblock = loc(ILAST_OBORG_I2)-loc(FJD) + 2
+
         print *, OBORG_IFILL_LEN
         print *,  "Waiting for Child to ack its existence. RC: ", rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 2
         print *,  'Received ack from Child. RC: ', rc
-  
+
         ! buffer(1) = 9 will be used as an ack throughout the program.
         ! ZeroMQ does not allow consecuetive sends/recvs, why each send has to
         ! be followed by a recv as seen below.
         buffer(1) = 9
         rc = f77_zmq_send(responder, buffer, sbuf, 0) ! 4
-      
-      do while(.true.)   
+
+      do while(.true.)
         print *,  'Waiting for Child to perform operation. RC: ', rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 6
         print *, "Received operation code: ", (buffer(1:2))
@@ -102,23 +104,28 @@
             ! Assign values to forst and last entries for sanity check
             FJD = 1
             ILAST_OBORG_I2 = 999
-            
+
+            print *, "FJD: ", FJD
+            print *, "ILAST_OBORG_I2: ", ILAST_OBORG_I2
+
             ! Send commonblock to child
             rc = f77_zmq_send(responder, FJD, size_commonblock, 0)
-            FJD = 100
 
           case(4)
             print *, "Child wants to send common block for obs:"
             print *, buffer(2)
             c=buffer(2)
             buffer(1) = 9
-            
+
             ! Acknomledgement, ready to receive again
             rc = f77_zmq_send(responder, buffer, sbuf, 0)
-            
+
             ! Receive commonblock
             rc = f77_zmq_recv(responder, FJD, size_commonblock, 0)
-            
+
+            print *, "FJD: ", FJD
+            print *, "ILAST_OBORG_I2: ", ILAST_OBORG_I2
+
             ! Acknowledge that transfer is done.
             buffer(1) = 9
             rc = f77_zmq_send(responder, buffer, sbuf, 0)
