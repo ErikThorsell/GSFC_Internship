@@ -26,7 +26,8 @@
         context   = f77_zmq_ctx_new()
         responder = f77_zmq_socket(context, ZMQ_REP)
         rc        = f77_zmq_bind(responder,address)
-
+        
+        print *, OBORG_IFILL_LEN
         print *,  "Waiting for Child to ack its existence. RC: ", rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 2
         print *,  'Received ack from Child. RC: ', rc
@@ -36,7 +37,8 @@
         ! be followed by a recv as seen below.
         buffer(1) = 9
         rc = f77_zmq_send(responder, buffer, sbuf, 0) ! 4
-
+      
+      do while(.true.)   
         print *,  'Waiting for Child to perform operation. RC: ', rc
         rc = f77_zmq_recv(responder, buffer, sbuf, 0) ! 6
         print *, "Received operation code: ", (buffer(1:2))
@@ -90,12 +92,25 @@
             print *, "Parent acked that it got the data!"
 
           case(3)
+            print *, "Child asked parent to send commonblock for obs:"
+            print *, buffer(2)
+            c=buffer(2)
+            buffer(1) = 9
+            buffer(2) = 9
+            FJD = 3
+            FRACT = 9
+            rc = f77_zmq_send(responder, FJD, 830, 0)
+            print *, FJD, FRACT
           case(4)
           case(5)
           case(6)
           case(7)
+            buffer(1) = 9
+            print *, "Child is done with its operations."
+            rc = f77_zmq_send(responder, buffer, sbuf, 0 )
+            exit
         end select
-
+      enddo
 
         !if (buffer(1:rc) /= 'end') then
         !  print *, "Child asked for: ",

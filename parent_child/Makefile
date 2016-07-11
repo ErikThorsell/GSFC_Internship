@@ -1,6 +1,6 @@
 #FC=ifort -O2 -xHost -openmp
 FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp
-LIBS=libf77zmq.a -lzmq 
+LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq 
 
 EXE=hwserver hwclient 
 
