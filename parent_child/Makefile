@@ -1,6 +1,6 @@
 # Pick compiler.
-FC=/opt/intel/bin/ifort 
-#FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
+FC=ifort
+#FC=gfortran
 
 # Pick libs
 LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq 
