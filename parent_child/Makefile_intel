@@ -1,6 +1,6 @@
-#FC=ifort -O2 -xHost -openmp
+FC=ifort -O2 -xHost -openmp -free
 #FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp
-FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
+#FC=gfortran -g -O2 -Wno-unused -fopenmp
 LIBS=libf77zmq.a -lzmq
 
 EXE=hwserver hwclient
