@@ -31,7 +31,6 @@
         ! Find size of commonblock, add 2 for size of ILAST_OBORG_I2
         i_blocksize = loc(ILAST_OBORG_I2)-loc(FJD) + 2
 
-        print *, OBORG_IFILL_LEN
         print *,  "Waiting for Child to ack its existence. i_rc: ", i_rc
         i_rc = f77_zmq_recv(responder, i_buffer, i_sbuf, 0) ! 2
         print *,  'Received ack from Child. i_rc: ', i_rc
