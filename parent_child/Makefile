@@ -1,6 +1,13 @@
-FC=/opt/intel/bin/ifort -O2 -xHost -qopenmp -free
+# Pick compiler.
+FC=/opt/intel/bin/ifort 
 #FC=gfortran -g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
+
+# Pick libs
 LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq 
+
+# Pick flags
+FLAGS=-xHost -qopenmp -free -nowarn
+#FLAGS=-g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
 
 EXE=hwserver hwclient
 
@@ -9,7 +16,7 @@ EXE=hwserver hwclient
 default: $(EXE)
 
 %: %.f f77_zmq.h libf77zmq.a
-	$(FC) $*.f -o $@ $(LIBS)
+	$(FC) $(FLAGS) $*.f -o $@ $(LIBS)
 
 clean:
 	$(RM) -f -- $(EXE) *.ipc
