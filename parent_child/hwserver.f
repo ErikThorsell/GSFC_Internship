@@ -95,17 +95,22 @@
             print *, "Parent acked that it got the data!"
 
           case(3)
-            print *, "Child asked parent to send commonblock for obs:"
-            print *, i_buffer(2)
+            print *, "Child asked parent to send commonblock for obs:",&
+            & i_buffer(2)
             c=i_buffer(2)
             i_buffer(1) = 9
 
-            ! Assign values to forst and last entries for sanity check
-            FJD = 1
+            ! Assign values 
+            FJD = 111
+            FRACT = 2
+            FRACTC = 3
+            DT = 4
+            DOBS = 5
+            DOBS_S = 6
+            RT = 7
+            ROBS = 8
+            ROBS_S = 9
             ILAST_OBORG_I2 = 999
-
-            print *, "FJD: ", FJD
-            print *, "ILAST_OBORG_I2: ", ILAST_OBORG_I2
 
             ! Send commonblock to child
             i_rc = f77_zmq_send(responder, FJD, i_blocksize, 0)
@@ -147,6 +152,16 @@
         !  exit
         !endif
       !enddo
+        print *, FJD 
+        print *, FRACT 
+        print *, FRACTC 
+        print *, DT 
+        print *, DOBS 
+        print *, DOBS_S 
+        print *, RT 
+        print *, ROBS 
+        print *, ROBS_S 
+        print *, ILAST_OBORG_I2 
 
         i_rc = f77_zmq_close(responder)
         i_rc = f77_zmq_ctx_destroy(context)
