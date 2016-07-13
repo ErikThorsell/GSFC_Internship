@@ -236,9 +236,6 @@ subroutine sendObsN(i_buffer, i_obsNumber) ! CASE 3
 
   i_rc = f77_zmq_recv(requester, FJD, i_blocksize, 0)
 
-  FJD = 33
-  ILAST_OBORG_I2 = 888
-
   ! Assign value 9 to i_buffer(1) so that loop may continue
   i_buffer(1) = 9
 

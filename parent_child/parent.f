@@ -140,9 +140,6 @@ program parent
                 ! Receive commonblock
                 i_rc = f77_zmq_recv(responder, FJD, i_blocksize, 0)
 
-                print *, "FJD: ", FJD
-                print *, "ILAST_OBORG_I2: ", ILAST_OBORG_I2
-
                 ! Acknowledge that transfer is done.
                 i_buffer(1) = 9
                 i_rc = f77_zmq_send(responder, i_buffer, i_sbuf, 0)
@@ -153,11 +150,17 @@ program parent
                 i_buffer(1) = 9
                 print *, "Child is done with its operations."
                 i_rc = f77_zmq_send(responder, i_buffer, i_sbuf, 0 )
+                
+                ! Close and destroy connection to child
+                i_rc = f77_zmq_close(responder)
+                i_rc = f77_zmq_ctx_destroy(context)
                 exit
         end select
     enddo
 
-    i_rc = f77_zmq_close(responder)
-    i_rc = f77_zmq_ctx_destroy(context)
 end
+
+
+
+
 
