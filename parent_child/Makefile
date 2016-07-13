@@ -9,7 +9,7 @@ LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq
 FLAGS=-xHost -qopenmp -free -nowarn
 #FLAGS=-g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
 
-EXE=hwserver hwclient
+EXE=parent child
 
 .PHONY: default
 
