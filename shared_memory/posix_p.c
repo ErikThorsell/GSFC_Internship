@@ -1,17 +1,3 @@
-/**
- * Simple program demonstrating shared memory in POSIX systems.
- *
- * This is the producer process that writes to the shared memory region.
- *
- * Figure 3.17
- *
- * @author Silberschatz, Galvin, and Gagne
- * Operating System Concepts - Ninth Edition
- * Copyright John Wiley & Sons - 2013
- *
- * modifications by dheller@cse.psu.edu, 31 Jan. 2014
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

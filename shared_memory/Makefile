@@ -9,10 +9,10 @@ LIB = -lrt
 all: cons prod
 
 cons: posix_c.c
-	gcc $(OPT_GCC) $(OPT) -o cons shm-posix-consumer.c $(LIB)
+	gcc $(OPT_GCC) $(OPT) -o cons posix_c.c $(LIB)
 
 prod: posix_p.c
-	gcc $(OPT_GCC) $(OPT) -o prod shm-posix-producer.c $(LIB)
+	gcc $(OPT_GCC) $(OPT) -o prod posix_p.c $(LIB)
 
 run: cons prod
 	./prod

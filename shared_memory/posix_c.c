@@ -1,17 +1,3 @@
-/**
- * Simple program demonstrating shared memory in POSIX systems.
- *
- * This is the consumer process
- *
- * Figure 3.18
- *
- * @author Gagne, Galvin, Silberschatz
- * Operating System Concepts - Ninth Edition
- * Copyright John Wiley & Sons - 2013
- *
- * modifications by dheller@cse.psu.edu, 31 Jan. 2014
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,60 +9,82 @@
 #include <string.h>
 
 void display(char *prog, char *bytes, int n);
+int initializeMem(char* name);
+char* mapMemory(int shm_fd, int size);
+void terminateMem(char* shm_base, int i, int size, char* name);
+void readFromMem(char * base);
 
 int main(void)
 {
-  const char *name = "/shm-example";	// file name
-  const int SIZE = 4096;		// file size
+    char *name = "/shm-example";
+    int size = 4096;
+    int shm_fd;	
+    char *shm_base;
 
-  int shm_fd;		// file descriptor, from shm_open()
-  char *shm_base;	// base address, from mmap()
+    shm_fd = initializeMem(name);
+    shm_base = mapMemory(shm_fd, size);
+    readFromMem(shm_base);
+    terminateMem(shm_base, shm_fd, size, name);
 
-  /* open the shared memory segment as if it was a file */
-  shm_fd = shm_open(name, O_RDONLY, 0666);
-  if (shm_fd == -1) {
-    printf("cons: Shared memory failed: %s\n", strerror(errno));
-    exit(1);
-  }
-
-  /* map the shared memory segment to the address space of the process */
-  shm_base = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
-  if (shm_base == MAP_FAILED) {
-    printf("cons: Map failed: %s\n", strerror(errno));
-    // close and unlink?
-    exit(1);
-  }
-
-  /* read from the mapped shared memory segment */
-  display("cons", shm_base, 64);	// first as bytes, then as a string
-  printf("%s", shm_base);
-
-  /* remove the mapped shared memory segment from the address space of the process */
-  if (munmap(shm_base, SIZE) == -1) {
-    printf("cons: Unmap failed: %s\n", strerror(errno));
-    exit(1);
-  }
-
-  /* close the shared memory segment as if it was a file */
-  if (close(shm_fd) == -1) {
-    printf("cons: Close failed: %s\n", strerror(errno));
-    exit(1);
-  }
-
-  /* remove the shared memory segment from the file system */
-  if (shm_unlink(name) == -1) {
-    printf("cons: Error removing %s: %s\n", name, strerror(errno));
-    exit(1);
-  }
-
-  return 0;
+    return 0;
 }
 
-void display(char *prog, char *bytes, int n)
+int initializeMem(char* name){
+    int shm_fd;
+
+    shm_fd = shm_open(name, O_RDWR, 0666);
+    if (shm_fd == -1) {
+        printf("prod: Shared memory failed: %s\n", strerror(errno));
+        exit(1);
+    }
+
+    return shm_fd;
+}
+
+char* mapMemory(int shm_fd, int size){
+    char* shm_base;
+
+    shm_base = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    if (shm_base == MAP_FAILED) {
+        printf("prod: Map failed: %s\n", strerror(errno));
+        // close and shm_unlink?
+        exit(1);
+    }
+
+    return shm_base;
+}
+
+void terminateMem(char* shm_base, int shm_fd, int size, char* name) {
+
+    /* remove the mapped memory segment from the address space of the process */
+    if (munmap(shm_base, size) == -1) {
+        printf("prod: Unmap failed: %s\n", strerror(errno));
+        exit(1);
+    }
+
+    /* close the shared memory segment as if it was a file */
+    if (close(shm_fd) == -1) {
+        printf("prod: Close failed: %s\n", strerror(errno));
+        exit(1);
+    }
+
+    /* remove the shared memory segment from the file system */
+    if (shm_unlink(name) == -1) {
+        printf("cons: Error removing %s: %s\n", name, strerror(errno));
+        exit(1);
+    }
+}
+
+void readFromMem(char * base) {
+    printf("%s", base);
+}
+
+void display(char* prog, char* bytes, int n)
 {
-  printf("display: %s\n", prog);
-  for (int i = 0; i < n; i++)
-    { printf("%02x%c", bytes[i], ((i+1)%16) ? ' ' : '\n'); }
-  printf("\n");
+    printf("display: %s\n", prog);
+    for (int i = 0; i < n; i++) {
+        printf("%02x%c", bytes[i], ((i+1)%16) ? ' ' : '\n'); 
+    }
+    printf("\n");
 }
 
