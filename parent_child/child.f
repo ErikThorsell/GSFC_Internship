@@ -1,5 +1,5 @@
 ! ########################################################################### !
-! child.f                                                                    !
+! child.f                                                                     !
 !                                                                             !
 ! test the 7 (of which 5 are used) functions that is implemented in the       !
 ! parent/child communication                                                  !

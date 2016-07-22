@@ -3,10 +3,10 @@ FC=ifort
 #FC=gfortran
 
 # Pick libs
-LIBS=libf77zmq.a -L/home/simon/Programming/zeromq-4.1.5/.libs/  -lzmq 
+LIBS=libf77zmq.a
 
 # Pick flags
-FLAGS=-xHost -qopenmp -free -nowarn
+FLAGS=-xHost -qopenmp -free -lzmq -nowarn
 #FLAGS=-g -O2 -Wall -Wno-unused -fopenmp -fno-align-commons -ffree-form
 
 EXE=parent child
@@ -15,7 +15,7 @@ EXE=parent child
 
 default: $(EXE)
 
-%: %.f f77_zmq.h libf77zmq.a
+%: %.f
 	$(FC) $(FLAGS) $*.f -o $@ $(LIBS)
 
 clean:
