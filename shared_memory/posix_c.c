@@ -1,3 +1,8 @@
+/* This is the child part of the posix parent/child (producer/consumer)
+ * program. The child will look for a designated file in memory and read the
+ * content of that file.
+ *
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -14,12 +19,14 @@ char* mapMemory(int shm_fd, int size);
 void terminateMem(char* shm_base, int i, int size, char* name);
 void readFromMem(char * base);
 
+/* ************************************************************************* */
 int main(void)
 {
     char *name = "/shm-example";
-    int size = 4096;
-    int shm_fd;	
+    int size, shm_fd;	
     char *shm_base;
+
+    size = 4096;
 
     shm_fd = initializeMem(name);
     shm_base = mapMemory(shm_fd, size);
@@ -28,6 +35,8 @@ int main(void)
 
     return 0;
 }
+
+/* ************************************************************************* */
 
 int initializeMem(char* name){
     int shm_fd;

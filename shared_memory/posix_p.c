@@ -1,3 +1,7 @@
+/* This is the child part of the posix parent/child (producer/consumer)
+ * program. The child will look for a designated file in memory and read the
+ * content of that file.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -18,20 +22,16 @@ void writeToMem(char * base, char * msg);
 /* ************************************************************************* */
 int main(void)
 {
+    char* name = "/shm-example";
     char* message = "Why split the strings? Isn't there enough room?";
-    char* shm_base;
     int size, shm_fd;
+    char* shm_base;
 
     size = 4096;
 
-    shm_fd = initializeMem("/shm-example", size);
+    shm_fd = initializeMem(name, size);
     shm_base = mapMemory(shm_fd, size);
-
-    display("prod", shm_base, 64);
-
     writeToMem(shm_base, message);
-    display("prod", shm_base, 64);
-
     terminateMem(shm_base, shm_fd, size);
 
     return 0;
