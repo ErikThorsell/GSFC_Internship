@@ -24,6 +24,7 @@ program parent
     integer, dimension(20) :: i_array, i_array1, i_array2, i_array3 ! Generic arrays
     integer                   i_rc ! if >= 0: the number of bytes sent or received, else: error
     integer                   i, i_lbuf, c, i_sbuf, i_blocksize, i_sizeLastVariable
+    character * 48            string
 
     ! Set up the communication.
     address   = 'tcp://*:55555'                    ! Address to listen to.
@@ -32,6 +33,12 @@ program parent
     i_rc      = f77_zmq_bind(responder,address) ! Declare the client as a responder
     print *,  "Checking that everything was initialized correctly. RC: ", i_rc
 
+    i=00001
+    print *, i
+    string = '00001'
+    read (string, '(I5)') i
+
+    print *, i
 
     ! Clear the buffer and fill the arrays with numbers.
     i_lbuf = size(i_buffer)
@@ -50,7 +57,7 @@ program parent
     ! Find size of the common block, add 2 for size of ILAST_OBORG_I2
     i_sizeLastVariable = 2
     i_blocksize = loc(ILAST_OBORG_I2)-loc(FJD) + i_sizeLastVariable
-
+    print *, "Size of OBORG.i is equal to: ", i_blocksize
     ! If parent is to call (spawn) its own child, use the line below.
     ! call execute_command_line("./child", wait=.false.)
 
