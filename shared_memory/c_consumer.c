@@ -14,70 +14,66 @@
 #include <string.h>
 
 void display(char *prog, char *bytes, int n);
-int initializeMem(char* name);
-char* mapMemory(int shm_fd, int size);
-void terminateMem(char* shm_base, int i, int size, char* name);
+int initConsumer(char* name);
+char* mapConsumer(int fd, int size);
+void terminateConsumer(char* shm_base, int i_fd, int size, char* name);
 void readFromMem(char * base);
 
-/* ************************************************************************* */
+/* ************************************************************************* 
 int main(void)
 {
     char *name = "/shm-example";
-    int size, shm_fd;	
+    int size, fd;	
     char *shm_base;
 
     size = 4096;
 
-    shm_fd = initializeMem(name);
-    shm_base = mapMemory(shm_fd, size);
+    fd = initConsumer(name);
+    shm_base = mapConsumer(fd, size);
     readFromMem(shm_base);
-    terminateMem(shm_base, shm_fd, size, name);
+    terminateConsumer(shm_base, fd, size, name);
 
     return 0;
 }
 
-/* ************************************************************************* */
+ ************************************************************************* */
 
-int initializeMem(char* name){
-    int shm_fd;
+int initConsumer(char* name){
+    int fd;
 
-    shm_fd = shm_open(name, O_RDWR, 0666);
-    if (shm_fd == -1) {
+    fd = shm_open(name, O_RDWR, 0666);
+    if (fd == -1) {
         printf("prod: Shared memory failed: %s\n", strerror(errno));
         exit(1);
     }
 
-    return shm_fd;
+    return fd;
 }
 
-char* mapMemory(int shm_fd, int size){
+char* mapConsumer(int fd, int size){
     char* shm_base;
 
-    shm_base = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    shm_base = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (shm_base == MAP_FAILED) {
         printf("prod: Map failed: %s\n", strerror(errno));
-        // close and shm_unlink?
         exit(1);
     }
 
     return shm_base;
 }
 
-void terminateMem(char* shm_base, int shm_fd, int size, char* name) {
+void terminateConsumer(char* shm_base, int fd, int size, char* name) {
 
-    /* remove the mapped memory segment from the address space of the process */
     if (munmap(shm_base, size) == -1) {
         printf("prod: Unmap failed: %s\n", strerror(errno));
         exit(1);
     }
 
-    /* close the shared memory segment as if it was a file */
-    if (close(shm_fd) == -1) {
+    if (close(fd) == -1) {
         printf("prod: Close failed: %s\n", strerror(errno));
         exit(1);
     }
 
-    /* remove the shared memory segment from the file system */
     if (shm_unlink(name) == -1) {
         printf("cons: Error removing %s: %s\n", name, strerror(errno));
         exit(1);

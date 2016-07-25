@@ -14,12 +14,12 @@
 #include <errno.h>
 
 void display(char *prog, char *bytes, int n);
-int initializeMem(char* name, int size);
-char* mapMemory(int shm_fd, int size);
-void terminateMem(char* shm_base, int i, int size);
+int initProducer(char* name, int size);
+char* mapProducer(int shm_fd, int size);
+void terminateProducer(char* shm_base, int shm_fd, int size);
 void writeToMem(char * base, char * msg);
 
-/* ************************************************************************* */
+/* ************************************************************************* 
 int main(void)
 {
     char* name = "/shm-example";
@@ -29,18 +29,18 @@ int main(void)
 
     size = 4096;
 
-    shm_fd = initializeMem(name, size);
-    shm_base = mapMemory(shm_fd, size);
+    shm_fd = initProducer(name, size);
+    shm_base = mapProducer(shm_fd, size);
     writeToMem(shm_base, message);
-    terminateMem(shm_base, shm_fd, size);
+    terminateProducer(shm_base, shm_fd, size);
 
     return 0;
 }
 
-/* ************************************************************************* */
+ ************************************************************************* */
 
-int initializeMem(char* name, int size){
-    int shm_fd;		// file descriptor, from shm_open()
+int initProducer(char* name, int size){
+    int shm_fd;
 
     shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
     if (shm_fd == -1) {
@@ -48,45 +48,48 @@ int initializeMem(char* name, int size){
         exit(1);
     }
 
-    /* configure the size of the shared memory segment */
     ftruncate(shm_fd, size);
 
     return shm_fd;
 }
 
-char* mapMemory(int shm_fd, int size){
+char* mapProducer(int shm_fd, int size){
     char* shm_base;
 
-    /* map the shared memory segment to the address space of the process */
     shm_base = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (shm_base == MAP_FAILED) {
         printf("prod: Map failed: %s\n", strerror(errno));
-        // close and shm_unlink?
         exit(1);
     }
 
     return shm_base;
 }
 
-void terminateMem(char* shm_base, int shm_fd, int size) {
+void terminateProducer(char* shm_base, int shm_fd, int size) {
 
-    /* remove the mapped memory segment from the address space of the process */
+    printf("Base: %s\n", shm_base);
+    printf("FD: %d\n", shm_fd);
+    printf("Size: %d\n", size);
+
     if (munmap(shm_base, size) == -1) {
         printf("prod: Unmap failed: %s\n", strerror(errno));
         exit(1);
     }
 
-    /* close the shared memory segment as if it was a file */
     if (close(shm_fd) == -1) {
         printf("prod: Close failed: %s\n", strerror(errno));
         exit(1);
     }
 }
 
-void writeToMem(char * base, char * msg) {
+void writeToMem(char* base, char* msg) {
     char* ptr;
 
+    printf("Base WTM: %s\n", base);
+    printf("Msg: %s\n", msg);
+
     ptr = base;
+    printf(ptr, "%s");
     ptr += sprintf(ptr, "%s", msg);
 }
 
