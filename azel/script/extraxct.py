@@ -45,7 +45,7 @@ def parseSkd(skd_file):
                     el = int(line[i+4:i+6])
                     duri = (23+nstations*8)+index*4-1
                     dur = int(line[duri:duri+4])
-                    theo.append((station, source, date, az, el, dur))
+                    theo.append((station, date, source, az, el, dur))
 
 ###############################################################################
 
@@ -76,9 +76,8 @@ def getLogData(path_to_logs):
                         sourcefound = False
                         trakldate = line[:20]
                         if (trakldate > sourcedate):
-                            tups.append((station, source, sourcedate, trakldate, file))
+                            tups.append((station, sourcedate, source, trakldate, file))
         return nstations
-
 
 ###############################################################################
 
@@ -97,11 +96,10 @@ def getSkdData(path_to_file):
 ###############################################################################
 
 def matchSkdLog(log, skd):
-    # log(station, source, sourcedate, trakldate, filename)
-    # skd(station, source, date, az, el, dur)
+    # log(station, sourcedate, source, trakldate, filename)
+    # skd(station, date, source, az, el, dur)
 
     pass
-
 
 ###############################################################################
 
@@ -130,7 +128,7 @@ ust = sorted(scheduled_stations)
 getSkdData(skddir)
 
 for t in tups:
-    diff = timeDiff(t[2], t[3])
+    diff = timeDiff(t[1], t[3])
     station = t[0]
     if station == "ft":
         ft_diffs.append(diff)
@@ -167,6 +165,7 @@ print tups[0]
 theo = sorted(theo)
 tups = sorted(tups)
 
-print theo[0]
-print tups[0]
+for i in range(0,5):
+    print theo[i]
+    print tups[i]
 
