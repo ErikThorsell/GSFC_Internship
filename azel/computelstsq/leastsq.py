@@ -27,20 +27,24 @@ def least_sq(xdata, ydata):
     k = k*60
     return "Least square solution: f(x)= %.5f x + %.5f" % (k,m)
 
-def plot_curve(xdata, ydata, stat, ori):
+def plot_curve(xdata, ydata, pret, stat, ori):
     x = numpy.array(xdata)
     y = numpy.array(ydata)
+    t = numpy.array(pret)
 
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     k,m = numpy.linalg.lstsq(A, y)[0]
 
-    plt.plot(x, y, 'ro', label='Original data', markersize=8)
-    plt.plot(x, k*x + m, 'y', label='Fitted line')
+    plt.plot(x, y, 'bo', label='Original data', markersize=1)
+    plt.plot(x, t, 'ro', label='Pre data', markersize=1)
+    plt.plot(x, k*x + m, 'k', label='Fitted line')
     plt.legend()
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
     plt.suptitle('Antenna: %s, in %s' % (stat, ori))
-    plt.show()
+#    plt.show()
+    plt.savefig('%s_%s.png' % (stat, ori))
+    plt.close()
     return
 
 def speed(xdata, ydata):
