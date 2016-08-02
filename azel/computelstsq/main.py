@@ -34,6 +34,6 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     print 'Speed of %s in %s is: %.5f deg/s'%(station,orientation, v), "\n"
 
                     leastsq.plot_curve(distance, times, pret, station, orientation)
-                else
-                    print "No trukl for station:", station
+                else:
+                    print "No trukl for station:", station, "\n"
 #leastsq.plot_curve(distance, times, station, orientation)
