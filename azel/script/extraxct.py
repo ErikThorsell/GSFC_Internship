@@ -12,7 +12,7 @@ def parseLogTime(time):
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
-    return time
+    return time/100
 
 ###############################################################################
 
@@ -27,7 +27,7 @@ def parseSkdTime(time):
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
-    return time
+    return time/100
 
 ###############################################################################
 
@@ -77,13 +77,14 @@ def getLogData(path_to_logs):
                         source = sline[0]
                         ssource = source.split('=')
                         source = ssource[1]
+                        direction = sline[len(sline)-1][:-1]
                         sourcefound = True
                         sourcedate = parseLogTime(line[:20])
                     if ("#trakl#Source acquired" in line and sourcefound):
                         sourcefound = False
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
-                            tups.append((station, sourcedate, source, trakldate, file))
+                            tups.append((station, sourcedate, source, trakldate, direction, file))
         return nstations
 
 ###############################################################################
@@ -121,19 +122,19 @@ def matchSkdLog(log, skd):
 
 ###############################################################################
 
-# time = (acc + (distance/vel)*60)*100
-# sec = sec + deg/(deg/min)*(sec/min)*(convert to hundreds)
+# time = (acc + (distance/vel) * 60)       * 100
+# sec  = sec  +  deg/(deg/min) * (sec/min) * (convert to hundreds)
 
 def calcAz(spec, rotdata):
 
-    az_slew = (spec[4] + rotdata[2]/spec[2]*60)*100
+    az_slew = (spec[4] + rotdata[2]/spec[2]*60)
 
     return az_slew
 
 
 def calcEl(spec, rotdata):
 
-    el_slew = (spec[4] + rotdata[3]/spec[2]*60)*100
+    el_slew = (spec[4] + rotdata[3]/spec[2]*60)
 
     return el_slew
 
