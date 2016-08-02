@@ -177,8 +177,8 @@ def calcEl(spec, rotdata):
 ###############################################################################
 
 
-logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1729/"
-skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1729.azel"
+logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1721/"
+skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1721.azel"
 
 #####################################
 # Static Variables for the antennas #
