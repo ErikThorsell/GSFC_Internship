@@ -1,48 +1,46 @@
-program fortran_c
+program f_consumer
 use iso_c_binding
 implicit none
 
     ! variables
-    character c_name, c_base
+    character*256 c_name 
+    character(kind=C_CHAR, len=1), dimension(256) :: base
+    !type(c_ptr) :: base
     integer i_fd, i_size
 
     interface
     ! Initialize Consumer
-        function initConsumer(c_name) bind (C, name="initConsumer") result (i_fd)
+        subroutine initConsumer(c_name) bind (C, name="initConsumer")
             use iso_c_binding
             character(kind=c_char):: c_name
-            integer(kind=c_int) :: i_fd
-        end function
-        function mapConsumer(i_fd, i_size) bind (C, name="mapConsumer") result (c_base)
+        end subroutine
+        subroutine mapConsumer(i_size) bind (C, name="mapConsumer")
             use iso_c_binding
-            integer(kind=c_int) :: i_fd
             integer(kind=c_int) :: i_size
-            character(kind=c_char) :: c_base
-        end function
-        subroutine terminateConsumer(c_base, i_fd, i_size, c_name) bind (C, name="terminateConsumer")
+        end subroutine
+        subroutine terminateConsumer(i_size, c_name) bind (C, name="terminateConsumer")
             use iso_c_binding
-            character(kind=c_char) :: c_base
             character(kind=c_char) :: c_name
-            integer(kind=c_int) :: i_fd
             integer(kind=c_int) :: i_size
         end subroutine
-        subroutine readFromMem(c_base) bind (C, name="readFromMem")
+        function readFromMem() bind (C, name="readFromMem") result(base)
             use iso_c_binding
-            character(kind=c_char) :: c_base
-        end subroutine
+            character(kind=c_char) :: base
+        end function
 
     end interface
 
     ! executable statements
     c_name = "/shm-example"//c_null_char
     i_size = 4096
-    i_fd = initConsumer(c_name)
-    print *, "File descriptor: ", i_fd
-    c_base = mapConsumer(i_fd, i_size)
-    print *, "Base address: ", c_base
-    call readFromMem(c_base)
-    call terminateConsumer(c_base, i_fd, i_size, c_name)
-    print *, "Consumer terminated."
+    call initConsumer(c_name)
+    print *, "Fortran: File descriptor: ", i_fd
+    call mapConsumer(i_size)
+    print *, "Fortran: Base is: ", base
+    base = readFromMem()
+    print *, "Fortran: Now base is instead: ", base
+    call terminateConsumer(i_size, c_name)
+    print *, "Fortran: Consumer terminated."
 
-end program fortran_c
+end program f_consumer
 

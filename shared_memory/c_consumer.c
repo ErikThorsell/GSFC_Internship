@@ -14,10 +14,12 @@
 #include <string.h>
 
 void display(char *prog, char *bytes, int n);
-int initConsumer(char* name);
-char* mapConsumer(int fd, int size);
-void terminateConsumer(char* shm_base, int i_fd, int size, char* name);
-void readFromMem(char * base);
+void initConsumer(char* name);
+void mapConsumer(int size);
+void terminateConsumer(int size, char* name);
+char* readFromMem();
+int fd;
+char* shm_base;
 
 /* ************************************************************************* 
 int main(void)
@@ -38,20 +40,22 @@ int main(void)
 
  ************************************************************************* */
 
-int initConsumer(char* name){
-    int fd;
-
+//int initConsumer(char* name){
+void initConsumer(char* name){
+    //int fd;
+    printf("C: filename is: %s\n", name);
     fd = shm_open(name, O_RDWR, 0666);
     if (fd == -1) {
         printf("prod: Shared memory failed: %s\n", strerror(errno));
         exit(1);
     }
 
-    return fd;
+    //return fd;
 }
 
-char* mapConsumer(int fd, int size){
-    char* shm_base;
+//char* mapConsumer(int fd, int size){
+void mapConsumer(int size){
+    //char* shm_base;
 
     shm_base = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (shm_base == MAP_FAILED) {
@@ -59,10 +63,11 @@ char* mapConsumer(int fd, int size){
         exit(1);
     }
 
-    return shm_base;
+    //return shm_base;
 }
 
-void terminateConsumer(char* shm_base, int fd, int size, char* name) {
+//void terminateConsumer(char* shm_base, int fd, int size, char* name) {
+void terminateConsumer(int size, char* name) {
 
     if (munmap(shm_base, size) == -1) {
         printf("prod: Unmap failed: %s\n", strerror(errno));
@@ -80,8 +85,10 @@ void terminateConsumer(char* shm_base, int fd, int size, char* name) {
     }
 }
 
-void readFromMem(char * base) {
-    printf("%s", base);
+char* readFromMem() {
+     printf("C: I read from base: %s\n", shm_base);
+
+    return *shm_base;
 }
 
 void display(char* prog, char* bytes, int n)

@@ -11,21 +11,20 @@ LIB = -lrt
 
 all: cons
 
-# Producer	 part of make
-prod: c_producer.o f_producer.o
-	$(FC) -o cons c_producer.o f_producer.o $(LIB)
+# consumer	 part of make
+cons: c_consumer.o f_consumer.o
+	$(FC) -o cons c_consumer.o f_consumer.o $(LIB)
 
-c_producer.o: c_producer.c
-	$(CC) $(OPT_GCC) $(OPT) -c c_producer.c $(LIB)
+c_consumer.o: c_consumer.c
+	$(CC) $(OPT_GCC) $(OPT) -c c_consumer.c $(LIB)
 
-f_producer.o: f_producer.f90
-	$(FC) -c f_producer.f90
+f_consumer.o: f_consumer.f90
+	$(FC) -c f_consumer.f90
 
-run: cons prod
-	./prod
+run: cons
 	./cons
 
 clean:
-	rm -f cons prod
+	rm -f cons
 	rm -f *.o
 
