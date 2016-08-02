@@ -265,53 +265,122 @@ yg_slew=[]
 nstations = getLogData(logdir)
 getSkdData(skddir)
 matchSkdLog(tups, theo)
+
+
+ft_az = open("ft_az.dat",'w')
+ft_el = open("ft_el.dat",'w')
+hb_az = open("hb_az.dat",'w')
+hb_el = open("hb_el.dat",'w')
+ke_az = open("ke_az.dat",'w')
+ke_el = open("ke_el.dat",'w')
+kk_az = open("kk_az.dat",'w')
+kk_el = open("kk_el.dat",'w')
+ny_az = open("ny_az.dat",'w')
+ny_el = open("ny_el.dat",'w')
+ts_az = open("ts_az.dat",'w')
+ts_el = open("ts_el.dat",'w')
+ww_az = open("ww_az.dat",'w')
+ww_el = open("ww_el.dat",'w')
+wn_az = open("wn_az.dat",'w')
+wn_el = open("wn_el.dat",'w')
+wz_az = open("wz_az.dat",'w')
+wz_el = open("wz_el.dat",'w')
+yg_az = open("yg_az.dat",'w')
+yg_el = open("yg_el.dat",'w')
+
 for entry in matched:
     if entry[0] == "ft":
         az_slew = calcAz(ft_list, entry)
         el_slew = calcEl(ft_list, entry)
         ft_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            ft_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "hb":
         az_slew = calcAz(hb_list, entry)
         el_slew = calcEl(hb_list, entry)
         hb_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            hb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            hb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "ke":
         az_slew = calcAz(ke_list, entry)
         el_slew = calcEl(ke_list, entry)
         ke_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            ke_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            ke_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "kk":
         az_slew = calcAz(kk_list, entry)
         el_slew = calcEl(kk_list, entry)
         kk_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            kk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            kk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "ny":
         az_slew = calcAz(ny_list, entry)
         el_slew = calcEl(ny_list, entry)
         ny_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            ny_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            ny_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "ts":
         az_slew = calcAz(ts_list, entry)
         el_slew = calcEl(ts_list, entry)
         ts_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            ts_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            ts_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "ww":
         az_slew = calcAz(ww_list, entry)
         el_slew = calcEl(ww_list, entry)
         ww_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            ww_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            ww_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "wn":
         az_slew = calcAz(wn_list, entry)
         el_slew = calcEl(wn_list, entry)
         wn_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            wn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            wn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "wz":
         az_slew = calcAz(wz_list, entry)
         el_slew = calcEl(wz_list, entry)
         wz_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            wz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            wz_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     elif entry[0] == "yg":
         az_slew = calcAz(yg_list, entry)
         el_slew = calcEl(yg_list, entry)
         yg_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew:
+            yg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+        else:
+            yg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
     else:
         print "No specs for this antenna!"
-    if az_slew > el_slew:
-        print str(az_slew) + "," + str(entry[1]) + "," + str(entry[2])
-    else:
-        print str(el_slew) + "," + str(entry[1]) + "," + str(entry[3])
 
 for t in tups:
     diff = t[3]-t[1]
