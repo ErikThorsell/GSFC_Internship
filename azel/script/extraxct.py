@@ -295,9 +295,10 @@ for entry in matched:
         ft_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew:
-            ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]))
+            ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
         else:
-            ft_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]))
+            ft_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+
     elif entry[0] == "hb":
         az_slew = calcAz(hb_list, entry)
         el_slew = calcEl(hb_list, entry)
