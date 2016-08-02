@@ -24,10 +24,10 @@ def least_sq(xdata, ydata):
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     # Return the least square solution to a linear matrix equation
     k,m = numpy.linalg.lstsq(A, y)[0]
-
+    k = k*60
     return "Least square solution: f(x)= %.5f x + %.5f" % (k,m)
 
-def plot_curve(xdata, ydata):
+def plot_curve(xdata, ydata, stat, ori):
     x = numpy.array(xdata)
     y = numpy.array(ydata)
 
@@ -39,6 +39,7 @@ def plot_curve(xdata, ydata):
     plt.legend()
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
+    plt.suptitle('Antenna: %s, in %s' % (stat, ori))
     plt.show()
     return
 
@@ -48,7 +49,7 @@ def speed(xdata, ydata):
 
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     k,m = numpy.linalg.lstsq(A, y)[0]
-
+    k = k*60
     return k
 
 def start_time(xdata, ydata):

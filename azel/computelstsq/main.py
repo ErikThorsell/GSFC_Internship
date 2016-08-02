@@ -3,35 +3,35 @@
 # Import module
 import leastsq
 import csv
+import os
 
-# Data points
-#ydata = [0.1,1.2,1.8,4,5,6,7,8,9]
-#xdata = [0,1,2,4,5,6,7,8,9]
+path_to_dat = '../script/'
 
-# Get data from files
+for subdir, dirs, files in os.walk(path_to_dat):
+    for file in files:
+        if file[-4:] == ".dat":
+            station = file[0:2]
+            orientation = file[3:5]
 
-with open('../script/ft_az.dat') as csvfile:
-    readCSV = csv.reader(csvfile,delimiter=',')
-    times = []
-    distance = []
-    pret = []
-    for row in readCSV:
-        pret.append(float(row[0]))
-        times.append(float(row[1]))
-        distance.append(float(row[2]))
+            with open(path_to_dat + file) as csvfile:
+                readCSV = csv.reader(csvfile,delimiter=',')
+                times = []
+                distance = []
+                pret = []
+                for row in readCSV:
+                    pret.append(float(row[0]))
+                    times.append(float(row[1]))
+                    distance.append(float(row[2]))
+                if len(times) != 0:
 
+                    ans = leastsq.least_sq(distance, times)
+                    print station, orientation, ans
 
-# Calculate least square
-ans = leastsq.least_sq(distance, times)
-print ans
+                    t = leastsq.start_time(distance, times)
+                    print 'Start time is: %.5f s for station %s in %s'%(t,station, orientation)
 
-# Plot graph of the result and the original data
-leastsq.plot_curve(distance, times)
+                    v = leastsq.speed(distance, times)
+                    print 'Speed of %s in %s is: %.5f deg/s'%(station,orientation, v), "\n"
 
-# Compute the time it takes to get up to max speed
-t = leastsq.start_time(xdata, ydata)
-print 'Start time is: %.5f s'% (t)
+                    leastsq.plot_curve(distance, times, station, orientation)
 
-# Compute the speed of the antenna
-v = leastsq.speed(xdata, ydata)
-print 'Speed of the antenna: %.5f deg/s'% (v)
