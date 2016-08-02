@@ -104,10 +104,12 @@ def getSkdData(path_to_file):
 ###############################################################################
 
 def matchSkdLog(log, skd):
-    # log(station, sourcedate, source, trakldate, filename)
+    # log(station, sourcedate, source, trakldate, direction, filename)
     # skd(station, date, source, az, el, dur)
     log = sorted(log)
     skd = sorted(skd)
+    minrange = 0
+    maxrange = 0
 
     for i in range(len(log)):
         for j in range(len(skd)):
@@ -117,13 +119,49 @@ def matchSkdLog(log, skd):
                         station = log[i][0]
                         timediff = log[i][3] - log[i][1]
                         d_az = abs(skd[j][3]-skd[j+1][3])
+                        if log[i][0] == "ft":
+                            minrange = ft_az[0]
+                            maxrange = ft_az[1]
+                        elif log[i][0] == "hb":
+                            minrange = hb_az[0]
+                            maxrange = hb_az[1]
+                        elif log[i][0] == "ke":
+                            minrange = ke_az[0]
+                            maxrange = ke_az[1]
+                        elif log[i][0] == "kk":
+                            minrange = kk_az[0]
+                            maxrange = kk_az[1]
+                        elif log[i][0] == "ny":
+                            minrange = ny_az[0]
+                            maxrange = ny_az[1]
+                        elif log[i][0] == "ts":
+                            minrange = ts_az[0]
+                            maxrange = ts_az[1]
+                        elif log[i][0] == "ww":
+                            minrange = ww_az[0]
+                            maxrange = ww_az[1]
+                        elif log[i][0] == "wn":
+                            minrange = wn_az[0]
+                            maxrange = wn_az[1]
+                        elif log[i][0] == "wz":
+                            minrange = wz_az[0]
+                            maxrange = wz_az[1]
+                        elif log[i][0] == "yg":
+                            minrange = yg_az[0]
+                            maxrange = yg_az[1]
+                        else:
+                            print "No array for said station."
+
+                        if (skd[j][3] + d_az > maxrange) or (skd[j][3] - d_az < minrange):
+                            d_az = 360 - d_az
+
                         d_el = abs(skd[j][4]-skd[j+1][4])
                         matched.append((station, timediff, d_az, d_el))
 
 ###############################################################################
 
-# time = (acc + (distance/vel) * 60)       * 100
-# sec  = sec  +  deg/(deg/min) * (sec/min) * (convert to hundreds)
+# time = (acc + (distance/vel) * 60)
+# sec  = sec  +  deg/(deg/min) * (sec/min)
 
 def calcAz(spec, rotdata):
 
