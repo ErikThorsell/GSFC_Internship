@@ -136,7 +136,7 @@ def calcAz(spec, rotdata):
 
 def calcEl(spec, rotdata):
 
-    el_slew = (spec[4] + rotdata[3]/spec[2]*60)
+    el_slew = (spec[4] + rotdata[3]/spec[3]*60)
 
     return el_slew
 
