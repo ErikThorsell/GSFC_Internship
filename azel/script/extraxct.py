@@ -18,6 +18,7 @@ def parseLogTime(time):
 
 def parseSkdTime(time):
 
+    year  = int(time[:4])
     day  = int(time[2:5])
     hour = int(time[6:8])
     min  = int(time[8:10])
@@ -120,16 +121,19 @@ def matchSkdLog(log, skd):
 
 ###############################################################################
 
+# time = (acc + (distance/vel)*60)*100
+# sec = sec + deg/(deg/min)*(sec/min)*(convert to hundreds)
+
 def calcAz(spec, rotdata):
 
-    az_slew = spec[4] + rotdata[2]/spec[2]*60*100
+    az_slew = (spec[4] + rotdata[2]/spec[2]*60)*100
 
     return az_slew
 
 
 def calcEl(spec, rotdata):
 
-    el_slew = spec[4] + rotdata[3]/spec[2]*60*100
+    el_slew = (spec[4] + rotdata[3]/spec[2]*60)*100
 
     return el_slew
 
@@ -260,7 +264,7 @@ yg_slew=[]
 
 nstations = getLogData(logdir)
 getSkdData(skddir)
-matchSkdLog(tups,theo)
+matchSkdLog(tups, theo)
 for entry in matched:
     if entry[0] == "ft":
         az_slew = calcAz(ft_list, entry)
@@ -304,8 +308,10 @@ for entry in matched:
         yg_slew.append(az_slew - el_slew)
     else:
         print "No specs for this antenna!"
-    print "AZ: " + str(az_slew)
-    print "EL: " + str(el_slew)
+    if az_slew > el_slew:
+        print str(az_slew) + "," + str(entry[1]) + "," + str(entry[2])
+    else:
+        print str(el_slew) + "," + str(entry[1]) + "," + str(entry[3])
 
 for t in tups:
     diff = t[3]-t[1]
