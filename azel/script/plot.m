@@ -1,7 +1,7 @@
 clc, clf, clear figure, clear all
 
-az_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/hb_az.dat');
-el_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/hb_el.dat');
+az_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/ht_az.dat');
+el_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/ht_el.dat');
 
 az_time_theoretical = az_slew(:,1);
 az_time_real = az_slew(:,2);

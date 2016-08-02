@@ -91,15 +91,11 @@ def getLogData(path_to_logs):
 
 def getSkdData(path_to_file):
 
-    for subdir, dirs, files in os.walk(path_to_file):
-        for file in files:
-            if file[-5:] == ".azel":
-                skdname = file
-                skd = open(os.path.join(subdir, file), 'r')
-                sourcelines = skd.readlines()
-                skd.close()
+    skd = open(path_to_file, 'r')
+    sourcelines = skd.readlines()
+    skd.close()
 
-                parseSkd(sourcelines)
+    parseSkd(sourcelines)
 
 ###############################################################################
 
@@ -181,8 +177,8 @@ def calcEl(spec, rotdata):
 ###############################################################################
 
 
-logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/"
-skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/"
+logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1729/"
+skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1729.azel"
 
 #####################################
 # Static Variables for the antennas #
@@ -208,6 +204,15 @@ hb_azspeed_acc = 3.0
 hb_elspeed_acc = 3.0
 hb_list = [hb_az, hb_el, hb_azspeed, hb_elspeed, hb_azspeed_acc, hb_elspeed_acc]
 
+# Hart
+ht_az = (-185.0, 275.0)
+ht_el = (2.0, 88.0)
+ht_azspeed = 300.0
+ht_elspeed = 60.0
+ht_azspeed_acc = 3.0
+ht_elspeed_acc = 3.0
+ht_list = [ht_az, ht_el, ht_azspeed, ht_elspeed, ht_azspeed_acc, ht_elspeed_acc]
+
 # Kath
 ke_az = (90.0, 630.0)
 ke_el = (5.0, 88.0)
@@ -225,6 +230,24 @@ kk_elspeed = 117.0
 kk_azspeed_acc = 15.0
 kk_elspeed_acc = 15.0
 kk_list = [kk_az, kk_el, kk_azspeed, kk_elspeed, kk_azspeed_acc, kk_elspeed_acc]
+
+# Sejong
+kv_az = (10.0, 710.0)
+kv_el = (5.0, 89.0)
+kv_azspeed = 300.0
+kv_elspeed = 300.0
+kv_azspeed_acc = 0.0
+kv_elspeed_acc = 0.0
+kv_list = [kv_az, kv_el, kv_azspeed, kv_elspeed, kv_azspeed_acc, kv_elspeed_acc]
+
+# Matera
+ma_az = (277.0, 803.0)
+ma_el = (4.0, 88.0)
+ma_azspeed = 90.0
+ma_elspeed = 100.0
+ma_azspeed_acc = 20.0
+ma_elspeed_acc = 20.0
+ma_list = [ma_az, ma_el, ma_azspeed, ma_elspeed, ma_azspeed_acc, ma_elspeed_acc]
 
 # Nyales
 ny_az = (271.0, 809.0)
@@ -286,6 +309,7 @@ ft_diffs=[]
 hb_diffs=[]
 ke_diffs=[]
 kk_diffs=[]
+kv_diffs=[]
 ny_diffs=[]
 ts_diffs=[]
 ww_diffs=[]
@@ -294,8 +318,10 @@ wz_diffs=[]
 yg_diffs=[]
 ft_slew=[]
 hb_slew=[]
+ht_slew=[]
 ke_slew=[]
 kk_slew=[]
+kv_slew=[]
 ny_slew=[]
 ts_slew=[]
 ww_slew=[]
@@ -307,27 +333,32 @@ nstations = getLogData(logdir)
 getSkdData(skddir)
 matchSkdLog(tups, theo)
 
-
-ft_az = open("ft_az.dat",'w')
-ft_el = open("ft_el.dat",'w')
-hb_az = open("hb_az.dat",'w')
-hb_el = open("hb_el.dat",'w')
-ke_az = open("ke_az.dat",'w')
-ke_el = open("ke_el.dat",'w')
-kk_az = open("kk_az.dat",'w')
-kk_el = open("kk_el.dat",'w')
-ny_az = open("ny_az.dat",'w')
-ny_el = open("ny_el.dat",'w')
-ts_az = open("ts_az.dat",'w')
-ts_el = open("ts_el.dat",'w')
-ww_az = open("ww_az.dat",'w')
-ww_el = open("ww_el.dat",'w')
-wn_az = open("wn_az.dat",'w')
-wn_el = open("wn_el.dat",'w')
-wz_az = open("wz_az.dat",'w')
-wz_el = open("wz_el.dat",'w')
-yg_az = open("yg_az.dat",'w')
-yg_el = open("yg_el.dat",'w')
+ft_az = open("ft_az.dat",'a')
+ft_el = open("ft_el.dat",'a')
+hb_az = open("hb_az.dat",'a')
+hb_el = open("hb_el.dat",'a')
+ht_az = open("ht_az.dat",'a')
+ht_el = open("ht_el.dat",'a')
+ke_az = open("ke_az.dat",'a')
+ke_el = open("ke_el.dat",'a')
+kk_az = open("kk_az.dat",'a')
+kk_el = open("kk_el.dat",'a')
+kv_az = open("kv_az.dat",'a')
+kv_el = open("kv_el.dat",'a')
+ma_az = open("ma_az.dat",'a')
+ma_el = open("ma_el.dat",'a')
+ny_az = open("ny_az.dat",'a')
+ny_el = open("ny_el.dat",'a')
+ts_az = open("ts_az.dat",'a')
+ts_el = open("ts_el.dat",'a')
+ww_az = open("ww_az.dat",'a')
+ww_el = open("ww_el.dat",'a')
+wn_az = open("wn_az.dat",'a')
+wn_el = open("wn_el.dat",'a')
+wz_az = open("wz_az.dat",'a')
+wz_el = open("wz_el.dat",'a')
+yg_az = open("yg_az.dat",'a')
+yg_el = open("yg_el.dat",'a')
 
 c = 3
 
@@ -356,6 +387,18 @@ for entry in matched:
         else:
             pass
 
+    elif entry[0] == "ht":
+        az_slew = calcAz(ht_list, entry)
+        el_slew = calcEl(ht_list, entry)
+        ht_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew*c:
+            ht_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+        elif az_slew*c < el_slew:
+            ht_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+        else:
+            pass
+
     elif entry[0] == "ke":
         az_slew = calcAz(ke_list, entry)
         el_slew = calcEl(ke_list, entry)
@@ -377,6 +420,30 @@ for entry in matched:
             kk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
         elif az_slew*c < el_slew:
             kk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+        else:
+            pass
+
+    elif entry[0] == "kv":
+        az_slew = calcAz(kv_list, entry)
+        el_slew = calcEl(kv_list, entry)
+        kv_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew*c:
+            kv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+        elif az_slew*c < el_slew:
+            kv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+        else:
+            pass
+
+    elif entry[0] == "ma":
+        az_slew = calcAz(ma_list, entry)
+        el_slew = calcEl(ma_list, entry)
+        ma_slew.append(az_slew - el_slew)
+        ## I/O
+        if az_slew > el_slew*c:
+            ma_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+        elif az_slew*c < el_slew:
+            ma_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
         else:
             pass
 
@@ -452,35 +519,5 @@ for entry in matched:
         else:
             pass
     else:
-        print "No specs for this antenna!"
-
-for t in tups:
-    diff = t[3]-t[1]
-    station = t[0]
-    if station == "ft":
-        ft_diffs.append(diff)
-    elif station == "hb":
-        hb_diffs.append(diff)
-    elif station == "ke":
-        ke_diffs.append(diff)
-    elif station == "kk":
-        kk_diffs.append(diff)
-    elif station == "ny":
-        ny_diffs.append(diff)
-    elif station == "ts":
-        ts_diffs.append(diff)
-    elif station == "ww":
-        ww_diffs.append(diff)
-    elif station == "wn":
-        wn_diffs.append(diff)
-    elif station == "wz":
-        wz_diffs.append(diff)
-    elif station == "yg":
-        yg_diffs.append(diff)
-    else:
-        print "There is no array to store this data."
-
-#for i in range(len(tups)):
-#    print theo[i]
-#    print tups[i]
+        print "No specs for this antenna: " + entry[0]
 
