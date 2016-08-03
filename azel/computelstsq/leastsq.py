@@ -41,7 +41,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     plt.legend()
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
-    plt.suptitle('Antenna: %s, in %s' % (stat, ori)+ "\n"+ 'f(x)= %.3f x + %.3f'%(1/k*60,m))
+    plt.suptitle('Antenna: %s, in %s' % (stat, ori)+ "\n"+ 'Speed:  %.3f, offset: %.3f'%(1/k*60,m))
 #    plt.show()
     plt.savefig('%s_%s.png' % (stat, ori))
     plt.close()
