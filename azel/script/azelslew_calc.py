@@ -115,12 +115,17 @@ def matchSkdLog(log, skd, matched):
                     if log[i][2] == skd[j+1][2]:
                         station = log[i][0]
                         timediff = log[i][3] - log[i][1]
-                        d_az = abs(skd[j+1][3] - skd[j][3])
+                        az_b = skd[j][3]
+                        az_a = skd[j+1][3]
+                        el_b = skd[j][4]
+                        el_a = skd[j+1][4]
+
+                        d_az = abs(az_a - az_b)
+                        d_el = abs(el_a - el_b)
                         #if station == "is":
-                            #print "Station: " + station + ", dAZ: " + str(d_az) + ", timediff: " + \
-                            #str(timediff) + ", Sourcedate: " + str(log[i][1]) + \
-                            #", Trakldate: " + str(log[i][3]) + ",  Dir: " + log[i][4]
-                        d_el = abs(skd[j+1][4] - skd[j][4])
+                        #    if (timediff > 23 and d_az < 180) or \
+                        #       (timediff < 23 and d_az > 180):
+                        #        d_az = 360 - d_az
                         matched.append((station, timediff, d_az, d_el))
 
 ###############################################################################
