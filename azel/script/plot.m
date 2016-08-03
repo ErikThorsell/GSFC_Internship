@@ -1,7 +1,7 @@
 clc, clf, clear figure, clear all
 
-az_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/is_az.dat');
-el_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/is_el.dat');
+az_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/hb_az.dat');
+el_slew = csvread('/home/erik/Programming/git/GSFC_Internship/azel/script/hb_el.dat');
 
 az_time_theoretical = az_slew(:,1);
 az_time_real = az_slew(:,2);
@@ -21,16 +21,20 @@ plot(az_distance, az_time_real, '.')
 plot(az_distance, az_time_theoretical, 'r.')
 %plot(y,x,'k')
 %plot(z,x,'k')
+grid on
 ylabel('Time (seconds)')
 xlabel('Distance (degrees)')
 
-legend('Real times', 'Theoretical times')
+legend('Real times', 'Theoretical times', 'Location', 'NorthWest')
+title('Hobart Azimuth')
 
 subplot(2,1,2)
 hold on
 plot(el_distance, el_time_real, '.')
 plot(el_distance, el_time_theoretical, 'r.')
+grid on
 ylabel('Time (seconds)')
 xlabel('Distance (degrees)')
 
-legend('Real times', 'Theoretical times')
+legend('Real times', 'Theoretical times', 'Location', 'NorthWest')
+title('Hobart Elevation')

@@ -115,36 +115,36 @@ def matchSkdLog(log, skd):
                         station = log[i][0]
                         timediff = log[i][3] - log[i][1]
                         d_az = abs(skd[j+1][3] - skd[j][3])
-                        if station == "is":
-                            print "Station: " + station + ", dAZ: " + str(d_az) + ", timediff: " + \
-                            str(timediff) + ", Sourcedate: " + str(log[i][1]) + \
-                            ", Trakldate: " + str(log[i][3]) + ",  Dir: " + log[i][4]
+                        #if station == "is":
+                            #print "Station: " + station + ", dAZ: " + str(d_az) + ", timediff: " + \
+                            #str(timediff) + ", Sourcedate: " + str(log[i][1]) + \
+                            #", Trakldate: " + str(log[i][3]) + ",  Dir: " + log[i][4]
                         d_el = abs(skd[j+1][4] - skd[j][4])
                         matched.append((station, timediff, d_az, d_el))
 
 ###############################################################################
 
-# time = (acc + (distance/vel) * 60)
-# sec  = sec  +  deg/(deg/min) * (sec/min)
+# time = (acc + (distance/(vel/60))
+# sec  = sec  +  deg/((deg/min)/(sec/min))
 
 def calcAz(spec, rotdata):
 
-    az_slew = (spec[4] + rotdata[2]/spec[2]*60)
+    az_slew = (spec[4] + rotdata[2]/(spec[2]/60))
 
     return az_slew
 
 
 def calcEl(spec, rotdata):
 
-    el_slew = (spec[4] + rotdata[3]/spec[3]*60)
+    el_slew = (spec[4] + rotdata[3]/(spec[3]/60))
 
     return el_slew
 
 ###############################################################################
 
 
-logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1747/"
-skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1747.azel"
+logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1729/"
+skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1729.azel"
 
 #####################################
 # Static Variables for the antennas #
@@ -289,33 +289,20 @@ tups=[]
 scheduled_stations=[]
 theo=[]
 matched=[]
-ft_diffs=[]
-hb_diffs=[]
-is_diffs=[]
-kb_diffs=[]
-ke_diffs=[]
-kk_diffs=[]
-kv_diffs=[]
-ny_diffs=[]
-ts_diffs=[]
-ww_diffs=[]
-wn_diffs=[]
-wz_diffs=[]
-yg_diffs=[]
-ft_slew=[]
-hb_slew=[]
-ht_slew=[]
-is_slew=[]
-kb_slew=[]
-ke_slew=[]
-kk_slew=[]
-kv_slew=[]
-ny_slew=[]
-ts_slew=[]
-ww_slew=[]
-wn_slew=[]
-wz_slew=[]
-yg_slew=[]
+#ft_slew=[]
+#hb_slew=[]
+#ht_slew=[]
+#is_slew=[]
+#kb_slew=[]
+#ke_slew=[]
+#kk_slew=[]
+#kv_slew=[]
+#ny_slew=[]
+#ts_slew=[]
+#ww_slew=[]
+#wn_slew=[]
+#wz_slew=[]
+#yg_slew=[]
 
 nstations = getLogData(logdir)
 getSkdData(skddir)
@@ -359,7 +346,7 @@ for entry in matched:
     if entry[0] == "ft":
         az_slew = calcAz(ft_list, entry)
         el_slew = calcEl(ft_list, entry)
-        ft_slew.append(az_slew - el_slew)
+#        ft_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -371,7 +358,7 @@ for entry in matched:
     elif entry[0] == "hb":
         az_slew = calcAz(hb_list, entry)
         el_slew = calcEl(hb_list, entry)
-        hb_slew.append(az_slew - el_slew)
+#        hb_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             hb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -383,7 +370,7 @@ for entry in matched:
     elif entry[0] == "ht":
         az_slew = calcAz(ht_list, entry)
         el_slew = calcEl(ht_list, entry)
-        ht_slew.append(az_slew - el_slew)
+#        ht_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ht_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -395,7 +382,7 @@ for entry in matched:
     elif entry[0] == "is":
         az_slew = calcAz(is_list, entry)
         el_slew = calcEl(is_list, entry)
-        is_slew.append(az_slew - el_slew)
+#        is_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             is_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -407,7 +394,7 @@ for entry in matched:
     elif entry[0] == "kb":
         az_slew = calcAz(kb_list, entry)
         el_slew = calcEl(kb_list, entry)
-        kb_slew.append(az_slew - el_slew)
+#        kb_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             kb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -416,11 +403,10 @@ for entry in matched:
         else:
             pass
 
-
     elif entry[0] == "ke":
         az_slew = calcAz(ke_list, entry)
         el_slew = calcEl(ke_list, entry)
-        ke_slew.append(az_slew - el_slew)
+#        ke_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ke_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -432,7 +418,7 @@ for entry in matched:
     elif entry[0] == "kk":
         az_slew = calcAz(kk_list, entry)
         el_slew = calcEl(kk_list, entry)
-        kk_slew.append(az_slew - el_slew)
+#        kk_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             kk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -444,7 +430,7 @@ for entry in matched:
     elif entry[0] == "kv":
         az_slew = calcAz(kv_list, entry)
         el_slew = calcEl(kv_list, entry)
-        kv_slew.append(az_slew - el_slew)
+#        kv_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             kv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -456,7 +442,7 @@ for entry in matched:
     elif entry[0] == "ma":
         az_slew = calcAz(ma_list, entry)
         el_slew = calcEl(ma_list, entry)
-        ma_slew.append(az_slew - el_slew)
+#        ma_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ma_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -468,7 +454,7 @@ for entry in matched:
     elif entry[0] == "ny":
         az_slew = calcAz(ny_list, entry)
         el_slew = calcEl(ny_list, entry)
-        ny_slew.append(az_slew - el_slew)
+#        ny_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ny_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -480,7 +466,7 @@ for entry in matched:
     elif entry[0] == "ts":
         az_slew = calcAz(ts_list, entry)
         el_slew = calcEl(ts_list, entry)
-        ts_slew.append(az_slew - el_slew)
+#        ts_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ts_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -492,7 +478,7 @@ for entry in matched:
     elif entry[0] == "ww":
         az_slew = calcAz(ww_list, entry)
         el_slew = calcEl(ww_list, entry)
-        ww_slew.append(az_slew - el_slew)
+#        ww_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             ww_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -504,7 +490,7 @@ for entry in matched:
     elif entry[0] == "wn":
         az_slew = calcAz(wn_list, entry)
         el_slew = calcEl(wn_list, entry)
-        wn_slew.append(az_slew - el_slew)
+#        wn_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             wn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -516,7 +502,7 @@ for entry in matched:
     elif entry[0] == "wz":
         az_slew = calcAz(wz_list, entry)
         el_slew = calcEl(wz_list, entry)
-        wz_slew.append(az_slew - el_slew)
+#        wz_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             wz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
@@ -528,7 +514,7 @@ for entry in matched:
     elif entry[0] == "yg":
         az_slew = calcAz(yg_list, entry)
         el_slew = calcEl(yg_list, entry)
-        yg_slew.append(az_slew - el_slew)
+#        yg_slew.append(az_slew - el_slew)
         ## I/O
         if az_slew > el_slew*az_c:
             yg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
