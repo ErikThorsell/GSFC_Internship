@@ -1,4 +1,16 @@
 import os
+import sys
+
+if not len(sys.argv) > 1:
+    print "Wrong usage."
+    print "$> python extraxct.py logdir skdfile"
+    print "You must supply the program with a folder containing the log " \
+         +"files for the session, as well as the skdfile for the same " \
+         +"session."
+    sys.exit()
+
+logdir = sys.argv[1]
+skddir = sys.argv[2]
 
 ###############################################################################
 
@@ -142,9 +154,8 @@ def calcEl(spec, rotdata):
 
 ###############################################################################
 
-
-logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1729/"
-skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1729.azel"
+#logdir = "/home/erik/Programming/git/GSFC_Internship/azel/logs/r1729/"
+#skddir = "/home/erik/Programming/git/GSFC_Internship/azel/skds/r1729.azel"
 
 #####################################
 # Static Variables for the antennas #
