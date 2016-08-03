@@ -31,9 +31,9 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     print 'Start time is: %.5f s for station %s in %s'%(t,station, orientation)
 
                     v = leastsq.speed(distance, times)
-                    print 'Speed of %s in %s is: %.5f deg/s'%(station,orientation, v), "\n"
+                    print 'Speed of %s in %s is: %.5f deg/min'%(station,orientation, v), "\n"
 
                     leastsq.plot_curve(distance, times, pret, station, orientation)
                 else:
-                    print "No trukl for station:", station, "\n"
+                    print "No trakl for station:", station, "\n"
 #leastsq.plot_curve(distance, times, station, orientation)
