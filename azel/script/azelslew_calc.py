@@ -119,11 +119,6 @@ def matchSkdLog(log, skd, matched):
                         az_a = skd[j+1][3]
                         el_b = skd[j][4]
                         el_a = skd[j+1][4]
-
-                        if station == "is":
-                                az_b = az_b % 360
-                                az_a = az_a % 360
-
                         d_az = abs(az_a - az_b)
                         d_el = abs(el_a - el_b)
                         matched.append((station, timediff, d_az, d_el))
