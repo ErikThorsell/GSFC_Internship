@@ -46,6 +46,9 @@ def parseStationData(specs):
             if isNumber(PO[0:1]):
                 PO = "a" + PO
             sp.write("# " + name + "\n" + \
+                     "# Axis: " + axis + "\n" + \
+                     "# Offset: " + str(offset) + "\n" + \
+                     "# Diam: " + str(diam) + "\n" + \
                      PO + "_az = (" + str(az_min) + ", " + str(az_max) + ")\n" + \
                      PO + "_el = (" + str(el_min) + ", " + str(el_max) + ")\n" + \
                      PO + "_azspeed = " + str(az_speed) + "\n" + \
