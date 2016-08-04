@@ -35,14 +35,15 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     k,m = numpy.linalg.lstsq(A, y)[0]
 
-    plt.plot(x, y, 'bo', label='Original data', markersize=1)
-    plt.plot(x, t, 'ro', label='Pre data', markersize=1)
-    plt.plot(x, k*x + m, 'k', label='Fitted line')
+    plt.plot(x, y, 'bo', label='Real time', markersize=1)
+    plt.plot(x, t, 'ro', label='Theoretical time', markersize=1)
+    plt.plot(x, k*x + m, 'k', label='Least sq fit')
     plt.legend()
+    plt.grid(True)
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
-    plt.suptitle('Antenna: %s, in %s' % (stat, ori)+ "\n"+ 'Speed:  %.3f, offset: %.3f'%(1/k*60,m))
-#    plt.show()
+    plt.suptitle('Antenna: %s, orientation:  %s' % (stat.upper(),ori.upper())+\
+    "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k*60,m))
     plt.savefig('%s_%s.png' % (stat, ori))
     plt.close()
     return

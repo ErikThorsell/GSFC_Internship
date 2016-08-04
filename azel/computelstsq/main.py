@@ -5,8 +5,9 @@ import leastsq
 import csv
 import os
 
-path_to_dat = '../script/'
-
+path_to_dat = '../data/'
+res = open('lsq_result.dat', 'w')
+lines=[]
 for subdir, dirs, files in os.walk(path_to_dat):
     for file in files:
         if file[-4:] == ".dat":
@@ -24,15 +25,21 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     distance.append(float(row[2]))
                 if len(times) != 0:
 
-                    ans = leastsq.least_sq(distance, times)
-                    print station, orientation, ans
-
                     t = leastsq.start_time(distance, times)
-                    print 'Start time is: %.5f s for station %s in %s'%(t,station, orientation)
-
                     v = leastsq.speed(distance, times)
-                    print 'Speed of %s in %s is: %.5f deg/min'%(station,orientation, v), "\n"
+
+                    lines.append('Station: %s, Orientation: %s' % \
+                    (station.upper(), orientation.upper())+ '\n'+ \
+                    'Station: %s, offset = %.1f, speed = %.0f deg/s' % \
+                    (station.upper(), t, v) + '\n\n')
 
                     leastsq.plot_curve(distance, times, pret, station, orientation)
                 else:
-                    print "No trakl for station:", station, "\n"
+                    lines.append( "No trakl for station: " + station.upper() + \
+                    "\n\n")
+
+lines.sort()
+
+for i in range(0,len(lines)):
+    res.write(lines[i])
+res.close()
