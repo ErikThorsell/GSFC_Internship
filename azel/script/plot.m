@@ -19,8 +19,8 @@ subplot(2,1,1)
 hold on
 plot(az_distance, az_time_real, '.')
 plot(az_distance, az_time_theoretical, 'r.')
-plot(y,x,'k')
-plot(z,x,'k')
+%plot(y,x,'k')
+%plot(z,x,'k')
 grid on
 ylabel('Time (seconds)')
 xlabel('Distance (degrees)')

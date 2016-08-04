@@ -1,11 +1,11 @@
-################################################################################
-# This is an automatically generated spec file (created by the script          #
-# getStationSpecs.py).  The data is taken from the file antenna.cat. It should #
-# be fine, but use at own risk!                                                #
-#                                                                              #
-#                                                                              #
-# This version of the spec file was generated on: 2016-08-04                   #
-################################################################################
+###############################################################################
+# This is an automatically generated spec file (created by the script         #
+# getStationSpecs.py). The data is taken from the file antenna.cat. It        #
+# should be fine, but use at own risk!                                        #
+#                                                                             #
+#                                                                             #
+# This version of the spec file was generated on: 2016-08-04                  #
+###############################################################################
 
 # AGGO
 ag_az = (276.0, 774.0)

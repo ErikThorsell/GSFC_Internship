@@ -69,15 +69,15 @@ def getStationData(path_to_file):
 ###############################################################################
 sp = open("station_specs.py",'w')
 sp.write( \
-    "################################################################################\n" + \
-    "# This is an automatically generated spec file (created by the script          #\n" + \
-    "# getStationSpecs.py).  The data is taken from the file antenna.cat. It should #\n" + \
-    "# be fine, but use at own risk!                                                #\n" + \
-    "#                                                                              #\n" + \
-    "#                                                                              #\n" + \
+    "###############################################################################\n" + \
+    "# This is an automatically generated spec file (created by the script         #\n" + \
+    "# getStationSpecs.py). The data is taken from the file antenna.cat. It        #\n" + \
+    "# should be fine, but use at own risk!                                        #\n" + \
+    "#                                                                             #\n" + \
+    "#                                                                             #\n" + \
     "# This version of the spec file was generated on: " + time.strftime("%Y-%m-%d") + \
-    "                   #\n" + \
-    "################################################################################\n\n")
+    "                  #\n" + \
+    "###############################################################################\n\n")
 
 getStationData("./antenna.cat")
 
