@@ -13,7 +13,10 @@
 #                                                           #
 #############################################################
 
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    pass
 import numpy
 
 

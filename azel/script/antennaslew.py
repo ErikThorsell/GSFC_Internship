@@ -14,9 +14,10 @@ import csv
 import os
 import sys
 
-path_to_dat = '../data/'
-res = open('../data/lsq_result.dat', 'w')
+path_to_dat = './data/'
+res = open('./data/lsq_result.dat', 'w')
 lines=[]
+graph = False
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "--graph":
