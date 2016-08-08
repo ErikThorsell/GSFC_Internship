@@ -24,7 +24,7 @@ for f in $SKDDIR*; do
     done
 done
 
-if [ $# > 1 ]; then
+if [ $# -gt 0 ]; then
     OPT="$1"
 fi
 
