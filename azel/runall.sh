@@ -26,7 +26,6 @@ done
 
 if [ $# > 1 ]; then
     OPT="$1"
-    echo $OPT
 fi
 
 python2 $SRC2 $OPT
