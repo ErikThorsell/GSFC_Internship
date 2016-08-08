@@ -17,6 +17,16 @@ import sys
 path_to_dat = '../data/'
 res = open('../data/lsq_result.dat', 'w')
 lines=[]
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "--graph":
+        graph = True
+    else:
+        graph = False
+        print "Invalid usage!"
+        print "Only valid flag is --graph"
+        sys.exit()
+
 for subdir, dirs, files in os.walk(path_to_dat):
     for file in files:
         if file[-4:] == ".dat":
@@ -42,9 +52,8 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     'Station: %s, offset = %.1f, speed = %.0f deg/s' % \
                     (station.upper(), t, v) + '\n\n')
 
-                    if len(sys.argv) > 1:
-                        if sys.argv[1] == "--graph":
-                            leastsq.plot_curve(distance, times, pret, station, orientation)
+                    if graph == True:
+                        leastsq.plot_curve(distance, times, pret, station, orientation)
                 else:
                     lines.append( "No trakl for station: " + station.upper() + \
                     "\n\n")
