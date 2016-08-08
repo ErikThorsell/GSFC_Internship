@@ -39,7 +39,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     plt.ylabel('Time [s]')
     plt.suptitle('Antenna: %s, orientation:  %s' % (stat.upper(),ori.upper())+\
     "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k*60,m))
-    plt.savefig('../img/%s_%s.png' % (stat, ori))
+    plt.savefig('./img/%s_%s.png' % (stat, ori))
     plt.close()
     return
 
