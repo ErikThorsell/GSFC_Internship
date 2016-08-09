@@ -1,6 +1,9 @@
 \beamer@endinputifotherversion {3.36pt}
-\beamer@sectionintoc {1}{Weeks 1-2: Learning Fortran}{2}{0}{1}
-\beamer@sectionintoc {2}{Weeks 3-7: Our First Project}{4}{0}{2}
-\beamer@sectionintoc {3}{Week 3-4: Testing I/O performance}{6}{0}{3}
-\beamer@sectionintoc {4}{Weeks 5-7: Implementation}{22}{0}{4}
-\beamer@sectionintoc {5}{Results for Project One}{26}{0}{5}
+\beamer@sectionintoc {1}{Weeks 1-2: Learning Fortran}{3}{0}{1}
+\beamer@sectionintoc {2}{Weeks 3-7: Our First Project}{5}{0}{2}
+\beamer@sectionintoc {3}{Week 3-4: Testing I/O performance}{7}{0}{3}
+\beamer@sectionintoc {4}{Weeks 5-7: Implementation}{23}{0}{4}
+\beamer@sectionintoc {5}{Results for Project One}{27}{0}{5}
+\beamer@sectionintoc {6}{Weeks 7-9: Our Second Project}{35}{0}{6}
+\beamer@sectionintoc {7}{Result for Project Two}{41}{0}{7}
+\beamer@sectionintoc {8}{Week 10: Returning Home}{45}{0}{8}
