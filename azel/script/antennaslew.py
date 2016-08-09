@@ -45,13 +45,13 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     distance.append(float(row[2]))
                 if len(times) != 0:
 
-                    t = leastsq.start_time(distance, times)
-                    v = leastsq.speed(distance, times)
+                    t = leastsq.speed_offset(distance, times)
+
 
                     lines.append('Station: %s, Orientation: %s' % \
                     (station.upper(), orientation.upper())+ '\n'+ \
-                    'Station: %s, offset = %.1f, speed = %.0f deg/s' % \
-                    (station.upper(), t, v) + '\n\n')
+                    'Station: %s, offset = %.1f, speed = %.0f deg/min' % \
+                    (station.upper(), t[1], t[0]) + '\n\n')
 
                     if graph == True:
                         leastsq.plot_curve(distance, times, pret, station, orientation)
