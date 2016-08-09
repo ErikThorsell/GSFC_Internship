@@ -4,9 +4,13 @@ implicit none
 
     ! variables
     character*256 c_name 
-    character(kind=C_CHAR, len=1), dimension(256) :: base
-    !type(c_ptr) :: base
+    !character*256 ::  base
+    !character(kind=C_CHAR, len=1), dimension(256) :: base
+    type(c_ptr) base
     integer i_fd, i_size
+    character pointee(256)
+    character*256 cptr
+    pointer(cptr, pointee)
 
     interface
     ! Initialize Consumer
@@ -25,7 +29,8 @@ implicit none
         end subroutine
         function readFromMem() bind (C, name="readFromMem") result(base)
             use iso_c_binding
-            character(kind=c_char) :: base
+            type(c_ptr) base
+            !character(kind=c_char) :: base
         end function
 
     end interface
@@ -36,9 +41,11 @@ implicit none
     call initConsumer(c_name)
     print *, "Fortran: File descriptor: ", i_fd
     call mapConsumer(i_size)
-    print *, "Fortran: Base is: ", base
+    print *, "Fortran: Base before read: ", base
     base = readFromMem()
-    print *, "Fortran: Now base is instead: ", base
+    cptr = loc(base)
+    !base = "Hej"
+    print *, "Fortran: Base after read: ", pointee
     call terminateConsumer(i_size, c_name)
     print *, "Fortran: Consumer terminated."
 

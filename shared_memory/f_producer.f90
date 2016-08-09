@@ -35,7 +35,7 @@ equivalence(i_array,c_array)
     
     ! executable statements
     c_name = "/shm-example"//c_null_char
-    c_msg = "Banana. This is an example message."//c_null_char
+    c_msg = "Papaya. Sallad. This is an example message."//c_null_char
     i_size = 4096
 
     do i=1,100
