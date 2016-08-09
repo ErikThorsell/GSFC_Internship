@@ -9,9 +9,20 @@ IMGDIR=./img/
 OPT=""
 GRAPH=""
 
-echo "Emptying the folders:" $DATADIR "and" $IMGDIR
-rm $DATADIR*
-rm $IMGDIR*
+CLEANIMG=$(shopt -s nullglob dotglob; echo $IMGDIR*)
+CLEANDATA=$(shopt -s nullglob dotglob; echo $DATADIR*)
+
+echo "Starting."
+
+if [ ${#CLEANIMG} -gt 0 ]; then
+    echo "Emptying directory:" $IMGDIR
+    rm $IMGDIR*
+fi
+
+if [ ${#CLEANDATA} -gt 0 ]; then
+    echo "Emptying directory:" $DATADIR
+    rm $DATADIR*
+fi
 
 echo "Finding each skd-file and its corresponding log files."
 echo "Running program" $SRC1
@@ -30,10 +41,11 @@ done
 
 if [ $# -gt 0 ]; then
     OPT="$1"
-    GRAPH="and any plots are stored in" $IMGDIR
 fi
 
 echo "Running program" $SRC2 $OPT
 python2 $SRC2 $OPT
 
-echo "Execution completed. The data is stored in" $DATADIR $GRAPH
+echo "Execution completed."
+echo "The data is stored in" $DATADIR "and any plots are stored in" $IMGDIR
+
