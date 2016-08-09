@@ -35,7 +35,10 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     # Stack arrays vertically, .T transposes the matrix
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     # Return the least square solution to a linear matrix equation
-    k,m = numpy.linalg.lstsq(A, y)[0]
+    try:
+        k,m = numpy.linalg.lstsq(A, y)[0]
+    except:
+        return
     m_max = m + threshold
     m_min = m - threshold
 
@@ -43,14 +46,17 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     for i in range(1,100):
         for i in range(0,len(xdata)):
             if ydata[i] < k*xdata[i] + m_max:
-                if ydata[i] > k*xdata[i] + m_min:
-                   ysorted.append(ydata[i])
-                   xsorted.append(xdata[i])
+               if ydata[i] > k*xdata[i] + m_min:
+                  ysorted.append(ydata[i])
+                  xsorted.append(xdata[i])
 
         x_new = numpy.array(xsorted)
         y_new = numpy.array(ysorted)
         A = numpy.vstack([x_new, numpy.ones(len(x_new))]).T
-        k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+        try:
+            k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+        except:
+            return
 
         xtmp = xsorted
         ytmp = ysorted
@@ -67,7 +73,6 @@ def plot_curve(xdata, ydata, pret, stat, ori):
         temp = float(ytmp[i]) - k * float(xtmp[i])
         if temp > m_top:
             m_top = temp
-
     # Plot graphs and save as .png
     plt.plot(x, y, 'ro', label='Discarded points', markersize=1)
     plt.plot(x_new, y_new, 'bo', label='Real time, sorted', markersize=1)
@@ -90,6 +95,7 @@ def speed_offset(xdata, ydata):
     xsorted=[]
     ytmp=[]
     xtmp=[]
+    ans = (0,0)
 
     ymax = max(ydata)
     threshold = ymax/20
@@ -100,7 +106,10 @@ def speed_offset(xdata, ydata):
     # Stack arrays vertically, .T transposes the matrix
     A = numpy.vstack([x, numpy.ones(len(x))]).T
     # Return the least square solution to a linear matrix equation
-    k,m = numpy.linalg.lstsq(A, y)[0]
+    try:
+        k,m = numpy.linalg.lstsq(A, y)[0]
+    except:
+        return
     # Only use point between those boundaries
     m_max = m + threshold
     m_min = m - threshold
@@ -117,7 +126,11 @@ def speed_offset(xdata, ydata):
         y_new = numpy.array(ysorted)
 
         A = numpy.vstack([x_new, numpy.ones(len(x_new))]).T
-        k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+#        k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+        try:
+            k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+        except:
+            return ans
 
         xtmp = xsorted
         ytmp = ysorted

@@ -79,7 +79,8 @@ def getLogData(path_to_logs, tups):
                         direction = sline[len(sline)-1][:-1]
                         sourcefound = True
                         sourcedate = parseLogTime(line[:20])
-                    if ("#trakl#Source acquired" in line and sourcefound):
+                    if ((("#trakl#Source acquired" in line) or \
+                        ('#flagr#flagr/antenna,acquired' in line)) and sourcefound):
                         sourcefound = False
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
