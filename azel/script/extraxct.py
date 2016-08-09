@@ -52,6 +52,8 @@ ma_az = open("data/ma_az.dat",'a')
 ma_el = open("data/ma_el.dat",'a')
 ny_az = open("data/ny_az.dat",'a')
 ny_el = open("data/ny_el.dat",'a')
+on_az = open("data/on_az.dat",'a')
+on_el = open("data/on_el.dat",'a')
 ts_az = open("data/ts_az.dat",'a')
 ts_el = open("data/ts_el.dat",'a')
 ww_az = open("data/ww_az.dat",'a')
@@ -178,6 +180,17 @@ for entry in matched:
         else:
             pass
 
+    elif entry[0] == "on":
+        az_slew = azelslew_calc.calcAz(on_list, entry)
+        el_slew = azelslew_calc.calcEl(on_list, entry)
+        ## I/O
+        if az_slew > el_slew*az_c:
+            on_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+        elif az_slew*el_c < el_slew:
+            on_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+        else:
+            pass
+
     elif entry[0] == "ts":
         az_slew = azelslew_calc.calcAz(ts_list, entry)
         el_slew = azelslew_calc.calcEl(ts_list, entry)
@@ -255,6 +268,8 @@ ma_az.close()
 ma_el.close()
 ny_az.close()
 ny_el.close()
+on_az.close()
+on_el.close()
 ts_az.close()
 ts_el.close()
 ww_az.close()
