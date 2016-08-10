@@ -39,6 +39,7 @@ echo "Running program" $SRC1
 for f in $SKDDIR*; do
     SKDFILE=$(echo $f | cut -d'/' -f 3)
     tSKDFILE=$(echo $SKDFILE | cut -d'.' -f 1)
+    echo "Working on session" $tSKDFILE
     for l in $LOGDIR*; do
         tLOG=$(echo $l | cut -d'/' -f 3)
         if [ $tLOG == $tSKDFILE ]; then
