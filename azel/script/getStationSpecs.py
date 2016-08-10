@@ -1,3 +1,11 @@
+###############################################################################
+# If placed in the same folder as the file antenna.cat, this program extracts #
+# the specs for each antenna specified in antenna.cat and writes the specs to #
+# a file used by extract.py when calculating the antenna slew.                #
+#                                                                             #
+# Written by Erik Thorsell, summer of 2016.                                   #
+###############################################################################
+
 import time
 
 def isNumber(s):
@@ -43,7 +51,10 @@ def parseStationData(specs):
             PO = line[80:82].strip().lower()
             EQ = line[83:86].strip().lower()
             MS = line[87:89].strip().lower()
-            if isNumber(PO[0:1]):
+            if isNumber(PO[0:1]): # Python does not allow variables to start
+                                  # with a number. This prepends an 'a' to the
+                                  # antennas with a number as their first
+                                  # character in their two letter code.
                 PO = "a" + PO
             sp.write("# " + name + "\n" + \
                      "# Axis: " + axis + "\n" + \
@@ -69,7 +80,7 @@ def getStationData(path_to_file):
 
     parseStationData(sourcelines)
 
-###############################################################################
+### MAIN PROGRAM ###
 sp = open("station_specs.py",'w')
 sp.write( \
     "###############################################################################\n" + \
@@ -85,3 +96,4 @@ sp.write( \
 getStationData("./antenna.cat")
 
 sp.close()
+### End of main program ###

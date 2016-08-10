@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.9)  10 AUG 2016 09:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.9)  10 AUG 2016 11:45
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
@@ -1277,7 +1277,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
 Here is how much of TeX's memory you used:
  21700 strings out of 493014
  425810 string characters out of 6139326
- 491209 words of memory out of 5000000
+ 491210 words of memory out of 5000000
  24635 multiletter control sequences out of 15000+600000
  12178 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
