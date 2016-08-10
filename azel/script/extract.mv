@@ -1,11 +1,25 @@
+###############################################################################
+# This is the main program for the program extractor.py. extractor.py takes   #
+# as arguments one sked file summary for an arbitrary session, and one folder #
+# containing the log files for the same session.                              #
+#                                                                             #
+# $> python extractor.py skdfile logdir                                       #
+#                                                                             #
+# extractor.py is well suited to be run by the bash script calculate_slew.sh  #
+# which runs extractor.py for all sessions present in the directories         #
+# specified in the script.                                                    #
+#                                                                             #
+#                                                                             #
+# Written by the Swedish Interns (Erik, Simon and Lina) the summer of 2016.   #
+###############################################################################
 import os
 import sys
 import azelslew_calc
 from station_specs import *
 
 if not len(sys.argv) > 1:
-    print "Wrong usage."
-    print "$> python extraxct.py logdir skdfile"
+    print "Incorrect usage."
+    print "$> python extract.py logdir skdfile"
     print "You must supply the program with a folder containing the log " \
          +"files for the session, as well as the skdfile for the same " \
          +"session."
@@ -13,12 +27,6 @@ if not len(sys.argv) > 1:
 
 logdir = sys.argv[1]
 skddir = sys.argv[2]
-
-
-###############################################################################
-# Start of program                                                            #
-#                                                                             #
-
 filename = ""
 station = ""
 nstations = 0

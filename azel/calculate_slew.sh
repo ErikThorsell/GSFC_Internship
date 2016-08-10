@@ -3,7 +3,7 @@
 LOGDIR=./logs/
 SKDDIR=./skds/
 DATADIR=./data/
-SRC1=./script/extraxct.py
+SRC1=./script/extract.py
 SRC2=./script/antennaslew.py
 IMGDIR=./img/
 OPT=""
