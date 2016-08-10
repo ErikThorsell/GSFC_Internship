@@ -12,7 +12,17 @@ GRAPH=""
 CLEANIMG=$(shopt -s nullglob dotglob; echo $IMGDIR*)
 CLEANDATA=$(shopt -s nullglob dotglob; echo $DATADIR*)
 
-echo "Starting."
+echo "Starting execution of ./calculate_slew.sh"
+
+if [ ! -d $IMGDIR ]; then
+    echo "Created folder $IMGDIR"
+    mkdir $IMGDIR
+fi
+
+if [ ! -d $DATADIR ]; then
+    echo "Created folder $DATADIR"
+    mkdir $DATADIR
+fi
 
 if [ ${#CLEANIMG} -gt 0 ]; then
     echo "Emptying directory:" $IMGDIR

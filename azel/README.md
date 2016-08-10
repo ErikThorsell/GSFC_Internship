@@ -6,12 +6,14 @@ A simple way to calculate the slew time for an arbitrary VLBI (AZ/EL) antenna.
 ## Requirements
 
  - A folder named ``skds``, containing schedule summaries for each session.
-   These files sholud be named ``<session>.azel`` (e.g. r1727.azel). The
-   creation of these files are explained in section ``Generate .azel``.
+   These files should be named ``<session>.azel`` (e.g. r1727.azel). The
+   creation of these files are explained in section `Generate .azel`.
  - A folder named ``logs``, containing folders for each session, corresponding
    to the .azel-files. Each of the folder holds the log files for that
    particular session. (E.g logs/r1727/r1727ft.log)
  - That trakl or flagr is turned on for the antenna.
+ - An up-to-date version of the file ``antenna.cat`` that holds a sumary of all
+   the antennas' specifications. This file should be placed in ``src/``.
 
 The folders ``skds`` and ``logs`` are currently present in this folder and are
 populated with data for 5 sessions.
@@ -22,6 +24,18 @@ populated with data for 5 sessions.
 ``data/``. If one wishes to generate graphs to get a visual representation of
 the calculated models the flag ``--graph`` can be used as:
 ``./calculate_slew.sh --graph``. These graphs are stored in ``img/``.
+
+### House keeping
+
+There are two programs that should be run before ``./calculate_slew.sh``.
+``src/getStationSpecs.py`` pulls the antennas' specifications from the file
+``antenna.cat``. ``src/create_extract.py`` also uses ``antenna.cat``, it creates
+the file ``extract.py`` and ensures all the antennas in ``antenna.cat`` can be
+used.
+
+**Note:** If you have limited disk space, or simply reluctant to waste space
+and time, remove the antennas not in use from *your copy of* ``antenna.cat``
+before running the scripts above.
 
 ## Output from the program
 
