@@ -100,7 +100,6 @@ def speed_offset(xdata, ydata):
     xtmp=[]
     ans = (0,0)
     k_old = 0.0
-    loopcounter=0
 
     ymax = max(ydata)
     threshold = ymax/20
@@ -121,7 +120,6 @@ def speed_offset(xdata, ydata):
 
     # Itterate to get a better solution
     while not (abs(k - k_old) < math.pow(10, -10)):
-        loopcounter = loopcounter + 1
         for i in range(0,len(xdata)):
             if ydata[i] < k*xdata[i] + m_max:
                 if ydata[i] > k*xdata[i] + m_min:
@@ -147,8 +145,6 @@ def speed_offset(xdata, ydata):
         xsorted = []
         ysorted = []
 
-    print "Looped: " + str(loopcounter) + " times."
-    loopcounter = 0
     # Calculate the offset
     offset = 0.0
     for i in range(0,len(xtmp)):
