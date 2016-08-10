@@ -8,11 +8,11 @@
 # Date: 2016-08-04                                                           #
 #                                                                            #
 ##############################################################################
-# Import module
 import leastsq
 import csv
 import os
 import sys
+import numpy
 
 path_to_dat = './data/'
 res = open('./data/lsq_result.dat', 'w')
@@ -36,28 +36,36 @@ for subdir, dirs, files in os.walk(path_to_dat):
 
             with open(path_to_dat + file) as csvfile:
                 readCSV = csv.reader(csvfile,delimiter=',')
-                times = []
+                realtimes = []
                 distance = []
-                pret = []
+                modeltimes = []
                 for row in readCSV:
-                    pret.append(float(row[0]))
-                    times.append(float(row[1]))
+                    modeltimes.append(float(row[0]))
+                    realtimes.append(float(row[1]))
                     distance.append(float(row[2]))
-                if len(times) != 0:
+                if len(realtimes) != 0:
 
-                    t = leastsq.speed_offset(distance, times)
+                    t = leastsq.speed_offset(distance, realtimes)
 
+                    # Calculate current model
+                    x = numpy.array(distance)
+                    y = numpy.array(modeltimes)
+                    A = numpy.vstack([x, numpy.ones(len(x))]).T
+                    curspeed, curoffset = numpy.linalg.lstsq(A, y)[0]
+                    curspeed = 1/curspeed * 60
 
                     lines.append('Station: %s, Orientation: %s' % \
                     (station.upper(), orientation.upper())+ '\n'+ \
-                    'Station: %s, offset = %.1f, speed = %.0f deg/min' % \
-                    (station.upper(), t[1], t[0]) + '\n\n')
+                    'Station: %s, calculated model: \t offset = %.1f s, speed = %.0f deg/min' % \
+                    (station.upper(), t[1], t[0])+ '\n' +\
+                    'Station: %s, current model: \t offset = %.1f s, speed = %.0f deg/min.' \
+                    % (station.upper(), curoffset, curspeed) + '\n\n')
 
                     if graph == True:
-                        leastsq.plot_curve(distance, times, pret, station, orientation)
+                        leastsq.plot_curve(distance, realtimes, modeltimes, station, orientation)
                 else:
-                    lines.append( "No trakl for station: " + station.upper() + \
-                    "\n\n")
+                    lines.append( "No trakl or flagr for station: " + station.upper() + \
+                    ',' + orientation.upper() + "\n\n")
 
 lines.sort()
 

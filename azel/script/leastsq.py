@@ -25,6 +25,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     xsorted=[]
     ytmp=[]
     xtmp=[]
+    k_old = 0.0
 
     ymax = max(ydata)
     threshold = ymax/20
@@ -43,7 +44,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
     m_min = m - threshold
 
     # Itterate to get a better solution
-    for i in range(1,100):
+    while not (abs(k - k_old) < 0.000001):
         for i in range(0,len(xdata)):
             if ydata[i] < k*xdata[i] + m_max:
                if ydata[i] > k*xdata[i] + m_min:
@@ -62,6 +63,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
         ytmp = ysorted
         m_max = m_new + threshold
         m_min = m_new - threshold
+        k_old = k
         k = k_new
         xsorted = []
         ysorted = []
@@ -73,6 +75,7 @@ def plot_curve(xdata, ydata, pret, stat, ori):
         temp = float(ytmp[i]) - k * float(xtmp[i])
         if temp > m_top:
             m_top = temp
+
     # Plot graphs and save as .png
     plt.plot(x, y, 'ro', label='Discarded points', markersize=1)
     plt.plot(x_new, y_new, 'bo', label='Real time, sorted', markersize=1)
@@ -96,6 +99,7 @@ def speed_offset(xdata, ydata):
     ytmp=[]
     xtmp=[]
     ans = (0,0)
+    k_old = 0.0
 
     ymax = max(ydata)
     threshold = ymax/20
@@ -115,7 +119,7 @@ def speed_offset(xdata, ydata):
     m_min = m - threshold
 
     # Itterate to get a better solution
-    for i in range(1,100):
+    while not (abs(k - k_old) < 0.000001):
         for i in range(0,len(xdata)):
             if ydata[i] < k*xdata[i] + m_max:
                 if ydata[i] > k*xdata[i] + m_min:
@@ -136,6 +140,7 @@ def speed_offset(xdata, ydata):
         ytmp = ysorted
         m_max = m_new + threshold
         m_min = m_new - threshold
+        k_old = k
         k = k_new
         xsorted = []
         ysorted = []
