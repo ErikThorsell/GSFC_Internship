@@ -26,7 +26,22 @@ def getStationNames(path_to_file):
             
     main = open("extract.py", "w")
     
-    main.write("import os\n" + \
+    main.write( \
+"###############################################################################\n"+\
+"# This is the main program for the program extractor.py. extractor.py takes   #\n"+\
+"# as arguments one sked file summary for an arbitrary session, and one folder #\n"+\
+"# containing the log files for the same session.                              #\n"+\
+"#                                                                             #\n"+\
+"# $> python extract.py skdfile logdir                                         #\n"+\
+"#                                                                             #\n"+\
+"# extract.py is well suited to be run by the bash script calculate_slew.sh    #\n"+\
+"# which runs extract.py for all sessions present in the directories           #\n"+\
+"# specified in the script.                                                    #\n"+\
+"#                                                                             #\n"+\
+"#                                                                             #\n"+\
+"# Written by the Swedish Interns (Erik, Simon and Lina) the summer of 2016.   #\n"+\
+"###############################################################################\n\n"+\
+                "import os\n" + \
                 "import sys\n" + \
                 "import azelslew_calc\n" + \
                 "from station_specs import *\n" + \
@@ -106,4 +121,4 @@ def getStationNames(path_to_file):
     main.close()
 ###############################################################################
 
-getStationNames("./antenna.cat") 
+getStationNames("./antenna.cat.org") 

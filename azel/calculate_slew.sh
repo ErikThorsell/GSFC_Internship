@@ -3,8 +3,8 @@
 LOGDIR=./logs/
 SKDDIR=./skds/
 DATADIR=./data/
-SRC1=./script/extract.py
-SRC2=./script/plotslew.py
+SRC1=./src/extract.py
+SRC2=./src/calcSlewRates.py
 IMGDIR=./img/
 OPT=""
 GRAPH=""
