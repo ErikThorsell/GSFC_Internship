@@ -4,7 +4,7 @@
 # Antennaslew produces plots of the antenna speed and offset, and also       #
 # prints the results to lsq_result.dat.                                      #
 #                                                                            #
-# Author: Interns 2016 (Lina Olandersson, Simon Strandberg, Erik Thorsell)   #
+# Author: Interns 2016 (Lina Olandersson, Simon Strandberg)   #
 # Date: 2016-08-04                                                           #
 #                                                                            #
 ##############################################################################
