@@ -56,7 +56,7 @@ def parseStationData(specs):
                                   # antennas with a number as their first
                                   # character in their two letter code.
                 PO = "a" + PO
-            pl.write("(" + PO + "," + name + "), + \\\n")
+            pl.write("(\"" + PO + "\",\"" + name + "\"), \\\n")
             sp.write("# " + name + "\n" + \
                      "# Axis: " + axis + "\n" + \
                      "# Offset: " + str(offset) + "\n" + \

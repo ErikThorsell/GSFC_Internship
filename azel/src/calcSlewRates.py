@@ -12,13 +12,13 @@
 #                                                                            #
 ##############################################################################
 import leastsq
+import getStationName as gsn
 import csv
 import os
 import sys
 import numpy
 
 path_to_dat = './data/'
-res = open('./data/lsq_result.dat', 'w')
 lines=[]
 graph = False
 
@@ -35,7 +35,7 @@ for subdir, dirs, files in os.walk(path_to_dat):
     for file in files:
         if file[-4:] == ".dat":
             station = file[0:2]
-            #station = getFullName(station)
+            station = gsn.getStationName(station)
             orientation = file[3:5]
 
             with open(path_to_dat + file) as csvfile:
@@ -73,6 +73,7 @@ for subdir, dirs, files in os.walk(path_to_dat):
 
 lines.sort()
 
+res = open('./data/lsq_result.dat', 'w')
 for i in range(0,len(lines)):
     res.write(lines[i])
 res.close()
