@@ -44,3 +44,7 @@ findings. We set out to rewrite some part of the program's I/O handling. We
 managed to do it, but the result was not as good as expected and for now the
 project is put on ice.
 
+#### Presentation
+
+At the en of our stay we have a presentation. You can find that presentation
+here.
