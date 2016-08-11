@@ -73,11 +73,19 @@ echo " "
 
 echo "Finding each skd-file and its corresponding log files."
 echo " "
+if [ ! -d $SKDDIR ]; then
+    echo "Unable to locate" $SKDDIR "please read the README.md for more info on how to use the program."
+    exit
+fi
 echo "Running program" $SRC1
 echo " "
 for f in $SKDDIR*; do
     SKDFILE=$(echo $f | cut -d'/' -f 3)
     tSKDFILE=$(echo $SKDFILE | cut -d'.' -f 1)
+    if [ ! -d $LOGDIR ]; then
+        echo "Unable to locate" $LOGDIR "please read the README.md for more info on how to use the program."
+        exit
+    fi
     echo "Working on session" $tSKDFILE
     for l in $LOGDIR*; do
         tLOG=$(echo $l | cut -d'/' -f 3)
