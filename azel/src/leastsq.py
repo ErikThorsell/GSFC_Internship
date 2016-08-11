@@ -85,7 +85,6 @@ def speed_offset(xdata, ydata):
         y_new = numpy.array(ysorted)
 
         A = numpy.vstack([x_new, numpy.ones(len(x_new))]).T
-#        k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
         try:
             k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
         except:
