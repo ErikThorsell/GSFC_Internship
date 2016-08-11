@@ -31,6 +31,11 @@ def plot_curve(data_tuple, modelTimes, station, orientation):
     y_new = data_tuple[5]
     k_new = data_tuple[6]
 
+    if orientation == 'az':
+        orientation = 'AZIMUT'
+    if orientation == 'el':
+        orientation = 'ELEVATION'
+
     # Plot graphs and save as .png
     plt.plot(x, y, 'ro', label='Discarded points', markersize=1)
     plt.plot(x_new, y_new, 'bo', label='Real time, sorted', markersize=1)
@@ -40,7 +45,7 @@ def plot_curve(data_tuple, modelTimes, station, orientation):
     plt.grid(True)
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
-    plt.suptitle('Antenna: %s, orientation:  %s' % (station.upper(),orientation.upper())+\
+    plt.suptitle('%s, %s' % (station.upper(),orientation.upper())+\
                 "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,m_top))
     plt.savefig('./img/%s_%s.png' % (station, orientation))
     plt.close()
