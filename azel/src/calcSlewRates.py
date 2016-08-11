@@ -35,6 +35,7 @@ for subdir, dirs, files in os.walk(path_to_dat):
     for file in files:
         if file[-4:] == ".dat":
             station = file[0:2]
+            #station = getFullName(station)
             orientation = file[3:5]
 
             with open(path_to_dat + file) as csvfile:

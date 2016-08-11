@@ -31,7 +31,7 @@ ai_azspeed_acc = 0.0
 ai_elspeed_acc = 0.0
 ai_list = [ai_az, ai_el, ai_azspeed, ai_elspeed, ai_azspeed_acc, ai_elspeed_acc]
 
-# ALGO
+# ALGOPARK
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 47.0
@@ -43,7 +43,7 @@ ap_azspeed_acc = 10.0
 ap_elspeed_acc = 30.0
 ap_list = [ap_az, ap_el, ap_azspeed, ap_elspeed, ap_azspeed_acc, ap_elspeed_acc]
 
-# AREC
+# ARECIBO
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 300.0
@@ -55,7 +55,7 @@ ar_azspeed_acc = 0.0
 ar_elspeed_acc = 0.0
 ar_list = [ar_az, ar_el, ar_azspeed, ar_elspeed, ar_azspeed_acc, ar_elspeed_acc]
 
-# ARIE
+# ARIES_4M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 3.8
@@ -67,7 +67,7 @@ tl_azspeed_acc = 0.0
 tl_elspeed_acc = 0.0
 tl_list = [tl_az, tl_el, tl_azspeed, tl_elspeed, tl_azspeed_acc, tl_elspeed_acc]
 
-# ARIE
+# ARIES_9M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 9.0
@@ -91,7 +91,7 @@ at_azspeed_acc = 0.0
 at_elspeed_acc = 0.0
 at_list = [at_az, at_el, at_azspeed, at_elspeed, at_azspeed_acc, at_elspeed_acc]
 
-# BADA
+# BADARY
 # Axis: AZEL
 # Offset: 0.0025
 # Diam: 32.0
@@ -103,7 +103,7 @@ bd_azspeed_acc = 40.0
 bd_elspeed_acc = 40.0
 bd_list = [bd_az, bd_el, bd_azspeed, bd_elspeed, bd_azspeed_acc, bd_elspeed_acc]
 
-# BR-V
+# BR-VLBA
 # Axis: AZEL
 # Offset: 2.1295
 # Diam: 25.0
@@ -115,7 +115,7 @@ br_azspeed_acc = 0.0
 br_elspeed_acc = 0.0
 br_list = [br_az, br_el, br_azspeed, br_elspeed, br_azspeed_acc, br_elspeed_acc]
 
-# CEBR
+# CEBRER26
 # Axis: HADC
 # Offset: 0.0
 # Diam: 25.0
@@ -127,7 +127,7 @@ ce_azspeed_acc = 0.0
 ce_elspeed_acc = 0.0
 ce_list = [ce_az, ce_el, ce_azspeed, ce_elspeed, ce_azspeed_acc, ce_elspeed_acc]
 
-# CEDU
+# CEDUNA
 # Axis: AZEL
 # Offset: 0.0024
 # Diam: 30.0
@@ -139,7 +139,7 @@ cd_azspeed_acc = 0.0
 cd_elspeed_acc = 0.0
 cd_list = [cd_az, cd_el, cd_azspeed, cd_elspeed, cd_azspeed_acc, cd_elspeed_acc]
 
-# CHIC
+# CHICHI10
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 10.0
@@ -151,7 +151,7 @@ cc_azspeed_acc = 0.0
 cc_elspeed_acc = 0.0
 cc_list = [cc_az, cc_el, cc_azspeed, cc_elspeed, cc_azspeed_acc, cc_elspeed_acc]
 
-# CHLB
+# CHLBOLTN
 # Axis: AZEL
 # Offset: 0.306
 # Diam: 25.0
@@ -163,7 +163,7 @@ ch_azspeed_acc = 0.0
 ch_elspeed_acc = 0.0
 ch_list = [ch_az, ch_el, ch_azspeed, ch_elspeed, ch_azspeed_acc, ch_elspeed_acc]
 
-# CRIM
+# CRIMEA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 22.0
@@ -187,7 +187,7 @@ sb_azspeed_acc = 5.0
 sb_elspeed_acc = 5.0
 sb_list = [sb_az, sb_el, sb_azspeed, sb_elspeed, sb_azspeed_acc, sb_elspeed_acc]
 
-# DSS1
+# DSS13
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -199,7 +199,7 @@ a13_azspeed_acc = 10.0
 a13_elspeed_acc = 10.0
 a13_list = [a13_az, a13_el, a13_azspeed, a13_elspeed, a13_azspeed_acc, a13_elspeed_acc]
 
-# DSS1
+# DSS15
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -211,7 +211,7 @@ a15_azspeed_acc = 20.0
 a15_elspeed_acc = 20.0
 a15_list = [a15_az, a15_el, a15_azspeed, a15_elspeed, a15_azspeed_acc, a15_elspeed_acc]
 
-# DSS4
+# DSS45
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -223,7 +223,7 @@ a45_azspeed_acc = 20.0
 a45_elspeed_acc = 20.0
 a45_list = [a45_az, a45_el, a45_azspeed, a45_elspeed, a45_azspeed_acc, a45_elspeed_acc]
 
-# DSS6
+# DSS65A
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -235,7 +235,7 @@ a6a_azspeed_acc = 20.0
 a6a_elspeed_acc = 20.0
 a6a_list = [a6a_az, a6a_el, a6a_azspeed, a6a_elspeed, a6a_azspeed_acc, a6a_elspeed_acc]
 
-# EFLS
+# EFLSBERG
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 100.0
@@ -247,7 +247,7 @@ eb_azspeed_acc = 10.0
 eb_elspeed_acc = 10.0
 eb_list = [eb_az, eb_el, eb_azspeed, eb_elspeed, eb_azspeed_acc, eb_elspeed_acc]
 
-# FD-V
+# FD-VLBA
 # Axis: AZEL
 # Offset: 2.131
 # Diam: 25.0
@@ -259,7 +259,7 @@ fd_azspeed_acc = 0.0
 fd_elspeed_acc = 0.0
 fd_list = [fd_az, fd_el, fd_azspeed, fd_elspeed, fd_azspeed_acc, fd_elspeed_acc]
 
-# FORT
+# FORTLEZA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 14.2
@@ -271,7 +271,7 @@ ft_azspeed_acc = 0.0
 ft_elspeed_acc = 0.0
 ft_list = [ft_az, ft_el, ft_azspeed, ft_elspeed, ft_azspeed_acc, ft_elspeed_acc]
 
-# GGAO
+# GGAO12M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -283,7 +283,7 @@ gs_azspeed_acc = 0.0
 gs_elspeed_acc = 0.0
 gs_list = [gs_az, gs_el, gs_azspeed, gs_elspeed, gs_azspeed_acc, gs_elspeed_acc]
 
-# GILC
+# GILCREEK
 # Axis: XYNS
 # Offset: 7.2847
 # Diam: 25.9
@@ -295,7 +295,7 @@ gc_azspeed_acc = 0.0
 gc_elspeed_acc = 0.0
 gc_list = [gc_az, gc_el, gc_azspeed, gc_elspeed, gc_azspeed_acc, gc_elspeed_acc]
 
-# GOLD
+# GOLDMARS
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 64.0
@@ -307,7 +307,7 @@ a14_azspeed_acc = 0.0
 a14_elspeed_acc = 0.0
 a14_list = [a14_az, a14_el, a14_azspeed, a14_elspeed, a14_azspeed_acc, a14_elspeed_acc]
 
-# GOLD
+# GOLDVENU
 # Axis: AZEL
 # Offset: 0.9252
 # Diam: 26.0
@@ -319,7 +319,7 @@ gv_azspeed_acc = 0.0
 gv_elspeed_acc = 0.0
 gv_list = [gv_az, gv_el, gv_azspeed, gv_elspeed, gv_azspeed_acc, gv_elspeed_acc]
 
-# HART
+# HARTRAO
 # Axis: HADC
 # Offset: 6.6922
 # Diam: 26.0
@@ -331,7 +331,7 @@ hh_azspeed_acc = 45.0
 hh_elspeed_acc = 45.0
 hh_list = [hh_az, hh_el, hh_azspeed, hh_elspeed, hh_azspeed_acc, hh_elspeed_acc]
 
-# HART
+# HART15M
 # Axis: AZEL
 # Offset: 1.47
 # Diam: 15.0
@@ -343,7 +343,7 @@ ht_azspeed_acc = 3.0
 ht_elspeed_acc = 3.0
 ht_list = [ht_az, ht_el, ht_azspeed, ht_elspeed, ht_azspeed_acc, ht_elspeed_acc]
 
-# HATC
+# HATCREEK
 # Axis: HADC
 # Offset: 0.0
 # Diam: 26.0
@@ -355,7 +355,7 @@ hc_azspeed_acc = 40.0
 hc_elspeed_acc = 40.0
 hc_list = [hc_az, hc_el, hc_azspeed, hc_elspeed, hc_azspeed_acc, hc_elspeed_acc]
 
-# HAYS
+# HAYSTACK
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 37.0
@@ -367,7 +367,7 @@ hs_azspeed_acc = 0.0
 hs_elspeed_acc = 0.0
 hs_list = [hs_az, hs_el, hs_azspeed, hs_elspeed, hs_azspeed_acc, hs_elspeed_acc]
 
-# HN-V
+# HN-VLBA
 # Axis: AZEL
 # Offset: 2.1303
 # Diam: 25.0
@@ -379,7 +379,7 @@ hn_azspeed_acc = 0.0
 hn_elspeed_acc = 0.0
 hn_list = [hn_az, hn_el, hn_azspeed, hn_elspeed, hn_azspeed_acc, hn_elspeed_acc]
 
-# HOBA
+# HOBART12
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -391,7 +391,7 @@ hb_azspeed_acc = 3.0
 hb_elspeed_acc = 3.0
 hb_list = [hb_az, hb_el, hb_azspeed, hb_elspeed, hb_azspeed_acc, hb_elspeed_acc]
 
-# HOBA
+# HOBART26
 # Axis: XYEW
 # Offset: 8.1943
 # Diam: 26.0
@@ -403,7 +403,7 @@ ho_azspeed_acc = 36.0
 ho_elspeed_acc = 36.0
 ho_list = [ho_az, ho_el, ho_azspeed, ho_elspeed, ho_azspeed_acc, ho_elspeed_acc]
 
-# ISHI
+# ISHIOKA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 13.2
@@ -415,7 +415,7 @@ is_azspeed_acc = 10.0
 is_elspeed_acc = 10.0
 is_list = [is_az, is_el, is_azspeed, is_elspeed, is_azspeed_acc, is_elspeed_acc]
 
-# ITAP
+# ITAPETGA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 14.0
@@ -427,7 +427,7 @@ it_azspeed_acc = 0.0
 it_elspeed_acc = 0.0
 it_list = [it_az, it_el, it_azspeed, it_elspeed, it_azspeed_acc, it_elspeed_acc]
 
-# JODR
+# JODRELL2
 # Axis: AZEL
 # Offset: 0.458
 # Diam: 76.0
@@ -439,7 +439,7 @@ jb_azspeed_acc = 0.0
 jb_elspeed_acc = 0.0
 jb_list = [jb_az, jb_el, jb_azspeed, jb_elspeed, jb_azspeed_acc, jb_elspeed_acc]
 
-# KASH
+# KASHIM34
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -451,7 +451,7 @@ kb_azspeed_acc = 0.0
 kb_elspeed_acc = 0.0
 kb_list = [kb_az, kb_el, kb_azspeed, kb_elspeed, kb_azspeed_acc, kb_elspeed_acc]
 
-# KASH
+# KASHIM11
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 11.0
@@ -463,7 +463,7 @@ k1_azspeed_acc = 0.0
 k1_elspeed_acc = 0.0
 k1_list = [k1_az, k1_el, k1_azspeed, k1_elspeed, k1_azspeed_acc, k1_elspeed_acc]
 
-# KATH
+# KATH12M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -475,7 +475,7 @@ ke_azspeed_acc = 3.0
 ke_elspeed_acc = 3.0
 ke_list = [ke_az, ke_el, ke_azspeed, ke_elspeed, ke_azspeed_acc, ke_elspeed_acc]
 
-# KAUA
+# KAUAI
 # Axis: XYNS
 # Offset: 2.4344
 # Diam: 9.0
@@ -487,7 +487,7 @@ ku_azspeed_acc = 0.0
 ku_elspeed_acc = 0.0
 ku_list = [ku_az, ku_el, ku_azspeed, ku_elspeed, ku_azspeed_acc, ku_elspeed_acc]
 
-# KOKE
+# KOKEE
 # Axis: AZEL
 # Offset: 0.5181
 # Diam: 20.0
@@ -499,7 +499,7 @@ kk_azspeed_acc = 15.0
 kk_elspeed_acc = 15.0
 kk_list = [kk_az, kk_el, kk_azspeed, kk_elspeed, kk_azspeed_acc, kk_elspeed_acc]
 
-# KOKE
+# KOKEE12M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -511,7 +511,7 @@ k2_azspeed_acc = 0.0
 k2_elspeed_acc = 0.0
 k2_list = [k2_az, k2_el, k2_azspeed, k2_elspeed, k2_azspeed_acc, k2_elspeed_acc]
 
-# KITT
+# KITTPEAK
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -523,7 +523,7 @@ kt_azspeed_acc = 0.0
 kt_elspeed_acc = 0.0
 kt_list = [kt_az, kt_el, kt_azspeed, kt_elspeed, kt_azspeed_acc, kt_elspeed_acc]
 
-# KUNM
+# KUNMING
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 40.0
@@ -535,7 +535,7 @@ km_azspeed_acc = 0.0
 km_elspeed_acc = 0.0
 km_list = [km_az, km_el, km_azspeed, km_elspeed, km_azspeed_acc, km_elspeed_acc]
 
-# KP-V
+# KP-VLBA
 # Axis: AZEL
 # Offset: 2.1313
 # Diam: 25.0
@@ -547,7 +547,7 @@ kp_azspeed_acc = 0.0
 kp_elspeed_acc = 0.0
 kp_list = [kp_az, kp_el, kp_azspeed, kp_elspeed, kp_azspeed_acc, kp_elspeed_acc]
 
-# KOGA
+# KOGANEI
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 11.0
@@ -559,7 +559,7 @@ kg_azspeed_acc = 0.0
 kg_elspeed_acc = 0.0
 kg_list = [kg_az, kg_el, kg_azspeed, kg_elspeed, kg_azspeed_acc, kg_elspeed_acc]
 
-# KWAJ
+# KWAJAL26
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 25.6
@@ -571,7 +571,7 @@ kw_azspeed_acc = 0.0
 kw_elspeed_acc = 0.0
 kw_list = [kw_az, kw_el, kw_azspeed, kw_elspeed, kw_azspeed_acc, kw_elspeed_acc]
 
-# LA-V
+# LA-VLBA
 # Axis: AZEL
 # Offset: 2.1318
 # Diam: 25.0
@@ -583,7 +583,7 @@ la_azspeed_acc = 0.0
 la_elspeed_acc = 0.0
 la_list = [la_az, la_el, la_azspeed, la_elspeed, la_azspeed_acc, la_elspeed_acc]
 
-# MADR
+# MADRID64
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 64.0
@@ -595,7 +595,7 @@ ro_azspeed_acc = 0.0
 ro_elspeed_acc = 0.0
 ro_list = [ro_az, ro_el, ro_azspeed, ro_elspeed, ro_azspeed_acc, ro_elspeed_acc]
 
-# MARC
+# MARCUS
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 10.0
@@ -607,7 +607,7 @@ mr_azspeed_acc = 0.0
 mr_elspeed_acc = 0.0
 mr_list = [mr_az, mr_el, mr_azspeed, mr_elspeed, mr_azspeed_acc, mr_elspeed_acc]
 
-# MARP
+# MARPOINT
 # Axis: HADC
 # Offset: 6.6877
 # Diam: 25.9
@@ -619,7 +619,7 @@ md_azspeed_acc = 0.0
 md_elspeed_acc = 0.0
 md_list = [md_az, md_el, md_azspeed, md_elspeed, md_azspeed_acc, md_elspeed_acc]
 
-# MATE
+# MATERA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -631,7 +631,7 @@ ma_azspeed_acc = 20.0
 ma_elspeed_acc = 20.0
 ma_list = [ma_az, ma_el, ma_azspeed, ma_elspeed, ma_azspeed_acc, ma_elspeed_acc]
 
-# MEDI
+# MEDICINA
 # Axis: AZEL
 # Offset: 1.8276
 # Diam: 32.0
@@ -643,7 +643,7 @@ mc_azspeed_acc = 0.0
 mc_elspeed_acc = 0.0
 mc_list = [mc_az, mc_el, mc_azspeed, mc_elspeed, mc_azspeed_acc, mc_elspeed_acc]
 
-# METS
+# METSAHOV
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 13.7
@@ -655,7 +655,7 @@ mh_azspeed_acc = 0.0
 mh_elspeed_acc = 0.0
 mh_list = [mh_az, mh_el, mh_azspeed, mh_elspeed, mh_azspeed_acc, mh_elspeed_acc]
 
-# MIAM
+# MIAMI20
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -667,7 +667,7 @@ mi_azspeed_acc = 0.0
 mi_elspeed_acc = 0.0
 mi_list = [mi_az, mi_el, mi_azspeed, mi_elspeed, mi_azspeed_acc, mi_elspeed_acc]
 
-# MIUR
+# MIURA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 11.0
@@ -679,7 +679,7 @@ mu_azspeed_acc = 0.0
 mu_elspeed_acc = 0.0
 mu_list = [mu_az, mu_el, mu_azspeed, mu_elspeed, mu_azspeed_acc, mu_elspeed_acc]
 
-# MIZU
+# MIZUSGSI
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 5.0
@@ -691,7 +691,7 @@ mz_azspeed_acc = 0.0
 mz_elspeed_acc = 0.0
 mz_list = [mz_az, mz_el, mz_azspeed, mz_elspeed, mz_azspeed_acc, mz_elspeed_acc]
 
-# MIZN
+# MIZNAO10
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 10.0
@@ -703,7 +703,7 @@ mn_azspeed_acc = 0.0
 mn_elspeed_acc = 0.0
 mn_list = [mn_az, mn_el, mn_azspeed, mn_elspeed, mn_azspeed_acc, mn_elspeed_acc]
 
-# MK-V
+# MK-VLBA
 # Axis: AZEL
 # Offset: 2.1348
 # Diam: 25.0
@@ -715,7 +715,7 @@ mk_azspeed_acc = 0.0
 mk_elspeed_acc = 0.0
 mk_list = [mk_az, mk_el, mk_azspeed, mk_elspeed, mk_azspeed_acc, mk_elspeed_acc]
 
-# MOJA
+# MOJAVE12
 # Axis: XYNS
 # Offset: 0.0
 # Diam: 12.0
@@ -727,7 +727,7 @@ mo_azspeed_acc = 0.0
 mo_elspeed_acc = 0.0
 mo_list = [mo_az, mo_el, mo_azspeed, mo_elspeed, mo_azspeed_acc, mo_elspeed_acc]
 
-# MOPR
+# MOPRA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 30.0
@@ -739,7 +739,7 @@ mp_azspeed_acc = 0.0
 mp_elspeed_acc = 0.0
 mp_list = [mp_az, mp_el, mp_azspeed, mp_elspeed, mp_azspeed_acc, mp_elspeed_acc]
 
-# NL-V
+# NL-VLBA
 # Axis: AZEL
 # Offset: 2.1305
 # Diam: 25.0
@@ -751,7 +751,7 @@ nl_azspeed_acc = 0.0
 nl_elspeed_acc = 0.0
 nl_list = [nl_az, nl_el, nl_azspeed, nl_elspeed, nl_azspeed_acc, nl_elspeed_acc]
 
-# NOBE
+# NOBEYA45
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 45.0
@@ -775,7 +775,7 @@ nt_azspeed_acc = 4.0
 nt_elspeed_acc = 2.0
 nt_list = [nt_az, nt_el, nt_azspeed, nt_elspeed, nt_azspeed_acc, nt_elspeed_acc]
 
-# NRAO
+# NRAO85_3
 # Axis: HADC
 # Offset: 6.7072
 # Diam: 25.9
@@ -787,7 +787,7 @@ g3_azspeed_acc = 0.0
 g3_elspeed_acc = 0.0
 g3_list = [g3_az, g3_el, g3_azspeed, g3_elspeed, g3_azspeed_acc, g3_elspeed_acc]
 
-# NRAO
+# NRAO_140
 # Axis: HADC
 # Offset: 14.9394
 # Diam: 43.0
@@ -799,7 +799,7 @@ gb_azspeed_acc = 0.0
 gb_elspeed_acc = 0.0
 gb_list = [gb_az, gb_el, gb_azspeed, gb_elspeed, gb_azspeed_acc, gb_elspeed_acc]
 
-# GBT_
+# GBT_VLBA
 # Axis: AZEL
 # Offset: -0.0881
 # Diam: 100.0
@@ -811,7 +811,7 @@ gt_azspeed_acc = 0.0
 gt_elspeed_acc = 0.0
 gt_list = [gt_az, gt_el, gt_azspeed, gt_elspeed, gt_azspeed_acc, gt_elspeed_acc]
 
-# NRAO
+# NRAO20
 # Axis: AZEL
 # Offset: 0.509
 # Diam: 20.0
@@ -823,7 +823,7 @@ gn_azspeed_acc = 2.0
 gn_elspeed_acc = 2.0
 gn_list = [gn_az, gn_el, gn_azspeed, gn_elspeed, gn_azspeed_acc, gn_elspeed_acc]
 
-# NYAL
+# NYALES20
 # Axis: AZEL
 # Offset: 0.5198
 # Diam: 20.0
@@ -835,7 +835,7 @@ ny_azspeed_acc = 9.0
 ny_elspeed_acc = 9.0
 ny_list = [ny_az, ny_el, ny_azspeed, ny_elspeed, ny_azspeed_acc, ny_elspeed_acc]
 
-# OHIG
+# OHIGGINS
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 9.0
@@ -847,7 +847,7 @@ oh_azspeed_acc = 0.0
 oh_elspeed_acc = 0.0
 oh_list = [oh_az, oh_el, oh_azspeed, oh_elspeed, oh_azspeed_acc, oh_elspeed_acc]
 
-# ONSA
+# ONSALA60
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -859,7 +859,7 @@ on_azspeed_acc = 20.0
 on_elspeed_acc = 10.0
 on_list = [on_az, on_el, on_azspeed, on_elspeed, on_azspeed_acc, on_elspeed_acc]
 
-# ONSA
+# ONSALA85
 # Axis: HADC
 # Offset: 2.15
 # Diam: 25.0
@@ -871,7 +871,7 @@ o8_azspeed_acc = 0.0
 o8_elspeed_acc = 0.0
 o8_list = [o8_az, o8_el, o8_azspeed, o8_elspeed, o8_azspeed_acc, o8_elspeed_acc]
 
-# ORIO
+# ORION_5M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 5.0
@@ -883,7 +883,7 @@ gg_azspeed_acc = 0.0
 gg_elspeed_acc = 0.0
 gg_list = [gg_az, gg_el, gg_azspeed, gg_elspeed, gg_azspeed_acc, gg_elspeed_acc]
 
-# OV-V
+# OV-VLBA
 # Axis: AZEL
 # Offset: 2.1397
 # Diam: 25.0
@@ -895,7 +895,7 @@ ov_azspeed_acc = 0.0
 ov_elspeed_acc = 0.0
 ov_list = [ov_az, ov_el, ov_azspeed, ov_elspeed, ov_azspeed_acc, ov_elspeed_acc]
 
-# OVRO
+# OVRO_130
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 40.0
@@ -907,7 +907,7 @@ oo_azspeed_acc = 0.0
 oo_elspeed_acc = 0.0
 oo_list = [oo_az, oo_el, oo_azspeed, oo_elspeed, oo_azspeed_acc, oo_elspeed_acc]
 
-# PARK
+# PARKES
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 64.0
@@ -919,7 +919,7 @@ pa_azspeed_acc = 5.0
 pa_elspeed_acc = 5.0
 pa_list = [pa_az, pa_el, pa_azspeed, pa_elspeed, pa_azspeed_acc, pa_elspeed_acc]
 
-# PENT
+# PENTCTON
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 25.0
@@ -931,7 +931,7 @@ pe_azspeed_acc = 0.0
 pe_elspeed_acc = 0.0
 pe_list = [pe_az, pe_el, pe_azspeed, pe_elspeed, pe_azspeed_acc, pe_elspeed_acc]
 
-# PIET
+# PIETOWN
 # Axis: AZEL
 # Offset: 2.1371
 # Diam: 25.0
@@ -943,7 +943,7 @@ pt_azspeed_acc = 0.0
 pt_elspeed_acc = 0.0
 pt_list = [pt_az, pt_el, pt_azspeed, pt_elspeed, pt_azspeed_acc, pt_elspeed_acc]
 
-# QUAB
+# QUABBIN
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 18.0
@@ -955,7 +955,7 @@ qb_azspeed_acc = 0.0
 qb_elspeed_acc = 0.0
 qb_list = [qb_az, qb_el, qb_azspeed, qb_elspeed, qb_azspeed_acc, qb_elspeed_acc]
 
-# RAEG
+# RAEGYEB
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 13.2
@@ -967,7 +967,7 @@ yj_azspeed_acc = 3.0
 yj_elspeed_acc = 3.0
 yj_list = [yj_az, yj_el, yj_azspeed, yj_elspeed, yj_azspeed_acc, yj_elspeed_acc]
 
-# ROBL
+# ROBLED32
 # Axis: HADC
 # Offset: 6.706
 # Diam: 32.0
@@ -979,7 +979,7 @@ a61_azspeed_acc = 0.0
 a61_elspeed_acc = 0.0
 a61_list = [a61_az, a61_el, a61_azspeed, a61_elspeed, a61_azspeed_acc, a61_elspeed_acc]
 
-# SANT
+# SANTIA12
 # Axis: XYNS
 # Offset: 0.0
 # Diam: 12.0
@@ -991,7 +991,7 @@ st_azspeed_acc = 0.0
 st_elspeed_acc = 0.0
 st_list = [st_az, st_el, st_azspeed, st_elspeed, st_azspeed_acc, st_elspeed_acc]
 
-# SC-V
+# SC-VLBA
 # Axis: AZEL
 # Offset: 2.1337
 # Diam: 25.0
@@ -1003,7 +1003,7 @@ sc_azspeed_acc = 0.0
 sc_elspeed_acc = 0.0
 sc_list = [sc_az, sc_el, sc_azspeed, sc_elspeed, sc_azspeed_acc, sc_elspeed_acc]
 
-# SINT
+# SINTOTU3
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 3.8
@@ -1015,7 +1015,7 @@ s3_azspeed_acc = 0.0
 s3_elspeed_acc = 0.0
 s3_list = [s3_az, s3_el, s3_azspeed, s3_elspeed, s3_azspeed_acc, s3_elspeed_acc]
 
-# SEJO
+# SEJONG
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 22.0
@@ -1027,7 +1027,7 @@ kv_azspeed_acc = 0.0
 kv_elspeed_acc = 0.0
 kv_list = [kv_az, kv_el, kv_azspeed, kv_elspeed, kv_azspeed_acc, kv_elspeed_acc]
 
-# SESH
+# SESHAN25
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 25.0
@@ -1051,7 +1051,7 @@ se_azspeed_acc = 0.0
 se_elspeed_acc = 0.0
 se_list = [se_az, se_el, se_azspeed, se_elspeed, se_azspeed_acc, se_elspeed_acc]
 
-# SYOW
+# SYOWA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 10.0
@@ -1063,7 +1063,7 @@ sy_azspeed_acc = 0.0
 sy_elspeed_acc = 0.0
 sy_list = [sy_az, sy_el, sy_azspeed, sy_elspeed, sy_azspeed_acc, sy_elspeed_acc]
 
-# SVET
+# SVETLOE
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 32.0
@@ -1075,7 +1075,7 @@ sv_azspeed_acc = 40.0
 sv_elspeed_acc = 40.0
 sv_list = [sv_az, sv_el, sv_azspeed, sv_elspeed, sv_azspeed_acc, sv_elspeed_acc]
 
-# TATE
+# TATEYAMA
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 11.0
@@ -1087,7 +1087,7 @@ ta_azspeed_acc = 0.0
 ta_elspeed_acc = 0.0
 ta_list = [ta_az, ta_el, ta_azspeed, ta_elspeed, ta_azspeed_acc, ta_elspeed_acc]
 
-# TIAN
+# TIANMA65
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 65.0
@@ -1099,7 +1099,7 @@ t6_azspeed_acc = 0.0
 t6_elspeed_acc = 0.0
 t6_list = [t6_az, t6_el, t6_azspeed, t6_elspeed, t6_azspeed_acc, t6_elspeed_acc]
 
-# TIDB
+# TIDBIN64
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 64.0
@@ -1123,7 +1123,7 @@ tc_azspeed_acc = 0.0
 tc_elspeed_acc = 0.0
 tc_list = [tc_az, tc_el, tc_azspeed, tc_elspeed, tc_azspeed_acc, tc_elspeed_acc]
 
-# TORU
+# TORUN
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 14.0
@@ -1135,7 +1135,7 @@ tr_azspeed_acc = 15.0
 tr_elspeed_acc = 15.0
 tr_list = [tr_az, tr_el, tr_azspeed, tr_elspeed, tr_azspeed_acc, tr_elspeed_acc]
 
-# TSUK
+# TSUKUB32
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 32.0
@@ -1147,7 +1147,7 @@ ts_azspeed_acc = 14.0
 ts_elspeed_acc = 14.0
 ts_list = [ts_az, ts_el, ts_azspeed, ts_elspeed, ts_azspeed_acc, ts_elspeed_acc]
 
-# UCHI
+# UCHINOUR
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 34.0
@@ -1159,7 +1159,7 @@ uc_azspeed_acc = 0.0
 uc_elspeed_acc = 0.0
 uc_list = [uc_az, uc_el, uc_azspeed, uc_elspeed, uc_azspeed_acc, uc_elspeed_acc]
 
-# URUM
+# URUMQI
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 25.0
@@ -1171,7 +1171,7 @@ ur_azspeed_acc = 0.0
 ur_elspeed_acc = 0.0
 ur_list = [ur_az, ur_el, ur_azspeed, ur_elspeed, ur_azspeed_acc, ur_elspeed_acc]
 
-# USSU
+# USSURISK
 # Axis: AZEL
 # Offset: 4.0
 # Diam: 70.0
@@ -1183,7 +1183,7 @@ us_azspeed_acc = 900.0
 us_elspeed_acc = 900.0
 us_list = [us_az, us_el, us_azspeed, us_elspeed, us_azspeed_acc, us_elspeed_acc]
 
-# VERA
+# VERAISGK
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -1195,7 +1195,7 @@ vs_azspeed_acc = 0.0
 vs_elspeed_acc = 0.0
 vs_list = [vs_az, vs_el, vs_azspeed, vs_elspeed, vs_azspeed_acc, vs_elspeed_acc]
 
-# VERA
+# VERAMZSW
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -1219,7 +1219,7 @@ y1_azspeed_acc = 0.0
 y1_elspeed_acc = 0.0
 y1_list = [y1_az, y1_el, y1_azspeed, y1_elspeed, y1_azspeed_acc, y1_elspeed_acc]
 
-# WARK
+# WARK12M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -1231,7 +1231,7 @@ ww_azspeed_acc = 2.0
 ww_elspeed_acc = 2.0
 ww_list = [ww_az, ww_el, ww_azspeed, ww_elspeed, ww_azspeed_acc, ww_elspeed_acc]
 
-# WEST
+# WESTFORD
 # Axis: AZEL
 # Offset: 0.3183
 # Diam: 18.0
@@ -1243,7 +1243,7 @@ wf_azspeed_acc = 10.0
 wf_elspeed_acc = 10.0
 wf_list = [wf_az, wf_el, wf_azspeed, wf_elspeed, wf_azspeed_acc, wf_elspeed_acc]
 
-# WSTR
+# WSTRBORK
 # Axis: HADC
 # Offset: 0.0
 # Diam: 25.9
@@ -1255,7 +1255,7 @@ wb_azspeed_acc = 10.0
 wb_elspeed_acc = 10.0
 wb_list = [wb_az, wb_el, wb_azspeed, wb_elspeed, wb_azspeed_acc, wb_elspeed_acc]
 
-# WETT
+# WETTZ13N
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -1267,7 +1267,7 @@ wn_azspeed_acc = 0.0
 wn_elspeed_acc = 0.0
 wn_list = [wn_az, wn_el, wn_azspeed, wn_elspeed, wn_azspeed_acc, wn_elspeed_acc]
 
-# WETT
+# WETTZ13S
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -1279,7 +1279,7 @@ ws_azspeed_acc = 0.0
 ws_elspeed_acc = 0.0
 ws_list = [ws_az, ws_el, ws_azspeed, ws_elspeed, ws_azspeed_acc, ws_elspeed_acc]
 
-# WETT
+# WETTZELL
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 20.0
@@ -1291,7 +1291,7 @@ wz_azspeed_acc = 0.0
 wz_elspeed_acc = 0.0
 wz_list = [wz_az, wz_el, wz_azspeed, wz_elspeed, wz_azspeed_acc, wz_elspeed_acc]
 
-# YARR
+# YARRA12M
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 12.0
@@ -1303,7 +1303,7 @@ yg_azspeed_acc = 3.0
 yg_elspeed_acc = 3.0
 yg_list = [yg_az, yg_el, yg_azspeed, yg_elspeed, yg_azspeed_acc, yg_elspeed_acc]
 
-# YEBE
+# YEBES40M
 # Axis: AZEL
 # Offset: 2.0098
 # Diam: 40.0
@@ -1315,7 +1315,7 @@ ys_azspeed_acc = 10.0
 ys_elspeed_acc = 10.0
 ys_list = [ys_az, ys_el, ys_azspeed, ys_elspeed, ys_azspeed_acc, ys_elspeed_acc]
 
-# ZELE
+# ZELENCHK
 # Axis: AZEL
 # Offset: 0.0
 # Diam: 32.0

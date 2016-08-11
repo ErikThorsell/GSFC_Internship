@@ -36,7 +36,7 @@ def parseStationData(specs):
     for line in specs:
         if line[0:1] == " ":
             id = line[1:2]
-            name = line[3:7].strip()
+            name = line[3:11].strip()
             axis = line[12:16]
             offset = float(line[18:26])
             az_speed = float(line[27:32])
@@ -56,6 +56,7 @@ def parseStationData(specs):
                                   # antennas with a number as their first
                                   # character in their two letter code.
                 PO = "a" + PO
+            pl.write("(" + PO + "," + name + "), + \\\n")
             sp.write("# " + name + "\n" + \
                      "# Axis: " + axis + "\n" + \
                      "# Offset: " + str(offset) + "\n" + \
@@ -93,7 +94,15 @@ sp.write( \
     "                  #\n" + \
     "###############################################################################\n\n")
 
-getStationData("./antenna.cat")
+# In order to plot not only the initials, but also the names, in the graphs we
+# can generate a list of all station names by writing to pl. Note that you have
+# to tinker a bit with the file once its created!
 
+pl = open("station_names.dat", 'w')
+pl.write("list = [ \\\n")
+getStationData("./antenna.cat")
+pl.write("]")
+
+pl.close()
 sp.close()
 ### End of main program ###
