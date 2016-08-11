@@ -4,6 +4,7 @@ child
 hwserver
 hwclient
 libmsock
+*.pdf
 *.swp
 
 # Object files
