@@ -43,11 +43,16 @@
     \section{Week 3-4: Testing I/O performance}
 
     \begin{frame}{I/O Performance}
+    A couple of contenders:
+    \pause
     \begin{itemize}[<+-|alert@+>]
-        \item A couple of contenders:
+        \item Using the hard drive:
             \begin{itemize}
                 \item Read/Write with files
                 \item Read/Write with pipes
+            \end{itemize}
+        \item Using the memory:
+            \begin{itemize}[<+-|alert@+>]
                 \item Sending/Receiving with TCP Sockets
                 \item Sending/Receiving with OpenMPI
                 \item Sending/Receiving with ZeroMQ
@@ -103,8 +108,9 @@
 
     \begin{frame}{Implementation}
     \begin{itemize}[<+-|alert@+>]
-        \item Installation of Software on \bf{bootes}
-        \item Porting our code to ifort
+        \item Installation of ZeroMQ on \bf{bootes}
+        \item Porting our code to a different compiler: gfortran $\rightarrow$ ifort
+        \item Understanding where to put what and why
         \item A lot of coding
     \end{itemize}
     \end{frame}
@@ -160,14 +166,24 @@
         \includegraphics[width=1\columnwidth]{singlerun}
     \end{frame}
 %%
+    \begin{frame}{Results for Project One}
+        Maybe not all in vain:
+        \pause
+        \begin{itemize}[<+-|alert@+>]
+            \item ZeroMQ can be used for concurrency (parallel programming)
+            \item We only calculate user partials, what about user programs?
+        \end{itemize}
+    \end{frame}
+%%
     \begin{frame}{Future studies}
         \begin{itemize}[<+-|alert@+>]
             \item Remove the writes that are no longer needed.
             \item TCP should have been the way to go?
-            \item Posix Shared Memory? Conversion between C and Fortran was non trivial.
+            \item Posix Shared Memory?
+            \begin{itemize}[<+-|alert@+>]
+                \item Conversion between C and Fortran was non trivial.
+            \end{itemize}
         \end{itemize}
-        \centering
-        \includegraphics[width=1\columnwidth]{singlerun}
     \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
