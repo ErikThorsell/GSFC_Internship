@@ -38,11 +38,12 @@ world. A more thorough readme is present in that folder.
 
 #### Parent_Child
 
-``parent_child/`` is the beginning of a rewrite of the program Calc/Solve.
-Calc/Solve is used by scientists all over the world to analyze their VLBI
-findings. We set out to rewrite some part of the program's I/O handling. We
-managed to do it, but the result was not as good as expected and for now the
-project is put on ice.
+``parent_child/`` is the beginning of a rewrite of the program
+[Calc/Solve](http://gemini.gsfc.nasa.gov/solve/ "Calc/Solve"). Calc/Solve is
+used by scientists all over the world to analyze their VLBI findings. We set
+out to rewrite some part of the program's I/O handling. We managed to do it,
+but the result was not as good as expected and for now the project is put on
+ice.
 
 #### Presentation
 
