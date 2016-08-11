@@ -121,4 +121,4 @@ def getStationNames(path_to_file):
     main.close()
 ###############################################################################
 
-getStationNames("./antenna.cat.org") 
+getStationNames("./antenna.cat") 
