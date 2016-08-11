@@ -7,7 +7,7 @@
 # If the --graph option is present it will also plot the results and save    #
 # as .png files                                                              #
 #                                                                            #
-# Author: Interns 2016 (Lina Olandersson, Simon Strandberg)                  #
+# Author: Interns 2016 (Lina Olandersson, Simon Strandberg, Erik Thorsell)   #
 # Date: 2016-08-04                                                           #
 #                                                                            #
 ##############################################################################

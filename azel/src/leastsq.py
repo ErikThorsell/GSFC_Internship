@@ -7,7 +7,7 @@
 # plot_curve() plots the solution and its original data     #
 # speed_offet() returns the speed and offset  of the antenna#
 #                                                           #
-# Author: Lina Olandersson, Simon Strandberg                #
+# Author: Lina Olandersson, Simon Strandberg, Erik Thorsell #
 # Date: 2016-08-10                                          #
 #                                                           #
 #############################################################

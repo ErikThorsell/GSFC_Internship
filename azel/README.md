@@ -31,11 +31,11 @@ There are two programs that should be run before ``./calculate_slew.sh``.
 ``src/getStationSpecs.py`` pulls the antennas' specifications from the file
 ``antenna.cat``. ``src/create_extract.py`` also uses ``antenna.cat``, it creates
 the file ``extract.py`` and ensures all the antennas in ``antenna.cat`` can be
-used.
+used. Both programs should be run in the folder ``src/``.
 
-**Note:** If you have limited disk space, or simply reluctant to waste space
-and time, remove the antennas not in use from *your copy of* ``antenna.cat``
-before running the scripts above.
+**Note:** If you have limited disk space, or are simply reluctant to waste
+space and time, remove the antennas not in use from *your copy of*
+``antenna.cat`` before running the scripts above.
 
 ## Output from the program
 
