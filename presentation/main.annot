@@ -50,26 +50,27 @@ Table of Contents
 Erik's part!!
 
 -25-
-bootes: We were left in the hands of our sysadmin. In the mean time we tried to
+bootes: We were left in the hands of our sysadmin. In the mean time we tried to 
 test as much as possible on our own systems.
 
-ifort: gfortran > ifort, we got everything working with gfortran but it took
+-26-
+ifort: gfortran > ifort, we got everything working with gfortran but it took 
 some time to get everything to compile with ifort
 
-code: The majority of our time was spent trying to figure out all the bits and
+-27-
+code: The majority of our time was spent trying to figure out all the bits and 
 pieces about how the current code worked.
 
--26-
-child_com: spawned whenever a userpart is launched. It connects back to prces
-
-
--27-
-
 -28-
+ZMQ: Is a concurrency library that enables Inter Process Communication (TCP 
+Sockets)
 
 -29-
+child_com: spawned whenever a userpart is launched. It connects back to prces.f 
+who communicates with the userpart through parent_com.f
 
 -30-
+parent_com: acts as the parent in the parent/child communication
 
 -31-
 

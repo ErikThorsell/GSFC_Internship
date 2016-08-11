@@ -3,7 +3,7 @@
 \beamer@sectionintoc {2}{Weeks 3-7: Our First Project}{5}{0}{2}
 \beamer@sectionintoc {3}{Week 3-4: Testing I/O performance}{7}{0}{3}
 \beamer@sectionintoc {4}{Weeks 5-7: Implementation}{24}{0}{4}
-\beamer@sectionintoc {5}{Results for Project One}{30}{0}{5}
-\beamer@sectionintoc {6}{Weeks 7-9: Our Second Project}{40}{0}{6}
-\beamer@sectionintoc {7}{Result for Project Two}{47}{0}{7}
-\beamer@sectionintoc {8}{Week 10: Returning Home}{51}{0}{8}
+\beamer@sectionintoc {5}{Results for Project One}{31}{0}{5}
+\beamer@sectionintoc {6}{Weeks 7-9: Our Second Project}{41}{0}{6}
+\beamer@sectionintoc {7}{Result for Project Two}{48}{0}{7}
+\beamer@sectionintoc {8}{Week 10: Returning Home}{52}{0}{8}
