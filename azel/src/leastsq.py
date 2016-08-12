@@ -56,49 +56,38 @@ def plot_curve(data_tuple, modelTimes, station, orientation):
 def speed_offset(xdata, ydata):
     ysorted=[]
     xsorted=[]
-    ytmp=[]
-    xtmp=[]
     ans = (0,0,0,0,0,0,0)
     k_old = 0.0
-
-    ymax = max(ydata)
-    threshold = ymax/20
+    threshold = max(ydata)/20
 
     # First line
-    x = numpy.array(xdata)
-    y = numpy.array(ydata)
+    x_original = numpy.array(xdata)
+    y_original = numpy.array(ydata)
     # Stack arrays vertically, .T transposes the matrix
-    A = numpy.vstack([x, numpy.ones(len(x))]).T
+    A = numpy.vstack([x_original, numpy.ones(len(x_original))]).T
     # Return the least square solution to a linear matrix equation
     try:
-        k,m = numpy.linalg.lstsq(A, y)[0]
+        k,m = numpy.linalg.lstsq(A, y_original)[0]
     except:
         return
-    # Only use point between those boundaries
-    m_max = m + threshold
-    m_min = m - threshold
 
     # Itterate to get a better solution
     while not (abs(k - k_old) < math.pow(10, -10)):
         for i in range(0,len(xdata)):
-            if ydata[i] < k*xdata[i] + m_max:
-                if ydata[i] > k*xdata[i] + m_min:
-                   ysorted.append(ydata[i])
-                   xsorted.append(xdata[i])
+            y_tmp = k * xdata[i] + m
+            if y_tmp - threshold < ydata[i] < y_tmp + threshold:
+                ysorted.append(ydata[i])
+                xsorted.append(xdata[i])
 
         x_new = numpy.array(xsorted)
         y_new = numpy.array(ysorted)
 
         A = numpy.vstack([x_new, numpy.ones(len(x_new))]).T
         try:
-            k_new,m_new = numpy.linalg.lstsq(A, y_new)[0]
+            k_new, m = numpy.linalg.lstsq(A, y_new)[0]
         except:
             return ans
 
-        xtmp = xsorted
-        ytmp = ysorted
-        m_max = m_new + threshold
-        m_min = m_new - threshold
         k_old = k
         k = k_new
         xsorted = []
@@ -106,16 +95,12 @@ def speed_offset(xdata, ydata):
 
     # Calculate the offset
     offset = 0.0
-    for i in range(0,len(xtmp)):
-        temp = float(ytmp[i]) - k * float(xtmp[i])
+    for i in range(0,len(x_new)):
+        temp = float(y_new[i]) - k * float(x_new[i])
         if temp > offset:
             offset = temp
 
     speed = 1/k_new*60
-    ans = (speed, offset, x, y, x_new, y_new, k_new)
-#    print "X: " + str(x)
-#    print "Y: " + str(y)
-#    print "X_new: " + str(x_new)
-#    print "y_new: " + str(y_new)
+    ans = (speed, offset, x_original, y_original, x_new, y_new, k_new)
     return ans
 
