@@ -220,39 +220,94 @@ and improving slew rate models for IVS antennas}
         \includegraphics[width=1\columnwidth]{ke_az}
     \end{frame}
 %%
-    \begin{frame}{Future studies}
+%   lista över r17 och stationer
+
+    \begin{frame}{Sessions and stations}
+        \begin{columns}[T] % align columns
+            \begin{column}{.48\textwidth}
+            \color{black}\rule{\linewidth}{4pt}
+                Sessions used:
+                \begin{itemize}
+                    \item r1727
+                    \item r1729
+                    \item r1735
+                    \item r1746
+                    \item r1747
+                \end{itemize}
+
+        \end{column}
+        \hfill
+        \begin{column}{.48\textwidth}
+           \color{blue}\rule{\linewidth}{4pt}
+                Stations in sessions:
+                \begin{itemize}
+                    \item Fortleza
+                    \item Hart15m
+                    \item Hobart12
+                    \item Ishioka
+                    \item Kashim34
+                    \item Kath12m
+                    \item Kokee
+                    \item Matera
+                    \item Nyales20
+                    \item Onsala60
+                    \item Sejong
+                    \item Tsukub32
+                    \item Yarra12m
+                \end{itemize}
+
+        \end{column}%
+    \end{columns}
+    \end{frame}
+%%
+    \begin{frame}{Extracted data points}
+        \centering
+        \includegraphics[width=1\columnwidth]{HOBART12_AZIMUT_DATA}
+    \end{frame}
+%%
+    \begin{frame}{Calculated model}
+        \centering
+        \includegraphics[width=1\columnwidth]{HOBART12_AZIMUT}
+    \end{frame}
+%%
+    \begin{frame}{Result for Project two}
+        \begin{tabular}{l c c c c c}
+            Antenna           & $\delta$Azimut & $\delta$Offset &  & $\delta$Elevation & $\delta$Offset \\
+            \hline
+            Fortleza          & +8  & \textcolor{red}{+22.6} &  & 0  &\textcolor{red}{+13.3}  \\
+            Hart15m           & +4  & \textcolor{red}{+5.3}  &  & -2 &\textcolor{red}{+5.0}   \\
+            Hobart12          & +1  & \textcolor{red}{+7.7}  &  & +1&\textcolor{red}{+6.2}   \\
+            Ishioka           & +6  & -0.5  &  & +3 & -0.1   \\
+            Kashim34          & +4  & \textcolor{red}{+12.0} &  & +1 &\textcolor{red}{+11.6}  \\
+            Kath12m           & +1  & \textcolor{red}{+6.6}  &  & 0 &\textcolor{red}{+5.7}   \\
+            Kokee             & +12 & -1.4  &  & +24&-4.2   \\
+            Matera            & +15 & \textcolor{red}{+20.6} &  & +54&\textcolor{red}{+13.5}  \\
+            Nyales20          & +16 & \textcolor{red}{+5.8}  &  & +16& -0.8  \\
+            Onsala60          & +42 & -0.1  &  & +3 &-4.7   \\
+            Sejong            & +17 & \textcolor{red}{+30.5} &  &\textcolor{red}{-64}& \textcolor{red}{+23.1}  \\
+            Tsukub32          & +15 & \textcolor{red}{+3.9}  &  & +7 &\textcolor{red}{+1.3}   \\
+            Yarra12m          & +1  & \textcolor{red}{+6.9}  &  & 0  &\textcolor{red}{+6.4}   \\
+        \end{tabular}
+    \end{frame}
+%%
+    \begin{frame}{Mirrored data points}
         \begin{itemize}[<+-|alert@+>]
-            \item Fix the bug in Sked.
-            \item Set a more intelligent threshold.
+            \item Some stations has a line of additional data points mirrored
+            in the 180 degree line.
+            \item Probably due to a bug in sked.
+            \item Stations: Ishioka, Kath12m, Sejong and Yarra12m
         \end{itemize}
     \end{frame}
 %%
-
-%   lista över r17 och stationer
-
+    \begin{frame}{Extracted data points}
+        \centering
+        \includegraphics[width=1\columnwidth]{ISHIOKA_AZIMUT_DATA}
+    \end{frame}
 %%
-
-% bild på en antenn i svartvitt, bara punkter
-
-%%
-
-% samma bild med färg och linjer
-
-%%
-
-% Tabell med alla resultaten
-
-%%
-
-% Text om bugg med spegling i 180 grader, lista på vilka antenner
-
-%%
-
-% Bild på ishiokas datapunkter
-
-%%
-
-% Samma bild i färg med linjer
+    \begin{frame}{Calculated model}
+        \centering
+        \includegraphics[width=1\columnwidth]{ISHIOKA_AZIMUT}
+    \end{frame}
 
 %%
     \begin{frame}{Iteration of Least Square Fit}
@@ -273,6 +328,13 @@ and improving slew rate models for IVS antennas}
         }
 %        \caption{Q metric plotted against time}
         \end{figure}
+    \end{frame}
+%%
+    \begin{frame}{Future studies}
+        \begin{itemize}[<+-|alert@+>]
+            \item Fix the bug in Sked.
+            \item Set a more intelligent threshold.
+        \end{itemize}
     \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
