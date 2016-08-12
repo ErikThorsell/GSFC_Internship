@@ -14,6 +14,11 @@ A simple way to calculate the slew time for an arbitrary VLBI (AZ/EL) antenna.
  - That trakl or flagr is turned on for the antenna.
  - An up-to-date version of the file ``antenna.cat`` that holds a sumary of all
    the antennas' specifications. This file should be placed in ``src/``.
+ - The Python library [numpy](http://www.numpy.org/, "Numpy") in order to find
+   the least square solution.
+ - The Python library [mathplotlib](http://matplotlib.org/, "Mathplotlib") in
+   order to utilize the ``--graph`` flag and get good looking graphs. (More
+   about this below.)
 
 The folders ``skds`` and ``logs`` are currently present in this folder and are
 populated with data for 5 sessions.
