@@ -45,7 +45,7 @@ def plot_curve(data_tuple, modelTimes, station, orientation):
     plt.grid(True)
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
-    plt.suptitle('%s, %s' % (station.upper(),orientation.upper())+\
+    plt.suptitle('%s, %s' % (station.upper(),orientation.upper()) +\
                 "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,m_top))
     plt.savefig('./img/%s_%s.png' % (station, orientation))
     plt.close()
