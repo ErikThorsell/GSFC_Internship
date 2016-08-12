@@ -6,7 +6,7 @@
 \title{Examining different I/O methods in globl/solve to enhance performance
 and improving slew rate models for IVS antennas}
 \date{2016-08-18}
-\author{The Swedish Interns}
+\author{Lina Olandersson, Erik Thorsell, Simon Strandberg}
 \institute{Created for NVI Inc. at the Goddard Space Flight Centre}
 
 \begin{document}
@@ -44,19 +44,19 @@ and improving slew rate models for IVS antennas}
     \section{Week 3-4: Testing I/O performance}
 
     \begin{frame}{I/O Performance}
-    A couple of contenders:
+    Protocols we have tried and used:
     \pause
     \begin{itemize}[<+-|alert@+>]
         \item Using the hard drive:
             \begin{itemize}
-                \item Read/Write with files
-                \item Read/Write with pipes
+                \item Read/Write to file
+                \item Sending/Receiving with \textbf{pipes}
             \end{itemize}
         \item Using the memory:
             \begin{itemize}[<+-|alert@+>]
-                \item Sending/Receiving with TCP Sockets
-                \item Sending/Receiving with OpenMPI
-                \item Sending/Receiving with ZeroMQ
+                \item Sending/Receiving with \textbf{TCP/IP} Sockets
+                \item Sending/Receiving with \textbf{OpenMPI}
+                \item Sending/Receiving with \textbf{ZeroMQ}
             \end{itemize}
     \end{itemize}
     \end{frame}
@@ -81,7 +81,7 @@ and improving slew rate models for IVS antennas}
     \end{figure}
     \end{frame}
 %%
-    \begin{frame}
+    \begin{frame}{Result for I/O Performance}
     \begin{figure}[h!]
         \centering
         \includegraphics[width=1\columnwidth]{thousandrun+files-nf}
