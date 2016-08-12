@@ -5,5 +5,5 @@
 \beamer@sectionintoc {4}{Weeks 5-7: Implementation}{26}{0}{4}
 \beamer@sectionintoc {5}{Results for Project One}{34}{0}{5}
 \beamer@sectionintoc {6}{Weeks 7-9: Our Second Project}{48}{0}{6}
-\beamer@sectionintoc {7}{Result for Project Two}{55}{0}{7}
-\beamer@sectionintoc {8}{Week 10: Returning Home}{59}{0}{8}
+\beamer@sectionintoc {7}{Result for Project Two}{53}{0}{7}
+\beamer@sectionintoc {8}{Week 10: Returning Home}{66}{0}{8}
