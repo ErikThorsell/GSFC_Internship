@@ -23,29 +23,40 @@ import math
 def plot_curve(data_tuple, modelTimes, station, orientation):
     # data_tuple = (speed, offset, x, y, x_new, y_new, k_new)
     speed = data_tuple[0]
-    m_top = data_tuple[1]
+    offset = data_tuple[1]
     x = data_tuple[2]
     y = data_tuple[3]
     x_new = data_tuple[4]
     y_new = data_tuple[5]
     k_new = data_tuple[6]
+#    x = []
+#    y = []
+#    modelTimes = []
+#
+#    y_mean = numpy.mean(y_original)
+#    for i in range(0, len(y_original)):
+#        if y_original[i] < 3*y_mean:
+#            y.append(y_original[i])
+#            x.append(x_original[i])
+#            modelTimes.append(modelTimes_original[i])
+   
 
     if orientation == 'az':
         orientation = 'AZIMUTH'
     if orientation == 'el':
         orientation = 'ELEVATION'
-
+    
     # Plot graphs and save as .png
     plt.plot(x, y, 'ro', label='Discarded points', markersize=1)
     plt.plot(x_new, y_new, 'bo', label='Real time, sorted', markersize=1)
     plt.plot(x, modelTimes, 'c-', label='Current model', markersize=1)
-    plt.plot(x, k_new*x + m_top, 'k', label='Calculated model')
+    plt.plot(x, k_new*x + offset, 'k-', label='Calculated model')
     plt.legend()
     plt.grid(True)
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
     plt.suptitle('%s, %s' % (station.upper(),orientation.upper()) +\
-               "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,m_top))
+               "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,offset))
     plt.savefig('./img/%s_%s.png' % (station, orientation))
     plt.close()
     return
@@ -57,11 +68,12 @@ def speed_offset(xdata, ydata):
     xsorted=[]
     ans = (0,0,0,0,0,0,0)
     k_old = 0.0
-    threshold = max(ydata)/20
+    threshold = numpy.mean(ydata)/10
 
     # First line
     x_original = numpy.array(xdata)
     y_original = numpy.array(ydata)
+
     # Stack arrays vertically, .T transposes the matrix
     A = numpy.vstack([x_original, numpy.ones(len(x_original))]).T
     # Return the least square solution to a linear matrix equation
