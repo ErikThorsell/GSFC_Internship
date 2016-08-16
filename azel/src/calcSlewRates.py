@@ -61,9 +61,9 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     lines.append('Station: %s, Orientation: %s' % \
                     (station.upper(), orientation.upper())+ '\n'+ \
                     'Station: %s, calculated model: \t offset = %.1f s, speed = %.0f deg/min' % \
-                    (station.upper(), solution[1]/100, solution[0])+ '\n' +\
+                    (station.upper(), solution[1], solution[0])+ '\n' +\
                     'Station: %s, current model: \t offset = %.1f s, speed = %.0f deg/min.' \
-                    % (station.upper(), curoffset/100, curspeed) + '\n\n')
+                    % (station.upper(), curoffset, curspeed) + '\n\n')
 
                     if graph == True and solution[0] != 0 and solution[1] != 0:
                         leastsq.plot_curve(solution, modelTimes, station, orientation)

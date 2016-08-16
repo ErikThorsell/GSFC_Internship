@@ -45,7 +45,7 @@ def plot_curve(data_tuple, modelTimes, station, orientation):
     plt.xlabel('Distance [Degree]')
     plt.ylabel('Time [s]')
     plt.suptitle('%s, %s' % (station.upper(),orientation.upper()) +\
-               "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%((1/k_new*60*100),m_top))
+               "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,m_top))
     plt.savefig('./img/%s_%s.png' % (station, orientation))
     plt.close()
     return
@@ -99,7 +99,7 @@ def speed_offset(xdata, ydata):
         if temp > offset:
             offset = temp
 
-    speed = 1/k_new*60*100
+    speed = 1/k_new*60
     ans = (speed, offset, x_original, y_original, x_new, y_new, k_new)
     return ans
 
