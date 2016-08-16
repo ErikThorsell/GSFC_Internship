@@ -20,26 +20,29 @@ import numpy
 import math
 
 
-def plot_curve(data_tuple, modelTimes, station, orientation):
+def plot_curve(data_tuple, modelTimes_original, station, orientation):
     # data_tuple = (speed, offset, x, y, x_new, y_new, k_new)
     speed = data_tuple[0]
     offset = data_tuple[1]
-    x = data_tuple[2]
-    y = data_tuple[3]
+    x_original = data_tuple[2]
+    y_original = data_tuple[3]
     x_new = data_tuple[4]
     y_new = data_tuple[5]
     k_new = data_tuple[6]
-#    x = []
-#    y = []
-#    modelTimes = []
-#
-#    y_mean = numpy.mean(y_original)
-#    for i in range(0, len(y_original)):
-#        if y_original[i] < 3*y_mean:
-#            y.append(y_original[i])
-#            x.append(x_original[i])
-#            modelTimes.append(modelTimes_original[i])
-   
+    x_tmp = []
+    y_tmp = []
+    modelTimes_tmp = []
+
+    y_mean = numpy.mean(y_original)
+    for i in range(0, len(y_original)):
+        if y_original[i] < 3*y_mean:
+            y_tmp.append(y_original[i])
+            x_tmp.append(x_original[i])
+            modelTimes_tmp.append(modelTimes_original[i])
+    
+    x = numpy.array(x_tmp)
+    y = numpy.array(y_tmp)
+    modelTimes = numpy.array(modelTimes_tmp)
 
     if orientation == 'az':
         orientation = 'AZIMUTH'
