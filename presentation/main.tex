@@ -3,7 +3,7 @@
 \usepackage{subfigure}
 \usetheme[background=light]{metropolis}
 
-\title{Improving Interprocess Communication in Globl/solve \\ \& \\ Improving Slew Models for IVS antennas}
+\title{\large{Improving Interprocess Communication in Globl/solve \\ \& \\ Improving Slew Models for IVS antennas}}
 \date{2016-08-18}
 \author{Lina Olandersson, Erik Thorsell, Simon Strandberg}
 \institute{Created for NVI Inc. at the Goddard Space Flight Centre}
@@ -123,12 +123,17 @@
         \begin{figure}[h!]
         \centering
         \begin{minipage}{.5\columnwidth}
-            \begin{itemize}
-                \item ZeroMQ
-                \pause
+            \begin{itemize}[<+-|alert@+>]
+                \item Two programs:
                 \begin{itemize}[<+-|alert@+>]
                     \item child\_com.f
                     \item parent\_com.f
+                \end{itemize}
+                \item Strategy:
+                \begin{itemize}[<+-|alert@+>]
+                    \item Open and close the connection as few times as
+                          possible
+                    \item Send as much data as possible each time
                 \end{itemize}
             \end{itemize}
         \end{minipage}%
@@ -157,8 +162,8 @@
         Running userpartials for $\sim$1400 sessions.
         \pause
         \begin{itemize}[<+-|alert@+>]
-            \item Old version of globl/solve: 3 hours 33 minutes 10 seconds
-            \item New version of globl/solve: 3 hours 33 minutes 11 seconds
+            \item Old version of globl/solve: 42 minutes 20 seconds
+            \item New version of globl/solve: 46 minutes 34 seconds
         \end{itemize}
     \end{frame}
 %%
@@ -167,7 +172,6 @@
     \end{frame}
 %%
     \begin{frame}{Results for Project One}
-    %% Talk about how we do send a lot of data to make up for the larger over head.
         Globl/solve does not \emph{read and write} a lot, it \bf{reads} a lot,
         \centering
         \includegraphics[width=1\columnwidth]{thousandrun}
