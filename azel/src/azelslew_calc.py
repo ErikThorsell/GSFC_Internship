@@ -17,7 +17,7 @@ def parseLogTime(time):
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
-    return time
+    return time/100
 
 ###############################################################################
 
@@ -32,7 +32,7 @@ def parseSkdTime(time):
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
-    return time
+    return time/100
 
 ###############################################################################
 
