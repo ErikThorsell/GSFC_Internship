@@ -21,7 +21,7 @@ A simple way to calculate the slew time for an arbitrary VLBI (AZ/EL) antenna.
    about this below.)
 
 The folders ``skds`` and ``logs`` are currently present in this folder and are
-populated with data for 5 sessions.
+populated with data for pretty much all r1* and r4* sessions for 2016.
 
 ## Run the program
 
