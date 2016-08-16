@@ -3,8 +3,7 @@
 \usepackage{subfigure}
 \usetheme[background=light]{metropolis}
 
-\title{Examining different I/O methods in globl/solve to enhance performance
-and improving slew rate models for IVS antennas}
+\title{Improving Interprocess Communication in Globl/solve \\ \& \\ Improving Slew Models for IVS antennas}
 \date{2016-08-18}
 \author{Lina Olandersson, Erik Thorsell, Simon Strandberg}
 \institute{Created for NVI Inc. at the Goddard Space Flight Centre}
@@ -20,6 +19,8 @@ and improving slew rate models for IVS antennas}
 
     \section{Learning Fortran}
 
+%% Diagram of Server\Client
+
     \begin{frame}{Calculator}
         \begin{figure}[ht]
             \centering
@@ -33,8 +34,10 @@ and improving slew rate models for IVS antennas}
     \section{Our First Project}
 
     \begin{frame}{Problem Description}
-        Rewrite how globl/solve handles its passing of data to and from
-        usrpartials and usrprogs.
+        Rewrite how Globl/solve handles its passing of data to and from
+        userpartials and userprogs.
+
+        % Diagram over communication between Gl and usr..
 
         By minimizing disc I/O we want to increase the speed at which data is
         sent.
@@ -142,7 +145,7 @@ and improving slew rate models for IVS antennas}
     \section{Results for Project One}
 
     \begin{frame}{Results for Project One}
-        Running userpartials for $\sim$200 observations.
+        Running userpartials for $\sim$200 sessions.
         \pause
         \begin{itemize}[<+-|alert@+>]
             \item Old version of globl/solve: 8 minutes 47 seconds
@@ -151,7 +154,7 @@ and improving slew rate models for IVS antennas}
     \end{frame}
 %%
      \begin{frame}{Results for Project One}
-        Running userpartials for $\sim$1400 observations.
+        Running userpartials for $\sim$1400 sessions.
         \pause
         \begin{itemize}[<+-|alert@+>]
             \item Old version of globl/solve: 3 hours 33 minutes 10 seconds
@@ -164,6 +167,7 @@ and improving slew rate models for IVS antennas}
     \end{frame}
 %%
     \begin{frame}{Results for Project One}
+    %% Talk about how we do send a lot of data to make up for the larger over head.
         Globl/solve does not \emph{read and write} a lot, it \bf{reads} a lot,
         \centering
         \includegraphics[width=1\columnwidth]{thousandrun}
@@ -202,6 +206,9 @@ and improving slew rate models for IVS antennas}
     \section{Our Second Project}
 
     \begin{frame}{Problem Description}
+        Mario noticed that we were getting error msgs about antennas arriving
+        late on source.
+
         The model used for determining when an antenna acquires a source is a
         little bit off. Sked will say that an antenna should be on target at
         time $T$ but the logfiles tells us that the antenna actually was on
@@ -226,6 +233,11 @@ and improving slew rate models for IVS antennas}
     \section{Result for Project Two}
 
 %   lista över r17 och stationer
+
+%% One frame containing AZ info: Old model | New model | Delta
+%% One frame containing EZ info: Old model | New model | Delta
+%% Talk about how it hasnt been an issue that e.g. Ishioka is "bad", since it's
+%a lot faster than the other ones anyway.
 
     \begin{frame}{Sessions and stations}
     
@@ -340,7 +352,7 @@ and improving slew rate models for IVS antennas}
         \begin{itemize}[<+-|alert@+>]
             \item Some stations has a line of additional data points mirrored
             in the 180 degree line.
-            \item Probably due to a bug in sked.
+            \item Probably due to cable wrap.
             \item Stations: Ishioka, Kath12m, Sejong and Yarra12m
         \end{itemize}
     \end{frame}
@@ -357,6 +369,10 @@ and improving slew rate models for IVS antennas}
 
 %%
     \begin{frame}{Iteration of Least Square Fit}
+
+    %% Add antenna that does not behave well with the curr thrsh.
+    %% Add example where Skd and ours differ a lot!
+
         \begin{figure}[htp] % not h only
         \centering
         \subfigure{%
