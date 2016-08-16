@@ -16,6 +16,7 @@ def parseLogTime(time):
     hun   = int(time[18:20])
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
+
     return time
 
 ###############################################################################
