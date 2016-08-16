@@ -334,85 +334,48 @@
 %% Talk about how it hasnt been an issue that e.g. Ishioka is "bad", since it's
 %a lot faster than the other ones anyway.
     \begin{frame}{Result for Project two}
+        \tabcolsep=0.15cm
         \begin{tabular}{l | c c | c c |c c}
-            Antenna & Current Azimuth & Offset & Calculated Azimuth & Offset & $\Delta$Azimuth & $\Delta$Offset \\ [-8pt]
+            Antenna & $\text{Az}_{\text{Old}}$ & Offset & $\text{Az}_{\text{New}}$ & Offset & $\Delta$Azimuth & $\Delta$Offset \\ [-8pt]
                     & \tiny{[deg/min]}& \tiny{[s]}&\tiny{[deg/min]}&\tiny{[s]}&\tiny{[deg/min]}& \tiny{[s]} \\ 
             \hline
-            Badary            & 60  & 40 & 65 & 45  & +5 & +5  \\
-            Fortleza          & 40  &  0 & 48 & 7.8 & +8 & +7.8 \\
-            Hart15m           & 120 & 3  & 124& 6.3 & +4 &\textcolor{red}{3.3}   \\
-            Hobart12          & 300 & 3  & 301&6.3  & +1 &\textcolor{red}{3.3}   \\
-            Ishioka           & 720 & 10 & 730& 6.6 &+10 & -3.6    \\
-            Kashim34          & 45  & 0  & 49 &9.4  &+4  & \textcolor{red}{9.4}  \\
-            Kath12m           & 300 & 3  & 300& 6.8 &0   &\textcolor{red}{3.8}   \\
-            Kokee             & 117 & 15 & 127& 7.7 &+10 & -7.3   \\
-            Matera            & 90  &20  &105 &28.1 &+15 & \textcolor{red}{8.1}  \\
-            Medicina          &  48 &0   &48  &6.1  &0   &\textcolor{red}{+6.1}  \\
-            Nyales20          & 120 &9   &147 & 6.7 & +27&-2.3   \\
+            Badary            & 60  & 40.0  & 65  & 40.2 &  +5 &  +.2 \\
+            Fortleza          & 40  &  0.0  & 48  & 16.2 &  +8 &+16.2 \\
+            Hart15m           & 120 &  3.0  & 124 & 10.5 &  +4 & +7.5 \\
+            Hobart12          & 300 &  3.0  & 301 & 10.9 &  +1 & +7.9 \\
+            Ishioka           & 720 & 10.0  & 728 &  9.5 &  +8 &  -.5 \\
+            Kashim34          & 45  &  0.0  & 49  & 13.8 &  +4 &+13.8 \\
+            Kath12m           & 300 &  3.0  & 300 & 11.0 &   0 &+11.0 \\
+            Kokee             & 117 & 15.0  & 127 & 13.4 & +10 & -1.6 \\
+            Matera            & 90  & 20.0  & 105 & 37.3 & +15 &+17.3 \\
+            Medicina          &  48 &  0.0  & 48  & 13.7 &   0 &+13.7 \\
+            Nyales20          & 120 &  9.0  & 137 &  8.2 & +27 & +8.2 \\
         \end{tabular}
     \end{frame}
 %%
     \begin{frame}{Result for Project two}
+        \tabcolsep=0.15cm
         \begin{tabular}{l | c c | c c | c c}
-            Antenna & Current Azimuth & Offset & Calculated Azimuth & Offset &$\Delta$Azimuth & $\Delta$Offset \\ [-8pt]
-                    & \tiny{[deg/min]}& \tiny{[s]}&\tiny{[deg/min]}&\tiny{[s]}&\tiny{[deg/min]}& \tiny{[s]} \\ \hline
+            Antenna & $\text{Az}_{\text{Old}}$ & Offset & $\text{Az}_{\text{New}}$ & Offset & $\Delta$Azimuth & $\Delta$Offset \\ [-8pt]
+                    & \tiny{[deg/min]}& \tiny{[s]}&\tiny{[deg/min]}&\tiny{[s]}&\tiny{[deg/min]}& \tiny{[s]} \\
             \hline
-            Onsala60          & 144 & 20 & 185 & 16.2 & +41 & -3.8  \\
-            Raegyeb           & 720 & 3  & &  & &  \\
-            Sejong            &  & &  &  &   \\
-            Seshan25          &  & &  &  & \\
-            Svetloe           &  & &  &  & \\
-            Tsukub32          &  & &  &  &  \\
-            Urumqi            &  & &  &  &  \\
+            Onsala60          & 144 &  20 & 184 & 19.0 & +40 & -1.0 \\
+            Raegyeb           & 720 &   3 & 718 & 12.8 &  -2 & +9.8 \\
+            Sejong            & 300 &   0 & 312 & 22.7 & +12 &+22.7 \\
+            Seshan25          &  60 &   0 &  56 & 10.1 &  -4 &+10.1 \\
+            Svetloe           &  60 &  40 &  67 & 34.9 & +20 & -5.1 \\
+            Tsukub32          & 180 &  14 & 195 & 15.6 & +15 & +1.6 \\
+            Urumqi            &  60 &   0 &  61 & 11.3 &  +1 &+11.3 \\
             Yarra12m          &  & &  &  &  \\
             Yebes40m          &  & &  &  &  \\
             Zelenchk          &  & &  &  & \\
         \end{tabular}
     \end{frame}
 %%
-    \begin{frame}{Result for Project two}
-        \begin{tabular}{l | c c | c c |c c}
-            Antenna & Current Elevation & Offset & Calculated Elevation &Offset $& \Delta$Azimuth & $\Delta$Offset \\ [-8pt]
-                    & \tiny{[deg/min]}& \tiny{[s]}&\tiny{[deg/min]}&\tiny{[s]}&\tiny{[deg/min]}& \tiny{[s]} \\ 
-            \hline
-            Badary            & 60  & 0  & 65 & 47.4  & +5 & 0  \\
-            Fortleza          &  & &  & &  \\
-            Hart15m           &  & &  & &\textcolor{red}{}   \\
-            Hobart12          &  & &  & &\textcolor{red}{}   \\
-            Ishioka           &  & &  & &    \\
-            Kashim34          &  & &  & &\textcolor{red}{}  \\
-            Kath12m           &  & &  & &\textcolor{red}{}   \\
-            Kokee             &  & &  & &   \\
-            Matera            &  & &  & &\textcolor{red}{}  \\
-            Medicina          &  & &  & &\textcolor{red}{}  \\
-            Nyales20          &  & &  & &   \\
-        \end{tabular}
-    \end{frame}
-%%
-    \begin{frame}{Result for Project two}
-        \begin{tabular}{l | c c | c c |c c}
-            Antenna & Current Elevation & Offset & Calculated Elevation &Offset & $\Delta$Azimuth & $\Delta$Offset \\ [-8pt]
-                    & \tiny{[deg/min]}& \tiny{[s]}&\tiny{[deg/min]}&\tiny{[s]}&\tiny{[deg/min]}& \tiny{[s]} \\ \hline
-            \hline
-            Onsala60          & +42 & -0.1  &  & +3 &-4.7   \\
-            Raegyeb           & \textcolor{red}{-3}  & \textcolor{red}{+9.8} & & +10  &\textcolor{red}{+10.1}  \\
-            Sejong            & +17 & \textcolor{red}{+30.5} &  &\textcolor{red}{-64}& \textcolor{red}{+23.1}  \\
-            Seshan25          & \textcolor{red}{-4}  & \textcolor{red}{+10.1} & & +2  &\textcolor{red}{+9.1}  \\
-            Svetloe           & +9  & \textcolor{red}{+3.3} &  & +1 &\textcolor{red}{+6.3}  \\
-            Tsukub32          & +15 & \textcolor{red}{+3.9}  &  & +7 &\textcolor{red}{+1.3}   \\
-            Urumqi            & +1  & \textcolor{red}{+11.3} &  & +2&\textcolor{red}{+9.9}  \\
-            Yarra12m          & +1  & \textcolor{red}{+6.9}  &  & 0  &\textcolor{red}{+6.4}   \\
-            Yebes40m          & +63 & \textcolor{red}{+15.4} &  & 0&\textcolor{red}{+8}  \\
-            Zelenchk          & +1  & \textcolor{red}{+15.9} &  & +2&\textcolor{red}{+2.8}  \\
-        \end{tabular}
-    \end{frame}
-
-
-%%
     \begin{frame}{Mirrored data points}
         \begin{itemize}[<+-|alert@+>]
             \item Some stations has a line of additional data points mirrored
-            in the 180 degree line.
+                  in the 180 degree line.
             \item Probably due to cable wrap.
             \item Stations: Ishioka, Kath12m, Sejong and Yarra12m
         \end{itemize}
@@ -462,7 +425,7 @@
 %%
     \begin{frame}
         \centering
-        \includegraphics[width=1\columnwidth]{ENTER}
+%        \includegraphics[width=1\columnwidth]{ENTER}
     \end{frame}
 %%
     \begin{frame}{Questions?}
