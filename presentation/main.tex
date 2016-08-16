@@ -18,14 +18,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     \section{Learning Fortran}
-
-%% Diagram of Server\Client
-
-    \begin{frame}{Calculator}
+%%
+    \begin{frame}{Server/Client}
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=1\columnwidth]{serverclient}
+            \caption{A simple server/client structure.}
+        \end{figure}
+    \end{frame}
+%%
+    \begin{frame}{Server/Client}
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=1\columnwidth]{fortrancalculator}
+            \caption{How our calculator works.}
+        \end{figure}
+    \end{frame}
+%%
+   \begin{frame}{Calculator}
         \begin{figure}[ht]
             \centering
             \includegraphics[width=1\columnwidth]{calculator}
-            \caption{Example usage of the TCP calculator.}
+            \caption{Example usage of the calculator.}
         \end{figure}
     \end{frame}
 
@@ -37,10 +51,17 @@
         Rewrite how Globl/solve handles its passing of data to and from
         userpartials and userprogs.
 
-        % Diagram over communication between Gl and usr..
-
         By minimizing disc I/O we want to increase the speed at which data is
         sent.
+    \end{frame}
+%%
+    \begin{frame}{Problem Description}
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=1\columnwidth]{globlsolveblock}
+            \caption{Block diagram showing communication between Globl/Solve
+                     and Userpart.}
+        \end{figure}
     \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
