@@ -61,12 +61,13 @@ def parseSkd(skd_file, nstations, scheduled_stations, theo):
 
 def getLogData(path_to_logs, tups):
     nstations = 0
-    sourcefound = False
+
     for subdir, dirs, files in os.walk(path_to_logs):
         for file in files:
             if file[-4:] == ".log":
+                sourcefound = False
                 nstations = nstations + 1
-                station = file[5:7].lower()
+                station = file[-6:-4].lower()
                 log = open(os.path.join(subdir, file), 'r')
                 sourcelines = log.readlines()
                 log.close()
@@ -89,6 +90,8 @@ def getLogData(path_to_logs, tups):
                         if (trakldate > sourcedate):
                             tups.append((station, sourcedate, source, trakldate, direction, file))
                 sourcefound = False
+
+             
         return nstations
 
 ###############################################################################

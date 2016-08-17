@@ -50,8 +50,8 @@ def plot_curve(data_tuple, modelTimes_original, station, orientation):
         orientation = 'ELEVATION'
     
     # Plot graphs and save as .png
-    plt.plot(x, y, 'ro', label='Discarded points', markersize=1)
-    plt.plot(x_new, y_new, 'bo', label='Real time, sorted', markersize=1)
+    plt.plot(x, y, 'r.', label='Discarded points', markersize=2)
+    plt.plot(x_new, y_new, 'b.', label='Real time, sorted', markersize=2)
     plt.plot(x, modelTimes, 'c-', label='Current model', markersize=1)
     plt.plot(x, k_new*x + offset, 'k-', label='Calculated model')
     plt.legend()
