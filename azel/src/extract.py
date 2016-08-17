@@ -41,8 +41,6 @@ matched = []
 
 nstations = azelslew_calc.getLogData(logdir, tups)
 azelslew_calc.getSkdData(skddir, nstations, scheduled_stations, theo)
-if len(tups)==0:
-    print "WARNING: No trakl or flagr found for station " + str(theo[0])
 azelslew_calc.matchSkdLog(tups, theo, matched)
 
 az_c = 1
