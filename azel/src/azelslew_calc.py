@@ -8,12 +8,12 @@ import sys
 ###############################################################################
 
 def parseLogTime(time):
-    year  = int(time[:4])
-    day   = int(time[5:8])
-    hour  = int(time[9:11])
-    min   = int(time[12:14])
-    sec   = int(time[15:17])
-    hun   = int(time[18:20])
+    year  = float(time[:4])
+    day   = float(time[5:8])
+    hour  = float(time[9:11])
+    min   = float(time[12:14])
+    sec   = float(time[15:17])
+    hun   = float(time[18:20])
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
@@ -23,11 +23,11 @@ def parseLogTime(time):
 
 def parseSkdTime(time):
 
-    year  = int(time[:4])
-    day  = int(time[2:5])
-    hour = int(time[6:8])
-    min  = int(time[8:10])
-    sec  = int(time[10:12])
+    year  = float(time[:4])
+    day  = float(time[2:5])
+    hour = float(time[6:8])
+    min  = float(time[8:10])
+    sec  = float(time[10:12])
     hun  = 0
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
@@ -53,8 +53,8 @@ def parseSkd(skd_file, nstations, scheduled_stations, theo):
                     station = scheduled_stations[index].lower()
                     source = line[0:8]
                     date = parseSkdTime(line[9:21])
-                    az = int(line[i:i+3])
-                    el = int(line[i+4:i+6])
+                    az = float(line[i:i+3])
+                    el = float(line[i+4:i+6])
                     theo.append((station, date, source, az, el))
 
 ###############################################################################
