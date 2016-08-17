@@ -11,8 +11,8 @@
 # Author: Erik Thorsell, Summer Internship 2016                               #
 ###############################################################################
 
-LOGDIR=./logs/
-SKDDIR=./skdtmp/
+LOGDIR=./tmplog/
+SKDDIR=./tmpskd/
 DATADIR=./data/
 SRC1=./src/extract.py
 SRC2=./src/calcSlewRates.py
