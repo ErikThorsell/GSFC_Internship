@@ -85,13 +85,10 @@ def getLogData(path_to_logs, tups):
                         sourcedate = parseLogTime(line[:20])
                     if ((("#trakl#Source acquired" in line) or \
                         ('#flagr#flagr/antenna,acquired' in line)) and sourcefound):
-                        sourcefound = False
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
                             tups.append((station, sourcedate, source, trakldate, direction, file))
-                sourcefound = False
 
-             
         return nstations
 
 ###############################################################################
