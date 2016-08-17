@@ -33,7 +33,6 @@ skddir = sys.argv[2]
 # Start of program 
 
 filename = ""
-station = ""
 nstations = 0
 tups = []
 scheduled_stations = []
@@ -48,6 +47,7 @@ az_c = 1
 el_c = 1
 
 ## List of files to be written. Two files per station (az and el. ##)
+## Each line in the file contains: Model time, Real time, Delta Az/El, Station, Sked Time, Source.
 
 for entry in matched:
    if entry[0] == "ag":
@@ -56,9 +56,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ag_list, entry)
        el_slew = azelslew_calc.calcEl(ag_list, entry)
        if az_slew > el_slew*az_c:
-           ag_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ag_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ag_el.write(str(el_slew) + "," +str(entry[1]) + "," + str(entry[3]) + '\n')
+           ag_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ag_az.close()
@@ -70,9 +70,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ai_list, entry)
        el_slew = azelslew_calc.calcEl(ai_list, entry)
        if az_slew > el_slew*az_c:
-           ai_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ai_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ai_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ai_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ai_az.close()
@@ -84,9 +84,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ap_list, entry)
        el_slew = azelslew_calc.calcEl(ap_list, entry)
        if az_slew > el_slew*az_c:
-           ap_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ap_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ap_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ap_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ap_az.close()
@@ -98,9 +98,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ar_list, entry)
        el_slew = azelslew_calc.calcEl(ar_list, entry)
        if az_slew > el_slew*az_c:
-           ar_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ar_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ar_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ar_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ar_az.close()
@@ -112,9 +112,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(tl_list, entry)
        el_slew = azelslew_calc.calcEl(tl_list, entry)
        if az_slew > el_slew*az_c:
-           tl_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           tl_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           tl_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           tl_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        tl_az.close()
@@ -126,9 +126,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(yk_list, entry)
        el_slew = azelslew_calc.calcEl(yk_list, entry)
        if az_slew > el_slew*az_c:
-           yk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           yk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           yk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           yk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        yk_az.close()
@@ -140,9 +140,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(at_list, entry)
        el_slew = azelslew_calc.calcEl(at_list, entry)
        if az_slew > el_slew*az_c:
-           at_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           at_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           at_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           at_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        at_az.close()
@@ -154,9 +154,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(bd_list, entry)
        el_slew = azelslew_calc.calcEl(bd_list, entry)
        if az_slew > el_slew*az_c:
-           bd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           bd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           bd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           bd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        bd_az.close()
@@ -168,9 +168,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(br_list, entry)
        el_slew = azelslew_calc.calcEl(br_list, entry)
        if az_slew > el_slew*az_c:
-           br_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           br_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           br_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           br_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        br_az.close()
@@ -182,9 +182,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ce_list, entry)
        el_slew = azelslew_calc.calcEl(ce_list, entry)
        if az_slew > el_slew*az_c:
-           ce_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ce_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ce_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ce_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ce_az.close()
@@ -196,9 +196,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(cd_list, entry)
        el_slew = azelslew_calc.calcEl(cd_list, entry)
        if az_slew > el_slew*az_c:
-           cd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           cd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           cd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           cd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        cd_az.close()
@@ -210,9 +210,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(cc_list, entry)
        el_slew = azelslew_calc.calcEl(cc_list, entry)
        if az_slew > el_slew*az_c:
-           cc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           cc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           cc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           cc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        cc_az.close()
@@ -224,9 +224,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ch_list, entry)
        el_slew = azelslew_calc.calcEl(ch_list, entry)
        if az_slew > el_slew*az_c:
-           ch_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ch_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ch_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ch_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ch_az.close()
@@ -238,9 +238,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sm_list, entry)
        el_slew = azelslew_calc.calcEl(sm_list, entry)
        if az_slew > el_slew*az_c:
-           sm_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sm_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sm_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sm_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sm_az.close()
@@ -252,9 +252,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sb_list, entry)
        el_slew = azelslew_calc.calcEl(sb_list, entry)
        if az_slew > el_slew*az_c:
-           sb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sb_az.close()
@@ -266,9 +266,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a13_list, entry)
        el_slew = azelslew_calc.calcEl(a13_list, entry)
        if az_slew > el_slew*az_c:
-           a13_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a13_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a13_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a13_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a13_az.close()
@@ -280,9 +280,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a15_list, entry)
        el_slew = azelslew_calc.calcEl(a15_list, entry)
        if az_slew > el_slew*az_c:
-           a15_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a15_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a15_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a15_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a15_az.close()
@@ -294,9 +294,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a45_list, entry)
        el_slew = azelslew_calc.calcEl(a45_list, entry)
        if az_slew > el_slew*az_c:
-           a45_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a45_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a45_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a45_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a45_az.close()
@@ -308,9 +308,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a6a_list, entry)
        el_slew = azelslew_calc.calcEl(a6a_list, entry)
        if az_slew > el_slew*az_c:
-           a6a_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a6a_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a6a_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a6a_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a6a_az.close()
@@ -322,9 +322,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(eb_list, entry)
        el_slew = azelslew_calc.calcEl(eb_list, entry)
        if az_slew > el_slew*az_c:
-           eb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           eb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           eb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           eb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        eb_az.close()
@@ -336,9 +336,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(fd_list, entry)
        el_slew = azelslew_calc.calcEl(fd_list, entry)
        if az_slew > el_slew*az_c:
-           fd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           fd_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           fd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           fd_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        fd_az.close()
@@ -350,9 +350,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ft_list, entry)
        el_slew = azelslew_calc.calcEl(ft_list, entry)
        if az_slew > el_slew*az_c:
-           ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ft_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ft_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ft_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ft_az.close()
@@ -364,9 +364,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gs_list, entry)
        el_slew = azelslew_calc.calcEl(gs_list, entry)
        if az_slew > el_slew*az_c:
-           gs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gs_az.close()
@@ -378,9 +378,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gc_list, entry)
        el_slew = azelslew_calc.calcEl(gc_list, entry)
        if az_slew > el_slew*az_c:
-           gc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gc_az.close()
@@ -392,9 +392,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a14_list, entry)
        el_slew = azelslew_calc.calcEl(a14_list, entry)
        if az_slew > el_slew*az_c:
-           a14_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a14_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a14_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a14_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a14_az.close()
@@ -406,9 +406,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gv_list, entry)
        el_slew = azelslew_calc.calcEl(gv_list, entry)
        if az_slew > el_slew*az_c:
-           gv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gv_az.close()
@@ -420,9 +420,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(hh_list, entry)
        el_slew = azelslew_calc.calcEl(hh_list, entry)
        if az_slew > el_slew*az_c:
-           hh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           hh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           hh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           hh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        hh_az.close()
@@ -434,9 +434,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ht_list, entry)
        el_slew = azelslew_calc.calcEl(ht_list, entry)
        if az_slew > el_slew*az_c:
-           ht_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ht_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ht_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ht_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ht_az.close()
@@ -448,9 +448,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(hc_list, entry)
        el_slew = azelslew_calc.calcEl(hc_list, entry)
        if az_slew > el_slew*az_c:
-           hc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           hc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           hc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           hc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        hc_az.close()
@@ -462,9 +462,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(hs_list, entry)
        el_slew = azelslew_calc.calcEl(hs_list, entry)
        if az_slew > el_slew*az_c:
-           hs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           hs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           hs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           hs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        hs_az.close()
@@ -476,9 +476,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(hn_list, entry)
        el_slew = azelslew_calc.calcEl(hn_list, entry)
        if az_slew > el_slew*az_c:
-           hn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           hn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           hn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           hn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        hn_az.close()
@@ -490,9 +490,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(hb_list, entry)
        el_slew = azelslew_calc.calcEl(hb_list, entry)
        if az_slew > el_slew*az_c:
-           hb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           hb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           hb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           hb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        hb_az.close()
@@ -504,9 +504,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ho_list, entry)
        el_slew = azelslew_calc.calcEl(ho_list, entry)
        if az_slew > el_slew*az_c:
-           ho_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ho_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ho_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ho_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ho_az.close()
@@ -518,9 +518,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(is_list, entry)
        el_slew = azelslew_calc.calcEl(is_list, entry)
        if az_slew > el_slew*az_c:
-           is_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           is_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           is_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           is_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        is_az.close()
@@ -532,9 +532,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(it_list, entry)
        el_slew = azelslew_calc.calcEl(it_list, entry)
        if az_slew > el_slew*az_c:
-           it_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           it_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           it_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           it_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        it_az.close()
@@ -546,9 +546,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(jb_list, entry)
        el_slew = azelslew_calc.calcEl(jb_list, entry)
        if az_slew > el_slew*az_c:
-           jb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           jb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           jb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           jb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        jb_az.close()
@@ -560,9 +560,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kb_list, entry)
        el_slew = azelslew_calc.calcEl(kb_list, entry)
        if az_slew > el_slew*az_c:
-           kb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kb_az.close()
@@ -574,9 +574,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(k1_list, entry)
        el_slew = azelslew_calc.calcEl(k1_list, entry)
        if az_slew > el_slew*az_c:
-           k1_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           k1_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           k1_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           k1_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        k1_az.close()
@@ -588,9 +588,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ke_list, entry)
        el_slew = azelslew_calc.calcEl(ke_list, entry)
        if az_slew > el_slew*az_c:
-           ke_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ke_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ke_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ke_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ke_az.close()
@@ -602,9 +602,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ku_list, entry)
        el_slew = azelslew_calc.calcEl(ku_list, entry)
        if az_slew > el_slew*az_c:
-           ku_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ku_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ku_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ku_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ku_az.close()
@@ -616,9 +616,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kk_list, entry)
        el_slew = azelslew_calc.calcEl(kk_list, entry)
        if az_slew > el_slew*az_c:
-           kk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kk_az.close()
@@ -630,9 +630,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(k2_list, entry)
        el_slew = azelslew_calc.calcEl(k2_list, entry)
        if az_slew > el_slew*az_c:
-           k2_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           k2_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           k2_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           k2_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        k2_az.close()
@@ -644,9 +644,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kt_list, entry)
        el_slew = azelslew_calc.calcEl(kt_list, entry)
        if az_slew > el_slew*az_c:
-           kt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kt_az.close()
@@ -658,9 +658,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(km_list, entry)
        el_slew = azelslew_calc.calcEl(km_list, entry)
        if az_slew > el_slew*az_c:
-           km_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           km_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           km_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           km_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        km_az.close()
@@ -672,9 +672,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kp_list, entry)
        el_slew = azelslew_calc.calcEl(kp_list, entry)
        if az_slew > el_slew*az_c:
-           kp_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kp_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kp_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kp_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kp_az.close()
@@ -686,9 +686,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kg_list, entry)
        el_slew = azelslew_calc.calcEl(kg_list, entry)
        if az_slew > el_slew*az_c:
-           kg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kg_az.close()
@@ -700,9 +700,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kw_list, entry)
        el_slew = azelslew_calc.calcEl(kw_list, entry)
        if az_slew > el_slew*az_c:
-           kw_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kw_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kw_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kw_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kw_az.close()
@@ -714,9 +714,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(la_list, entry)
        el_slew = azelslew_calc.calcEl(la_list, entry)
        if az_slew > el_slew*az_c:
-           la_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           la_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           la_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           la_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        la_az.close()
@@ -728,9 +728,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ro_list, entry)
        el_slew = azelslew_calc.calcEl(ro_list, entry)
        if az_slew > el_slew*az_c:
-           ro_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ro_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ro_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ro_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ro_az.close()
@@ -742,9 +742,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mr_list, entry)
        el_slew = azelslew_calc.calcEl(mr_list, entry)
        if az_slew > el_slew*az_c:
-           mr_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mr_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mr_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mr_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mr_az.close()
@@ -756,9 +756,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(md_list, entry)
        el_slew = azelslew_calc.calcEl(md_list, entry)
        if az_slew > el_slew*az_c:
-           md_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           md_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           md_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           md_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        md_az.close()
@@ -770,9 +770,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ma_list, entry)
        el_slew = azelslew_calc.calcEl(ma_list, entry)
        if az_slew > el_slew*az_c:
-           ma_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ma_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ma_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ma_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ma_az.close()
@@ -784,9 +784,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mc_list, entry)
        el_slew = azelslew_calc.calcEl(mc_list, entry)
        if az_slew > el_slew*az_c:
-           mc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mc_az.close()
@@ -798,9 +798,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mh_list, entry)
        el_slew = azelslew_calc.calcEl(mh_list, entry)
        if az_slew > el_slew*az_c:
-           mh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mh_az.close()
@@ -812,9 +812,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mi_list, entry)
        el_slew = azelslew_calc.calcEl(mi_list, entry)
        if az_slew > el_slew*az_c:
-           mi_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mi_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mi_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mi_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mi_az.close()
@@ -826,9 +826,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mu_list, entry)
        el_slew = azelslew_calc.calcEl(mu_list, entry)
        if az_slew > el_slew*az_c:
-           mu_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mu_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mu_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mu_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mu_az.close()
@@ -840,9 +840,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mz_list, entry)
        el_slew = azelslew_calc.calcEl(mz_list, entry)
        if az_slew > el_slew*az_c:
-           mz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mz_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mz_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mz_az.close()
@@ -854,9 +854,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mn_list, entry)
        el_slew = azelslew_calc.calcEl(mn_list, entry)
        if az_slew > el_slew*az_c:
-           mn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mn_az.close()
@@ -868,9 +868,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mk_list, entry)
        el_slew = azelslew_calc.calcEl(mk_list, entry)
        if az_slew > el_slew*az_c:
-           mk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mk_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mk_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mk_az.close()
@@ -882,9 +882,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mo_list, entry)
        el_slew = azelslew_calc.calcEl(mo_list, entry)
        if az_slew > el_slew*az_c:
-           mo_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mo_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mo_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mo_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mo_az.close()
@@ -896,9 +896,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(mp_list, entry)
        el_slew = azelslew_calc.calcEl(mp_list, entry)
        if az_slew > el_slew*az_c:
-           mp_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           mp_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           mp_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           mp_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        mp_az.close()
@@ -910,9 +910,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(nl_list, entry)
        el_slew = azelslew_calc.calcEl(nl_list, entry)
        if az_slew > el_slew*az_c:
-           nl_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           nl_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           nl_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           nl_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        nl_az.close()
@@ -924,9 +924,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(no_list, entry)
        el_slew = azelslew_calc.calcEl(no_list, entry)
        if az_slew > el_slew*az_c:
-           no_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           no_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           no_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           no_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        no_az.close()
@@ -938,9 +938,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(nt_list, entry)
        el_slew = azelslew_calc.calcEl(nt_list, entry)
        if az_slew > el_slew*az_c:
-           nt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           nt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           nt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           nt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        nt_az.close()
@@ -952,9 +952,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(g3_list, entry)
        el_slew = azelslew_calc.calcEl(g3_list, entry)
        if az_slew > el_slew*az_c:
-           g3_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           g3_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           g3_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           g3_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        g3_az.close()
@@ -966,9 +966,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gb_list, entry)
        el_slew = azelslew_calc.calcEl(gb_list, entry)
        if az_slew > el_slew*az_c:
-           gb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gb_az.close()
@@ -980,9 +980,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gt_list, entry)
        el_slew = azelslew_calc.calcEl(gt_list, entry)
        if az_slew > el_slew*az_c:
-           gt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gt_az.close()
@@ -994,9 +994,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gn_list, entry)
        el_slew = azelslew_calc.calcEl(gn_list, entry)
        if az_slew > el_slew*az_c:
-           gn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gn_az.close()
@@ -1008,9 +1008,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ny_list, entry)
        el_slew = azelslew_calc.calcEl(ny_list, entry)
        if az_slew > el_slew*az_c:
-           ny_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ny_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ny_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ny_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ny_az.close()
@@ -1022,9 +1022,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(oh_list, entry)
        el_slew = azelslew_calc.calcEl(oh_list, entry)
        if az_slew > el_slew*az_c:
-           oh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           oh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           oh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           oh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        oh_az.close()
@@ -1036,9 +1036,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(on_list, entry)
        el_slew = azelslew_calc.calcEl(on_list, entry)
        if az_slew > el_slew*az_c:
-           on_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           on_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           on_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           on_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        on_az.close()
@@ -1050,9 +1050,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(o8_list, entry)
        el_slew = azelslew_calc.calcEl(o8_list, entry)
        if az_slew > el_slew*az_c:
-           o8_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           o8_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           o8_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           o8_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        o8_az.close()
@@ -1064,9 +1064,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(gg_list, entry)
        el_slew = azelslew_calc.calcEl(gg_list, entry)
        if az_slew > el_slew*az_c:
-           gg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           gg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           gg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           gg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        gg_az.close()
@@ -1078,9 +1078,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ov_list, entry)
        el_slew = azelslew_calc.calcEl(ov_list, entry)
        if az_slew > el_slew*az_c:
-           ov_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ov_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ov_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ov_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ov_az.close()
@@ -1092,9 +1092,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(oo_list, entry)
        el_slew = azelslew_calc.calcEl(oo_list, entry)
        if az_slew > el_slew*az_c:
-           oo_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           oo_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           oo_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           oo_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        oo_az.close()
@@ -1106,9 +1106,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(pa_list, entry)
        el_slew = azelslew_calc.calcEl(pa_list, entry)
        if az_slew > el_slew*az_c:
-           pa_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           pa_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           pa_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           pa_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        pa_az.close()
@@ -1120,9 +1120,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(pe_list, entry)
        el_slew = azelslew_calc.calcEl(pe_list, entry)
        if az_slew > el_slew*az_c:
-           pe_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           pe_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           pe_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           pe_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        pe_az.close()
@@ -1134,9 +1134,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(pt_list, entry)
        el_slew = azelslew_calc.calcEl(pt_list, entry)
        if az_slew > el_slew*az_c:
-           pt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           pt_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           pt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           pt_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        pt_az.close()
@@ -1148,9 +1148,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(qb_list, entry)
        el_slew = azelslew_calc.calcEl(qb_list, entry)
        if az_slew > el_slew*az_c:
-           qb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           qb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           qb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           qb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        qb_az.close()
@@ -1162,9 +1162,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(yj_list, entry)
        el_slew = azelslew_calc.calcEl(yj_list, entry)
        if az_slew > el_slew*az_c:
-           yj_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           yj_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           yj_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           yj_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        yj_az.close()
@@ -1176,9 +1176,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(a61_list, entry)
        el_slew = azelslew_calc.calcEl(a61_list, entry)
        if az_slew > el_slew*az_c:
-           a61_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           a61_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           a61_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           a61_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        a61_az.close()
@@ -1190,9 +1190,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(st_list, entry)
        el_slew = azelslew_calc.calcEl(st_list, entry)
        if az_slew > el_slew*az_c:
-           st_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           st_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           st_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           st_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        st_az.close()
@@ -1204,9 +1204,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sc_list, entry)
        el_slew = azelslew_calc.calcEl(sc_list, entry)
        if az_slew > el_slew*az_c:
-           sc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sc_az.close()
@@ -1218,9 +1218,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(s3_list, entry)
        el_slew = azelslew_calc.calcEl(s3_list, entry)
        if az_slew > el_slew*az_c:
-           s3_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           s3_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           s3_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           s3_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        s3_az.close()
@@ -1232,9 +1232,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(kv_list, entry)
        el_slew = azelslew_calc.calcEl(kv_list, entry)
        if az_slew > el_slew*az_c:
-           kv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           kv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           kv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           kv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        kv_az.close()
@@ -1246,9 +1246,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sh_list, entry)
        el_slew = azelslew_calc.calcEl(sh_list, entry)
        if az_slew > el_slew*az_c:
-           sh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sh_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sh_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sh_az.close()
@@ -1260,9 +1260,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(se_list, entry)
        el_slew = azelslew_calc.calcEl(se_list, entry)
        if az_slew > el_slew*az_c:
-           se_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           se_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           se_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           se_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        se_az.close()
@@ -1274,9 +1274,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sy_list, entry)
        el_slew = azelslew_calc.calcEl(sy_list, entry)
        if az_slew > el_slew*az_c:
-           sy_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sy_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sy_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sy_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sy_az.close()
@@ -1288,9 +1288,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(sv_list, entry)
        el_slew = azelslew_calc.calcEl(sv_list, entry)
        if az_slew > el_slew*az_c:
-           sv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           sv_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           sv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           sv_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        sv_az.close()
@@ -1302,9 +1302,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ta_list, entry)
        el_slew = azelslew_calc.calcEl(ta_list, entry)
        if az_slew > el_slew*az_c:
-           ta_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ta_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ta_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ta_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ta_az.close()
@@ -1316,9 +1316,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(t6_list, entry)
        el_slew = azelslew_calc.calcEl(t6_list, entry)
        if az_slew > el_slew*az_c:
-           t6_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           t6_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           t6_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           t6_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        t6_az.close()
@@ -1330,9 +1330,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ti_list, entry)
        el_slew = azelslew_calc.calcEl(ti_list, entry)
        if az_slew > el_slew*az_c:
-           ti_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ti_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ti_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ti_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ti_az.close()
@@ -1344,9 +1344,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(tc_list, entry)
        el_slew = azelslew_calc.calcEl(tc_list, entry)
        if az_slew > el_slew*az_c:
-           tc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           tc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           tc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           tc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        tc_az.close()
@@ -1358,9 +1358,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(tr_list, entry)
        el_slew = azelslew_calc.calcEl(tr_list, entry)
        if az_slew > el_slew*az_c:
-           tr_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           tr_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           tr_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           tr_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        tr_az.close()
@@ -1372,9 +1372,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ts_list, entry)
        el_slew = azelslew_calc.calcEl(ts_list, entry)
        if az_slew > el_slew*az_c:
-           ts_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ts_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ts_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ts_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ts_az.close()
@@ -1386,9 +1386,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(uc_list, entry)
        el_slew = azelslew_calc.calcEl(uc_list, entry)
        if az_slew > el_slew*az_c:
-           uc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           uc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           uc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           uc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        uc_az.close()
@@ -1400,9 +1400,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ur_list, entry)
        el_slew = azelslew_calc.calcEl(ur_list, entry)
        if az_slew > el_slew*az_c:
-           ur_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ur_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ur_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ur_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ur_az.close()
@@ -1414,9 +1414,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(us_list, entry)
        el_slew = azelslew_calc.calcEl(us_list, entry)
        if az_slew > el_slew*az_c:
-           us_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           us_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           us_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           us_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        us_az.close()
@@ -1428,9 +1428,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(vs_list, entry)
        el_slew = azelslew_calc.calcEl(vs_list, entry)
        if az_slew > el_slew*az_c:
-           vs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           vs_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           vs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           vs_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        vs_az.close()
@@ -1442,9 +1442,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(vm_list, entry)
        el_slew = azelslew_calc.calcEl(vm_list, entry)
        if az_slew > el_slew*az_c:
-           vm_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           vm_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           vm_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           vm_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        vm_az.close()
@@ -1456,9 +1456,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(y1_list, entry)
        el_slew = azelslew_calc.calcEl(y1_list, entry)
        if az_slew > el_slew*az_c:
-           y1_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           y1_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           y1_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           y1_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        y1_az.close()
@@ -1470,9 +1470,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ww_list, entry)
        el_slew = azelslew_calc.calcEl(ww_list, entry)
        if az_slew > el_slew*az_c:
-           ww_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ww_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ww_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ww_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ww_az.close()
@@ -1484,9 +1484,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(wf_list, entry)
        el_slew = azelslew_calc.calcEl(wf_list, entry)
        if az_slew > el_slew*az_c:
-           wf_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           wf_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           wf_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           wf_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        wf_az.close()
@@ -1498,9 +1498,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(wb_list, entry)
        el_slew = azelslew_calc.calcEl(wb_list, entry)
        if az_slew > el_slew*az_c:
-           wb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           wb_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           wb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           wb_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        wb_az.close()
@@ -1512,9 +1512,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(wn_list, entry)
        el_slew = azelslew_calc.calcEl(wn_list, entry)
        if az_slew > el_slew*az_c:
-           wn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           wn_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           wn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           wn_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        wn_az.close()
@@ -1526,9 +1526,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ws_list, entry)
        el_slew = azelslew_calc.calcEl(ws_list, entry)
        if az_slew > el_slew*az_c:
-           ws_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ws_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ws_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ws_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ws_az.close()
@@ -1540,9 +1540,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(wz_list, entry)
        el_slew = azelslew_calc.calcEl(wz_list, entry)
        if az_slew > el_slew*az_c:
-           wz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           wz_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           wz_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           wz_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        wz_az.close()
@@ -1554,9 +1554,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(yg_list, entry)
        el_slew = azelslew_calc.calcEl(yg_list, entry)
        if az_slew > el_slew*az_c:
-           yg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           yg_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           yg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           yg_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        yg_az.close()
@@ -1568,9 +1568,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(ys_list, entry)
        el_slew = azelslew_calc.calcEl(ys_list, entry)
        if az_slew > el_slew*az_c:
-           ys_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           ys_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           ys_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           ys_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        ys_az.close()
@@ -1582,9 +1582,9 @@ for entry in matched:
        az_slew = azelslew_calc.calcAz(zc_list, entry)
        el_slew = azelslew_calc.calcEl(zc_list, entry)
        if az_slew > el_slew*az_c:
-           zc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + '\n')
+           zc_az.write(str(az_slew) + "," + str(entry[1]) + "," + str(entry[2]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        elif az_slew*el_c < el_slew:
-           zc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + '\n')
+           zc_el.write(str(el_slew) + "," + str(entry[1]) + "," + str(entry[3]) + "," + entry[0] + "," + str(entry[4]) + "," + str(entry[5]) + '\n')
        else:
            pass
        zc_az.close()

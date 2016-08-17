@@ -61,7 +61,6 @@ def getStationNames(path_to_file):
                 "# Start of program \n" +\
                 "\n" +\
                 "filename = \"\"\n" +\
-                "station = \"\"\n" +\
                 "nstations = 0\n" +\
                 "tups = []\n" +\
                 "scheduled_stations = []\n" +\
@@ -76,6 +75,7 @@ def getStationNames(path_to_file):
                 "el_c = 1\n" +\
                 "\n" +\
                 "## List of files to be written. Two files per station (az and el. ##)\n"+\
+                "## Each line in the file contains: Model time, Real time, Delta Az/El, Station, Sked Time, Source.\n"+\
                 "\n" +\
                 "for entry in matched:\n" )
 
@@ -88,9 +88,9 @@ def getStationNames(path_to_file):
                 "       az_slew = azelslew_calc.calcAz(" + name + "_list, entry)\n"+\
                 "       el_slew = azelslew_calc.calcEl(" + name + "_list, entry)\n"+\
                 "       if az_slew > el_slew*az_c:\n" +\
-                "           " + name + "_az.write(str(az_slew) + \",\" + str(entry[1]) + \",\" + str(entry[2]) + \'\\n\')\n" +\
+                "           " + name + "_az.write(str(az_slew) + \",\" + str(entry[1]) + \",\" + str(entry[2]) + \",\" + entry[0] + \",\" + str(entry[4]) + \",\" + str(entry[5]) + \'\\n\')\n" +\
                 "       elif az_slew*el_c < el_slew:\n" +\
-                "           " + name + "_el.write(str(el_slew) + \",\" +str(entry[1]) + \",\" + str(entry[3]) + \'\\n\')\n" +\
+                "           " + name + "_el.write(str(el_slew) + \",\" + str(entry[1]) + \",\" + str(entry[3]) + \",\" + entry[0] + \",\" + str(entry[4]) + \",\" + str(entry[5]) + \'\\n\')\n" +\
                 "       else:\n" +\
                 "           pass\n" +\
                 "       " + name + "_az.close()\n" +\
@@ -105,9 +105,9 @@ def getStationNames(path_to_file):
                 "       az_slew = azelslew_calc.calcAz(" + name + "_list, entry)\n"+\
                 "       el_slew = azelslew_calc.calcEl(" + name + "_list, entry)\n"+\
                 "       if az_slew > el_slew*az_c:\n" +\
-                "           " + name + "_az.write(str(az_slew) + \",\" + str(entry[1]) + \",\" + str(entry[2]) + \'\\n\')\n" +\
+                "           " + name + "_az.write(str(az_slew) + \",\" + str(entry[1]) + \",\" + str(entry[2]) + \",\" + entry[0] + \",\" + str(entry[4]) + \",\" + str(entry[5]) + \'\\n\')\n" +\
                 "       elif az_slew*el_c < el_slew:\n" +\
-                "           " + name + "_el.write(str(el_slew) + \",\" + str(entry[1]) + \",\" + str(entry[3]) + \'\\n\')\n" +\
+                "           " + name + "_el.write(str(el_slew) + \",\" + str(entry[1]) + \",\" + str(entry[3]) + \",\" + entry[0] + \",\" + str(entry[4]) + \",\" + str(entry[5]) + \'\\n\')\n" +\
                 "       else:\n" +\
                 "           pass\n" +\
                 "       " + name + "_az.close()\n" +\

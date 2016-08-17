@@ -12,7 +12,7 @@
 ###############################################################################
 
 LOGDIR=./logs/
-SKDDIR=./skds/
+SKDDIR=./skdtmp/
 DATADIR=./data/
 SRC1=./src/extract.py
 SRC2=./src/calcSlewRates.py

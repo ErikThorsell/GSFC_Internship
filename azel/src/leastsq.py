@@ -66,12 +66,16 @@ def plot_curve(data_tuple, modelTimes_original, station, orientation):
 
 
 
-def speed_offset(xdata, ydata):
+def speed_offset(xdata, ydata, station, time, source):
     ysorted=[]
     xsorted=[]
+    ydisc=[]
+    xdisc=[]
     ans = (0,0,0,0,0,0,0)
     k_old = 0.0
     threshold = numpy.mean(ydata)/10
+    discfile = open('./data/lsq_disc.dat', 'a')
+    discfile.write("# Station" + "," + "Date" + "," + "Source" + "," + "dAz" + "," + "dEl" + '\n')
 
     # First line
     x_original = numpy.array(xdata)
@@ -92,6 +96,8 @@ def speed_offset(xdata, ydata):
             if y_tmp - threshold < ydata[i] < y_tmp + threshold:
                 ysorted.append(ydata[i])
                 xsorted.append(xdata[i])
+            else:
+                discfile.write(station[i] + "," + time[i] + "," + source[i] + "," + str(xdata[i]) + "," + str(ydata[i]) + '\n')
 
         x_new = numpy.array(xsorted)
         y_new = numpy.array(ysorted)
@@ -106,6 +112,8 @@ def speed_offset(xdata, ydata):
         k = k_new
         xsorted = []
         ysorted = []
+
+    discfile.close()
 
     # Calculate the offset
     offset = 0.0

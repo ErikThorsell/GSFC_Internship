@@ -108,9 +108,9 @@ def matchSkdLog(log, skd, matched):
     # skd(station, date, source, az, el)
     log = sorted(log)
     skd = sorted(skd)
-    minrange = 0
-    maxrange = 0
-    d_az = 0
+    minrange = 0.0
+    maxrange = 0.0
+    d_az = 0.0
 
     for i in range(len(log)):
         for j in range(len(skd)):
@@ -123,9 +123,11 @@ def matchSkdLog(log, skd, matched):
                         az_a = skd[j+1][3]
                         el_b = skd[j][4]
                         el_a = skd[j+1][4]
+                        skdtime = skd[j][1]
+                        source = skd[j][2]
                         d_az = abs(az_a - az_b)
                         d_el = abs(el_a - el_b)
-                        matched.append((station, timediff, d_az, d_el))
+                        matched.append((station, timediff, d_az, d_el, skdtime, source))
 
 ###############################################################################
 

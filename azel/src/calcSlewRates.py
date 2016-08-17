@@ -43,13 +43,34 @@ for subdir, dirs, files in os.walk(path_to_dat):
                 realTimes = []
                 distance = []
                 modelTimes = []
+                stationname = []
+                source = []
+                timestamp = []
                 for row in readCSV:
                     modelTimes.append(float(row[0]))
                     realTimes.append(float(row[1]))
                     distance.append(float(row[2]))
+                    stationname.append(str(row[3]))
+
+                    ## Convert hundreds back to the date used in Sked.
+                    time = float(row[4])
+                    days = int(time / 86400)
+                    time = time % 86400
+                    hours = int(time / 3600)
+                    time = time % 3600
+                    minutes = int(time / 60)
+                    time = time % 60
+                    seconds = int(time)
+                    time = time-seconds
+                    hundreds = int(time*100)
+
+                    timestamp.append("yy" + str(days).zfill(3) + "-" + str(hours).zfill(2) + str(minutes).zfill(2) + str(seconds).zfill(2))
+
+                    source.append(str(row[5]))
+
                 if len(realTimes) != 0:
 
-                    solution = leastsq.speed_offset(distance, realTimes)
+                    solution = leastsq.speed_offset(distance, realTimes, stationname, timestamp, source)
 
                     # Calculate current model
                     x = numpy.array(distance)
