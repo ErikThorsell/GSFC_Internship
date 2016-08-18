@@ -23,39 +23,16 @@ def parseLogTime(time):
 
 def parseSkdTime(time):
 
-    year  = float(time[:4])
+    year = float(time[:4])
     day  = float(time[2:5])
     hour = float(time[6:8])
     min  = float(time[8:10])
     sec  = float(time[10:12])
-    hun  = 0
+    hun  = 0.0
 
     time = hun+100*(sec+60*(min+60*(hour+24*day)))
 
     return time/100
-
-###############################################################################
-
-def parseSkd(skd_lines, nstations, scheduled_stations, theo):
-    station = ""
-    nLines = 0
-
-    for line in skd_lines:
-        nLines = nLines + 1
-        if line[0:4] == "name":
-            for i in range(22,(22+nstations*8),8):
-                scheduled_stations.append(line[i+4:i+6])
-
-        if nLines > 3 and (not (line[0:3]=="End")):
-            for i in range(23, (23+nstations*8),8):
-                if (not (line[i:i+3].isspace())):
-                    index = ((i-23)/8)
-                    station = scheduled_stations[index].lower()
-                    source = line[0:8]
-                    date = parseSkdTime(line[9:21])
-                    az = float(line[i:i+3])
-                    el = float(line[i+4:i+6])
-                    theo.append((station, date, source, az, el))
 
 ###############################################################################
 
@@ -104,6 +81,8 @@ def getLogData(path_to_logs, tups):
 
 def getSkdData(path_to_dir, nstations, scheduled_stations, theo):
     azelfound = False
+    station = ""
+    nLines = 0
 
     for subdir, dirs, files in os.walk(path_to_dir):
         for file in files:
@@ -113,13 +92,28 @@ def getSkdData(path_to_dir, nstations, scheduled_stations, theo):
                 sourcelines = skd.readlines()
                 skd.close()
 
-                parseSkd(sourcelines, nstations, scheduled_stations, theo)
-
-    if not azelfound:
-        print "Unable to locate .azel file in " + path_to_dir
-        print "Make sure there is a .azel file before you proceed. See the " + \
-               "README.md for info on how to generate one."
-
+                for line in sourcelines:
+                    nLines = nLines + 1
+                    if line[0:4] == "name":
+                        for i in range(22,(22+nstations*8),8):
+                            scheduled_stations.append(line[i+4:i+6])
+            
+                    if nLines > 3 and (not (line[0:3]=="End")):
+                        for i in range(23, (23+nstations*8),8):
+                            if (not (line[i:i+3].isspace())):
+                                index = ((i-23)/8)
+                                station = scheduled_stations[index].lower()
+                                source = line[0:8]
+                                date = parseSkdTime(line[9:21])
+                                az = float(line[i:i+3])
+                                el = float(line[i+4:i+6])
+                                theo.append((station, date, source, az, el))
+            
+                if not azelfound:
+                    print "Unable to locate .azel file in " + path_to_dir
+                    print "Make sure there is a .azel file before you proceed. See the " + \
+                           "README.md for info on how to generate one."
+            
 ###############################################################################
 
 def matchSkdLog(log, skd, matched):
