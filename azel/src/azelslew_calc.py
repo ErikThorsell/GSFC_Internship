@@ -62,15 +62,15 @@ def getLogData(path_to_logs, log_data):
                         ssource = source.split('=')
                         source = ssource[1]
                         direction = sline[len(sline)-1][:-1]
-                        sourcedate = parseLogTime(line[:20])
+                        sourcetime = parseLogTime(line[:20])
 
                     if ((("#trakl#Source acquired" in line) or \
                         ("#trakl# Source acquired" in line) or \
                         ('#flagr#flagr/antenna,acquired' in line)) and sourcefound):
                         sourceacquired = True
-                        trakldate = parseLogTime(line[:20])
-                        if (trakldate > sourcedate):
-                            log_data.append((station, sourcedate, source, trakldate, direction, file))
+                        trakltime = parseLogTime(line[:20])
+                        if (trakltime > sourcetime):
+                            log_data.append((station, sourcetime, source, trakltime, direction, file))
                 if not sourceacquired:
                     print "# WARNING #"
                     print "Trakl or Flagr is not turned on for station " + station \
@@ -118,8 +118,8 @@ def getSkdData(path_to_dir, nstations, scheduled_stations, skd_data):
 ###############################################################################
 
 def matchSkdLog(log, skd, matched):
-    # log(station, sourcedate, source, trakldate, direction, filename)
-    # skd(station, date, source, az, el)
+    # log(station, sourcetime, source, trakltime, direction, filename)
+    # skd(station, timestamp, source, az, el)
     log = sorted(log)
     skd = sorted(skd)
     minrange = 0.0
@@ -128,19 +128,19 @@ def matchSkdLog(log, skd, matched):
 
     for i in range(len(log)):
         for j in range(len(skd)):
-            if log[i][0] == skd[j][0]:
-                if skd[j][1] < log[i][1] < skd[j+1][1]:
-                    if log[i][2] == skd[j+1][2]:
-                        station = log[i][0]
-                        timediff = log[i][3] - log[i][1]
-                        az_b = skd[j][3]
-                        az_a = skd[j+1][3]
-                        el_b = skd[j][4]
-                        el_a = skd[j+1][4]
-                        skdtime = skd[j][1]
-                        source = skd[j][2]
-                        d_az = abs(az_a - az_b)
-                        d_el = abs(el_a - el_b)
+            if log[i][0] == skd[j][0]:                      #Are we on the same station?
+                if skd[j][1] < log[i][1] < skd[j+1][1]:     #Are we between two contigous measurements in the skd file?
+                    if log[i][2] == skd[j+1][2]:            #Are we on the same source?
+                        station = log[i][0]                 #Save station name
+                        timediff = log[i][3] - log[i][1]    #Save the actual time the antenna slewed
+                        az_before = skd[j][3]                    
+                        az_after = skd[j+1][3]
+                        el_before = skd[j][4]
+                        el_after = skd[j+1][4]
+                        d_az = abs(az_after - az_before)    #Save Delta_Azimuth
+                        d_el = abs(el_after - el_before)    #Save Delta_Elevation
+                        skdtime = skd[j][1]                 #Save timestamp from skd file
+                        source = skd[j][2]                  #Save source name
                         matched.append((station, timediff, d_az, d_el, skdtime, source))
 
 ###############################################################################
@@ -154,6 +154,7 @@ def calcAz(spec, rotdata):
 
     return az_slew
 
+###############################################################################
 
 def calcEl(spec, rotdata):
 
