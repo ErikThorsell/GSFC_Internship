@@ -36,7 +36,8 @@ interactive program that prompts the user for a couple of paths. The program
 also asks if graphs should be generated or not.
 
 **Note:** ``calculate_slew 3.0`` will feature a "commandline only mode" s.t.
-the script can be run as part of other scripts.
+the script can be run as part of other scripts. ``calculate_slew 3.0`` will
+also be able to be run from other directories than ``azel/``.
 
 
 ### House keeping
