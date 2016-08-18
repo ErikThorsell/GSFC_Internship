@@ -4,5 +4,5 @@
 \beamer@sectionintoc {3}{Testing I/O performance}{10}{0}{3}
 \beamer@sectionintoc {4}{Implementation}{29}{0}{4}
 \beamer@sectionintoc {5}{Results for Project One}{40}{0}{5}
-\beamer@sectionintoc {6}{Our Second Project}{57}{0}{6}
-\beamer@sectionintoc {7}{Result for Project Two}{63}{0}{7}
+\beamer@sectionintoc {6}{Our Second Project}{58}{0}{6}
+\beamer@sectionintoc {7}{Result for Project Two}{64}{0}{7}
