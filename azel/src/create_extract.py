@@ -46,16 +46,16 @@ def getStationNames(path_to_file):
                 "import azelslew_calc\n" + \
                 "from station_specs import *\n" + \
                 "\n" + \
-                "if not len(sys.argv) > 1:\n" +\
+                "if not len(sys.argv) > 2:\n" +\
                 "   print \"Wrong usage:\"\n" +\
-                "   print \"$> python extract.py logdir skdfile\"\n" +\
-                "   print \"You must supple the program with a folder containing the log \" \\\n" +\
-                "           +\"files for the session, as well as the skd file for the same \" \\\n" +\
-                "           +\"session.\"\n" +\
+                "   print \"$> python extract.py outputdir sessiondir\"\n" +\
+                "   print \"You must supply the program with a folder containing the log \" \\\n" +\
+                "        +\"files for the session, as well as the skd file for the same \" \\\n" +\
+                "        +\"session.\"\n" +\
                 "   sys.exit()\n" +\
                 "\n" +\
-                "logdir = sys.argv[1]\n" +\
-                "skddir = sys.argv[2]\n" +\
+                "path_to_output = sys.argv[1]\n" +\
+                "path_to_dir = sys.argv[2]\n" +\
                 "\n" +\
                 "#######################################################\n" +\
                 "# Start of program \n" +\
@@ -67,8 +67,8 @@ def getStationNames(path_to_file):
                 "theo = []\n" +\
                 "matched = []\n" +\
                 "\n" +\
-                "nstations = azelslew_calc.getLogData(logdir, tups)\n" +\
-                "azelslew_calc.getSkdData(skddir, nstations, scheduled_stations, theo)\n" +\
+                "nstations = azelslew_calc.getLogData(path_to_dir, tups)\n" +\
+                "azelslew_calc.getSkdData(path_to_dir, nstations, scheduled_stations, theo)\n" +\
                 "azelslew_calc.matchSkdLog(tups, theo, matched)\n" +\
                 "\n" +\
                 "az_c = 1\n" +\
@@ -83,8 +83,8 @@ def getStationNames(path_to_file):
         if first:
             main.write( \
                 "   if entry[0] == \"" + name + "\":\n" +\
-                "       " + name + "_az = open(\"data/" + name + "_az.dat\", \'a\')\n" + \
-                "       " + name + "_el = open(\"data/" + name + "_el.dat\",\'a\')\n" +\
+                "       " + name + "_az = open(path_to_output + \"/data/" + name + "_az.dat\", \'a\')\n" + \
+                "       " + name + "_el = open(path_to_output + \"/data/" + name + "_el.dat\",\'a\')\n" +\
                 "       az_slew = azelslew_calc.calcAz(" + name + "_list, entry)\n"+\
                 "       el_slew = azelslew_calc.calcEl(" + name + "_list, entry)\n"+\
                 "       if az_slew > el_slew*az_c:\n" +\
@@ -100,8 +100,8 @@ def getStationNames(path_to_file):
         else:
             main.write( \
                 "   elif entry[0] == \"" + name + "\":\n" +\
-                "       " + name + "_az = open(\"data/" + name + "_az.dat\", \'a\')\n" + \
-                "       " + name + "_el = open(\"data/" + name + "_el.dat\",\'a\')\n" +\
+                "       " + name + "_az = open(path_to_output + \"/data/" + name + "_az.dat\", \'a\')\n" + \
+                "       " + name + "_el = open(path_to_output + \"/data/" + name + "_el.dat\",\'a\')\n" +\
                 "       az_slew = azelslew_calc.calcAz(" + name + "_list, entry)\n"+\
                 "       el_slew = azelslew_calc.calcEl(" + name + "_list, entry)\n"+\
                 "       if az_slew > el_slew*az_c:\n" +\

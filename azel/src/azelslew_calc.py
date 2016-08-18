@@ -36,11 +36,11 @@ def parseSkdTime(time):
 
 ###############################################################################
 
-def parseSkd(skd_file, nstations, scheduled_stations, theo):
+def parseSkd(skd_lines, nstations, scheduled_stations, theo):
     station = ""
     nLines = 0
 
-    for line in skd_file:
+    for line in skd_lines:
         nLines = nLines + 1
         if line[0:4] == "name":
             for i in range(22,(22+nstations*8),8):
@@ -61,6 +61,8 @@ def parseSkd(skd_file, nstations, scheduled_stations, theo):
 
 def getLogData(path_to_logs, tups):
     nstations = 0
+    acquirefound = False
+    station = ""
 
     for subdir, dirs, files in os.walk(path_to_logs):
         for file in files:
@@ -91,22 +93,32 @@ def getLogData(path_to_logs, tups):
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
                             tups.append((station, sourcedate, source, trakldate, direction, file))
-            if not acquirefound:
-                print "# WARNING #"
-                print "Trakl or Flagr is not turned on for station " + station \
-                    + " in session " + file[:-6] + '\n'
+                if not acquirefound:
+                    print "# WARNING #"
+                    print "Trakl or Flagr is not turned on for station " + station \
+                        + " in session " + file[:-6] + '\n'
 
         return nstations
 
 ###############################################################################
 
-def getSkdData(path_to_file, nstations, scheduled_stations, theo):
+def getSkdData(path_to_dir, nstations, scheduled_stations, theo):
+    azelfound = False
 
-    skd = open(path_to_file, 'r')
-    sourcelines = skd.readlines()
-    skd.close()
+    for subdir, dirs, files in os.walk(path_to_dir):
+        for file in files:
+            if file[-5:] == ".azel":
+                azelfound = True
+                skd = open(os.path.join(subdir, file), 'r')
+                sourcelines = skd.readlines()
+                skd.close()
 
-    parseSkd(sourcelines, nstations, scheduled_stations, theo)
+                parseSkd(sourcelines, nstations, scheduled_stations, theo)
+
+    if not azelfound:
+        print "Unable to locate .azel file in " + path_to_dir
+        print "Make sure there is a .azel file before you proceed. See the " + \
+               "README.md for info on how to generate one."
 
 ###############################################################################
 

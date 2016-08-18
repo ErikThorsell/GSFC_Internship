@@ -18,16 +18,16 @@ import sys
 import azelslew_calc
 from station_specs import *
 
-if not len(sys.argv) > 1:
+if not len(sys.argv) > 2:
    print "Wrong usage:"
-   print "$> python extract.py logdir skdfile"
-   print "You must supple the program with a folder containing the log " \
-           +"files for the session, as well as the skd file for the same " \
-           +"session."
+   print "$> python extract.py outputdir sessiondir"
+   print "You must supply the program with a folder containing the log " \
+        +"files for the session, as well as the skd file for the same " \
+        +"session."
    sys.exit()
 
-logdir = sys.argv[1]
-skddir = sys.argv[2]
+path_to_output = sys.argv[1]
+path_to_dir = sys.argv[2]
 
 #######################################################
 # Start of program 
@@ -39,8 +39,8 @@ scheduled_stations = []
 theo = []
 matched = []
 
-nstations = azelslew_calc.getLogData(logdir, tups)
-azelslew_calc.getSkdData(skddir, nstations, scheduled_stations, theo)
+nstations = azelslew_calc.getLogData(path_to_dir, tups)
+azelslew_calc.getSkdData(path_to_dir, nstations, scheduled_stations, theo)
 azelslew_calc.matchSkdLog(tups, theo, matched)
 
 az_c = 1
@@ -51,8 +51,8 @@ el_c = 1
 
 for entry in matched:
    if entry[0] == "ag":
-       ag_az = open("data/ag_az.dat", 'a')
-       ag_el = open("data/ag_el.dat",'a')
+       ag_az = open(path_to_output + "/data/ag_az.dat", 'a')
+       ag_el = open(path_to_output + "/data/ag_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ag_list, entry)
        el_slew = azelslew_calc.calcEl(ag_list, entry)
        if az_slew > el_slew*az_c:
@@ -65,8 +65,8 @@ for entry in matched:
        ag_el.close()
 
    elif entry[0] == "ai":
-       ai_az = open("data/ai_az.dat", 'a')
-       ai_el = open("data/ai_el.dat",'a')
+       ai_az = open(path_to_output + "/data/ai_az.dat", 'a')
+       ai_el = open(path_to_output + "/data/ai_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ai_list, entry)
        el_slew = azelslew_calc.calcEl(ai_list, entry)
        if az_slew > el_slew*az_c:
@@ -79,8 +79,8 @@ for entry in matched:
        ai_el.close()
 
    elif entry[0] == "ap":
-       ap_az = open("data/ap_az.dat", 'a')
-       ap_el = open("data/ap_el.dat",'a')
+       ap_az = open(path_to_output + "/data/ap_az.dat", 'a')
+       ap_el = open(path_to_output + "/data/ap_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ap_list, entry)
        el_slew = azelslew_calc.calcEl(ap_list, entry)
        if az_slew > el_slew*az_c:
@@ -93,8 +93,8 @@ for entry in matched:
        ap_el.close()
 
    elif entry[0] == "ar":
-       ar_az = open("data/ar_az.dat", 'a')
-       ar_el = open("data/ar_el.dat",'a')
+       ar_az = open(path_to_output + "/data/ar_az.dat", 'a')
+       ar_el = open(path_to_output + "/data/ar_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ar_list, entry)
        el_slew = azelslew_calc.calcEl(ar_list, entry)
        if az_slew > el_slew*az_c:
@@ -107,8 +107,8 @@ for entry in matched:
        ar_el.close()
 
    elif entry[0] == "tl":
-       tl_az = open("data/tl_az.dat", 'a')
-       tl_el = open("data/tl_el.dat",'a')
+       tl_az = open(path_to_output + "/data/tl_az.dat", 'a')
+       tl_el = open(path_to_output + "/data/tl_el.dat",'a')
        az_slew = azelslew_calc.calcAz(tl_list, entry)
        el_slew = azelslew_calc.calcEl(tl_list, entry)
        if az_slew > el_slew*az_c:
@@ -121,8 +121,8 @@ for entry in matched:
        tl_el.close()
 
    elif entry[0] == "yk":
-       yk_az = open("data/yk_az.dat", 'a')
-       yk_el = open("data/yk_el.dat",'a')
+       yk_az = open(path_to_output + "/data/yk_az.dat", 'a')
+       yk_el = open(path_to_output + "/data/yk_el.dat",'a')
        az_slew = azelslew_calc.calcAz(yk_list, entry)
        el_slew = azelslew_calc.calcEl(yk_list, entry)
        if az_slew > el_slew*az_c:
@@ -135,8 +135,8 @@ for entry in matched:
        yk_el.close()
 
    elif entry[0] == "at":
-       at_az = open("data/at_az.dat", 'a')
-       at_el = open("data/at_el.dat",'a')
+       at_az = open(path_to_output + "/data/at_az.dat", 'a')
+       at_el = open(path_to_output + "/data/at_el.dat",'a')
        az_slew = azelslew_calc.calcAz(at_list, entry)
        el_slew = azelslew_calc.calcEl(at_list, entry)
        if az_slew > el_slew*az_c:
@@ -149,8 +149,8 @@ for entry in matched:
        at_el.close()
 
    elif entry[0] == "bd":
-       bd_az = open("data/bd_az.dat", 'a')
-       bd_el = open("data/bd_el.dat",'a')
+       bd_az = open(path_to_output + "/data/bd_az.dat", 'a')
+       bd_el = open(path_to_output + "/data/bd_el.dat",'a')
        az_slew = azelslew_calc.calcAz(bd_list, entry)
        el_slew = azelslew_calc.calcEl(bd_list, entry)
        if az_slew > el_slew*az_c:
@@ -163,8 +163,8 @@ for entry in matched:
        bd_el.close()
 
    elif entry[0] == "br":
-       br_az = open("data/br_az.dat", 'a')
-       br_el = open("data/br_el.dat",'a')
+       br_az = open(path_to_output + "/data/br_az.dat", 'a')
+       br_el = open(path_to_output + "/data/br_el.dat",'a')
        az_slew = azelslew_calc.calcAz(br_list, entry)
        el_slew = azelslew_calc.calcEl(br_list, entry)
        if az_slew > el_slew*az_c:
@@ -177,8 +177,8 @@ for entry in matched:
        br_el.close()
 
    elif entry[0] == "ce":
-       ce_az = open("data/ce_az.dat", 'a')
-       ce_el = open("data/ce_el.dat",'a')
+       ce_az = open(path_to_output + "/data/ce_az.dat", 'a')
+       ce_el = open(path_to_output + "/data/ce_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ce_list, entry)
        el_slew = azelslew_calc.calcEl(ce_list, entry)
        if az_slew > el_slew*az_c:
@@ -191,8 +191,8 @@ for entry in matched:
        ce_el.close()
 
    elif entry[0] == "cd":
-       cd_az = open("data/cd_az.dat", 'a')
-       cd_el = open("data/cd_el.dat",'a')
+       cd_az = open(path_to_output + "/data/cd_az.dat", 'a')
+       cd_el = open(path_to_output + "/data/cd_el.dat",'a')
        az_slew = azelslew_calc.calcAz(cd_list, entry)
        el_slew = azelslew_calc.calcEl(cd_list, entry)
        if az_slew > el_slew*az_c:
@@ -205,8 +205,8 @@ for entry in matched:
        cd_el.close()
 
    elif entry[0] == "cc":
-       cc_az = open("data/cc_az.dat", 'a')
-       cc_el = open("data/cc_el.dat",'a')
+       cc_az = open(path_to_output + "/data/cc_az.dat", 'a')
+       cc_el = open(path_to_output + "/data/cc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(cc_list, entry)
        el_slew = azelslew_calc.calcEl(cc_list, entry)
        if az_slew > el_slew*az_c:
@@ -219,8 +219,8 @@ for entry in matched:
        cc_el.close()
 
    elif entry[0] == "ch":
-       ch_az = open("data/ch_az.dat", 'a')
-       ch_el = open("data/ch_el.dat",'a')
+       ch_az = open(path_to_output + "/data/ch_az.dat", 'a')
+       ch_el = open(path_to_output + "/data/ch_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ch_list, entry)
        el_slew = azelslew_calc.calcEl(ch_list, entry)
        if az_slew > el_slew*az_c:
@@ -233,8 +233,8 @@ for entry in matched:
        ch_el.close()
 
    elif entry[0] == "sm":
-       sm_az = open("data/sm_az.dat", 'a')
-       sm_el = open("data/sm_el.dat",'a')
+       sm_az = open(path_to_output + "/data/sm_az.dat", 'a')
+       sm_el = open(path_to_output + "/data/sm_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sm_list, entry)
        el_slew = azelslew_calc.calcEl(sm_list, entry)
        if az_slew > el_slew*az_c:
@@ -247,8 +247,8 @@ for entry in matched:
        sm_el.close()
 
    elif entry[0] == "sb":
-       sb_az = open("data/sb_az.dat", 'a')
-       sb_el = open("data/sb_el.dat",'a')
+       sb_az = open(path_to_output + "/data/sb_az.dat", 'a')
+       sb_el = open(path_to_output + "/data/sb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sb_list, entry)
        el_slew = azelslew_calc.calcEl(sb_list, entry)
        if az_slew > el_slew*az_c:
@@ -261,8 +261,8 @@ for entry in matched:
        sb_el.close()
 
    elif entry[0] == "a13":
-       a13_az = open("data/a13_az.dat", 'a')
-       a13_el = open("data/a13_el.dat",'a')
+       a13_az = open(path_to_output + "/data/a13_az.dat", 'a')
+       a13_el = open(path_to_output + "/data/a13_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a13_list, entry)
        el_slew = azelslew_calc.calcEl(a13_list, entry)
        if az_slew > el_slew*az_c:
@@ -275,8 +275,8 @@ for entry in matched:
        a13_el.close()
 
    elif entry[0] == "a15":
-       a15_az = open("data/a15_az.dat", 'a')
-       a15_el = open("data/a15_el.dat",'a')
+       a15_az = open(path_to_output + "/data/a15_az.dat", 'a')
+       a15_el = open(path_to_output + "/data/a15_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a15_list, entry)
        el_slew = azelslew_calc.calcEl(a15_list, entry)
        if az_slew > el_slew*az_c:
@@ -289,8 +289,8 @@ for entry in matched:
        a15_el.close()
 
    elif entry[0] == "a45":
-       a45_az = open("data/a45_az.dat", 'a')
-       a45_el = open("data/a45_el.dat",'a')
+       a45_az = open(path_to_output + "/data/a45_az.dat", 'a')
+       a45_el = open(path_to_output + "/data/a45_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a45_list, entry)
        el_slew = azelslew_calc.calcEl(a45_list, entry)
        if az_slew > el_slew*az_c:
@@ -303,8 +303,8 @@ for entry in matched:
        a45_el.close()
 
    elif entry[0] == "a6a":
-       a6a_az = open("data/a6a_az.dat", 'a')
-       a6a_el = open("data/a6a_el.dat",'a')
+       a6a_az = open(path_to_output + "/data/a6a_az.dat", 'a')
+       a6a_el = open(path_to_output + "/data/a6a_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a6a_list, entry)
        el_slew = azelslew_calc.calcEl(a6a_list, entry)
        if az_slew > el_slew*az_c:
@@ -317,8 +317,8 @@ for entry in matched:
        a6a_el.close()
 
    elif entry[0] == "eb":
-       eb_az = open("data/eb_az.dat", 'a')
-       eb_el = open("data/eb_el.dat",'a')
+       eb_az = open(path_to_output + "/data/eb_az.dat", 'a')
+       eb_el = open(path_to_output + "/data/eb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(eb_list, entry)
        el_slew = azelslew_calc.calcEl(eb_list, entry)
        if az_slew > el_slew*az_c:
@@ -331,8 +331,8 @@ for entry in matched:
        eb_el.close()
 
    elif entry[0] == "fd":
-       fd_az = open("data/fd_az.dat", 'a')
-       fd_el = open("data/fd_el.dat",'a')
+       fd_az = open(path_to_output + "/data/fd_az.dat", 'a')
+       fd_el = open(path_to_output + "/data/fd_el.dat",'a')
        az_slew = azelslew_calc.calcAz(fd_list, entry)
        el_slew = azelslew_calc.calcEl(fd_list, entry)
        if az_slew > el_slew*az_c:
@@ -345,8 +345,8 @@ for entry in matched:
        fd_el.close()
 
    elif entry[0] == "ft":
-       ft_az = open("data/ft_az.dat", 'a')
-       ft_el = open("data/ft_el.dat",'a')
+       ft_az = open(path_to_output + "/data/ft_az.dat", 'a')
+       ft_el = open(path_to_output + "/data/ft_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ft_list, entry)
        el_slew = azelslew_calc.calcEl(ft_list, entry)
        if az_slew > el_slew*az_c:
@@ -359,8 +359,8 @@ for entry in matched:
        ft_el.close()
 
    elif entry[0] == "gs":
-       gs_az = open("data/gs_az.dat", 'a')
-       gs_el = open("data/gs_el.dat",'a')
+       gs_az = open(path_to_output + "/data/gs_az.dat", 'a')
+       gs_el = open(path_to_output + "/data/gs_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gs_list, entry)
        el_slew = azelslew_calc.calcEl(gs_list, entry)
        if az_slew > el_slew*az_c:
@@ -373,8 +373,8 @@ for entry in matched:
        gs_el.close()
 
    elif entry[0] == "gc":
-       gc_az = open("data/gc_az.dat", 'a')
-       gc_el = open("data/gc_el.dat",'a')
+       gc_az = open(path_to_output + "/data/gc_az.dat", 'a')
+       gc_el = open(path_to_output + "/data/gc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gc_list, entry)
        el_slew = azelslew_calc.calcEl(gc_list, entry)
        if az_slew > el_slew*az_c:
@@ -387,8 +387,8 @@ for entry in matched:
        gc_el.close()
 
    elif entry[0] == "a14":
-       a14_az = open("data/a14_az.dat", 'a')
-       a14_el = open("data/a14_el.dat",'a')
+       a14_az = open(path_to_output + "/data/a14_az.dat", 'a')
+       a14_el = open(path_to_output + "/data/a14_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a14_list, entry)
        el_slew = azelslew_calc.calcEl(a14_list, entry)
        if az_slew > el_slew*az_c:
@@ -401,8 +401,8 @@ for entry in matched:
        a14_el.close()
 
    elif entry[0] == "gv":
-       gv_az = open("data/gv_az.dat", 'a')
-       gv_el = open("data/gv_el.dat",'a')
+       gv_az = open(path_to_output + "/data/gv_az.dat", 'a')
+       gv_el = open(path_to_output + "/data/gv_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gv_list, entry)
        el_slew = azelslew_calc.calcEl(gv_list, entry)
        if az_slew > el_slew*az_c:
@@ -415,8 +415,8 @@ for entry in matched:
        gv_el.close()
 
    elif entry[0] == "hh":
-       hh_az = open("data/hh_az.dat", 'a')
-       hh_el = open("data/hh_el.dat",'a')
+       hh_az = open(path_to_output + "/data/hh_az.dat", 'a')
+       hh_el = open(path_to_output + "/data/hh_el.dat",'a')
        az_slew = azelslew_calc.calcAz(hh_list, entry)
        el_slew = azelslew_calc.calcEl(hh_list, entry)
        if az_slew > el_slew*az_c:
@@ -429,8 +429,8 @@ for entry in matched:
        hh_el.close()
 
    elif entry[0] == "ht":
-       ht_az = open("data/ht_az.dat", 'a')
-       ht_el = open("data/ht_el.dat",'a')
+       ht_az = open(path_to_output + "/data/ht_az.dat", 'a')
+       ht_el = open(path_to_output + "/data/ht_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ht_list, entry)
        el_slew = azelslew_calc.calcEl(ht_list, entry)
        if az_slew > el_slew*az_c:
@@ -443,8 +443,8 @@ for entry in matched:
        ht_el.close()
 
    elif entry[0] == "hc":
-       hc_az = open("data/hc_az.dat", 'a')
-       hc_el = open("data/hc_el.dat",'a')
+       hc_az = open(path_to_output + "/data/hc_az.dat", 'a')
+       hc_el = open(path_to_output + "/data/hc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(hc_list, entry)
        el_slew = azelslew_calc.calcEl(hc_list, entry)
        if az_slew > el_slew*az_c:
@@ -457,8 +457,8 @@ for entry in matched:
        hc_el.close()
 
    elif entry[0] == "hs":
-       hs_az = open("data/hs_az.dat", 'a')
-       hs_el = open("data/hs_el.dat",'a')
+       hs_az = open(path_to_output + "/data/hs_az.dat", 'a')
+       hs_el = open(path_to_output + "/data/hs_el.dat",'a')
        az_slew = azelslew_calc.calcAz(hs_list, entry)
        el_slew = azelslew_calc.calcEl(hs_list, entry)
        if az_slew > el_slew*az_c:
@@ -471,8 +471,8 @@ for entry in matched:
        hs_el.close()
 
    elif entry[0] == "hn":
-       hn_az = open("data/hn_az.dat", 'a')
-       hn_el = open("data/hn_el.dat",'a')
+       hn_az = open(path_to_output + "/data/hn_az.dat", 'a')
+       hn_el = open(path_to_output + "/data/hn_el.dat",'a')
        az_slew = azelslew_calc.calcAz(hn_list, entry)
        el_slew = azelslew_calc.calcEl(hn_list, entry)
        if az_slew > el_slew*az_c:
@@ -485,8 +485,8 @@ for entry in matched:
        hn_el.close()
 
    elif entry[0] == "hb":
-       hb_az = open("data/hb_az.dat", 'a')
-       hb_el = open("data/hb_el.dat",'a')
+       hb_az = open(path_to_output + "/data/hb_az.dat", 'a')
+       hb_el = open(path_to_output + "/data/hb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(hb_list, entry)
        el_slew = azelslew_calc.calcEl(hb_list, entry)
        if az_slew > el_slew*az_c:
@@ -499,8 +499,8 @@ for entry in matched:
        hb_el.close()
 
    elif entry[0] == "ho":
-       ho_az = open("data/ho_az.dat", 'a')
-       ho_el = open("data/ho_el.dat",'a')
+       ho_az = open(path_to_output + "/data/ho_az.dat", 'a')
+       ho_el = open(path_to_output + "/data/ho_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ho_list, entry)
        el_slew = azelslew_calc.calcEl(ho_list, entry)
        if az_slew > el_slew*az_c:
@@ -513,8 +513,8 @@ for entry in matched:
        ho_el.close()
 
    elif entry[0] == "is":
-       is_az = open("data/is_az.dat", 'a')
-       is_el = open("data/is_el.dat",'a')
+       is_az = open(path_to_output + "/data/is_az.dat", 'a')
+       is_el = open(path_to_output + "/data/is_el.dat",'a')
        az_slew = azelslew_calc.calcAz(is_list, entry)
        el_slew = azelslew_calc.calcEl(is_list, entry)
        if az_slew > el_slew*az_c:
@@ -527,8 +527,8 @@ for entry in matched:
        is_el.close()
 
    elif entry[0] == "it":
-       it_az = open("data/it_az.dat", 'a')
-       it_el = open("data/it_el.dat",'a')
+       it_az = open(path_to_output + "/data/it_az.dat", 'a')
+       it_el = open(path_to_output + "/data/it_el.dat",'a')
        az_slew = azelslew_calc.calcAz(it_list, entry)
        el_slew = azelslew_calc.calcEl(it_list, entry)
        if az_slew > el_slew*az_c:
@@ -541,8 +541,8 @@ for entry in matched:
        it_el.close()
 
    elif entry[0] == "jb":
-       jb_az = open("data/jb_az.dat", 'a')
-       jb_el = open("data/jb_el.dat",'a')
+       jb_az = open(path_to_output + "/data/jb_az.dat", 'a')
+       jb_el = open(path_to_output + "/data/jb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(jb_list, entry)
        el_slew = azelslew_calc.calcEl(jb_list, entry)
        if az_slew > el_slew*az_c:
@@ -555,8 +555,8 @@ for entry in matched:
        jb_el.close()
 
    elif entry[0] == "kb":
-       kb_az = open("data/kb_az.dat", 'a')
-       kb_el = open("data/kb_el.dat",'a')
+       kb_az = open(path_to_output + "/data/kb_az.dat", 'a')
+       kb_el = open(path_to_output + "/data/kb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kb_list, entry)
        el_slew = azelslew_calc.calcEl(kb_list, entry)
        if az_slew > el_slew*az_c:
@@ -569,8 +569,8 @@ for entry in matched:
        kb_el.close()
 
    elif entry[0] == "k1":
-       k1_az = open("data/k1_az.dat", 'a')
-       k1_el = open("data/k1_el.dat",'a')
+       k1_az = open(path_to_output + "/data/k1_az.dat", 'a')
+       k1_el = open(path_to_output + "/data/k1_el.dat",'a')
        az_slew = azelslew_calc.calcAz(k1_list, entry)
        el_slew = azelslew_calc.calcEl(k1_list, entry)
        if az_slew > el_slew*az_c:
@@ -583,8 +583,8 @@ for entry in matched:
        k1_el.close()
 
    elif entry[0] == "ke":
-       ke_az = open("data/ke_az.dat", 'a')
-       ke_el = open("data/ke_el.dat",'a')
+       ke_az = open(path_to_output + "/data/ke_az.dat", 'a')
+       ke_el = open(path_to_output + "/data/ke_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ke_list, entry)
        el_slew = azelslew_calc.calcEl(ke_list, entry)
        if az_slew > el_slew*az_c:
@@ -597,8 +597,8 @@ for entry in matched:
        ke_el.close()
 
    elif entry[0] == "ku":
-       ku_az = open("data/ku_az.dat", 'a')
-       ku_el = open("data/ku_el.dat",'a')
+       ku_az = open(path_to_output + "/data/ku_az.dat", 'a')
+       ku_el = open(path_to_output + "/data/ku_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ku_list, entry)
        el_slew = azelslew_calc.calcEl(ku_list, entry)
        if az_slew > el_slew*az_c:
@@ -611,8 +611,8 @@ for entry in matched:
        ku_el.close()
 
    elif entry[0] == "kk":
-       kk_az = open("data/kk_az.dat", 'a')
-       kk_el = open("data/kk_el.dat",'a')
+       kk_az = open(path_to_output + "/data/kk_az.dat", 'a')
+       kk_el = open(path_to_output + "/data/kk_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kk_list, entry)
        el_slew = azelslew_calc.calcEl(kk_list, entry)
        if az_slew > el_slew*az_c:
@@ -625,8 +625,8 @@ for entry in matched:
        kk_el.close()
 
    elif entry[0] == "k2":
-       k2_az = open("data/k2_az.dat", 'a')
-       k2_el = open("data/k2_el.dat",'a')
+       k2_az = open(path_to_output + "/data/k2_az.dat", 'a')
+       k2_el = open(path_to_output + "/data/k2_el.dat",'a')
        az_slew = azelslew_calc.calcAz(k2_list, entry)
        el_slew = azelslew_calc.calcEl(k2_list, entry)
        if az_slew > el_slew*az_c:
@@ -639,8 +639,8 @@ for entry in matched:
        k2_el.close()
 
    elif entry[0] == "kt":
-       kt_az = open("data/kt_az.dat", 'a')
-       kt_el = open("data/kt_el.dat",'a')
+       kt_az = open(path_to_output + "/data/kt_az.dat", 'a')
+       kt_el = open(path_to_output + "/data/kt_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kt_list, entry)
        el_slew = azelslew_calc.calcEl(kt_list, entry)
        if az_slew > el_slew*az_c:
@@ -653,8 +653,8 @@ for entry in matched:
        kt_el.close()
 
    elif entry[0] == "km":
-       km_az = open("data/km_az.dat", 'a')
-       km_el = open("data/km_el.dat",'a')
+       km_az = open(path_to_output + "/data/km_az.dat", 'a')
+       km_el = open(path_to_output + "/data/km_el.dat",'a')
        az_slew = azelslew_calc.calcAz(km_list, entry)
        el_slew = azelslew_calc.calcEl(km_list, entry)
        if az_slew > el_slew*az_c:
@@ -667,8 +667,8 @@ for entry in matched:
        km_el.close()
 
    elif entry[0] == "kp":
-       kp_az = open("data/kp_az.dat", 'a')
-       kp_el = open("data/kp_el.dat",'a')
+       kp_az = open(path_to_output + "/data/kp_az.dat", 'a')
+       kp_el = open(path_to_output + "/data/kp_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kp_list, entry)
        el_slew = azelslew_calc.calcEl(kp_list, entry)
        if az_slew > el_slew*az_c:
@@ -681,8 +681,8 @@ for entry in matched:
        kp_el.close()
 
    elif entry[0] == "kg":
-       kg_az = open("data/kg_az.dat", 'a')
-       kg_el = open("data/kg_el.dat",'a')
+       kg_az = open(path_to_output + "/data/kg_az.dat", 'a')
+       kg_el = open(path_to_output + "/data/kg_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kg_list, entry)
        el_slew = azelslew_calc.calcEl(kg_list, entry)
        if az_slew > el_slew*az_c:
@@ -695,8 +695,8 @@ for entry in matched:
        kg_el.close()
 
    elif entry[0] == "kw":
-       kw_az = open("data/kw_az.dat", 'a')
-       kw_el = open("data/kw_el.dat",'a')
+       kw_az = open(path_to_output + "/data/kw_az.dat", 'a')
+       kw_el = open(path_to_output + "/data/kw_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kw_list, entry)
        el_slew = azelslew_calc.calcEl(kw_list, entry)
        if az_slew > el_slew*az_c:
@@ -709,8 +709,8 @@ for entry in matched:
        kw_el.close()
 
    elif entry[0] == "la":
-       la_az = open("data/la_az.dat", 'a')
-       la_el = open("data/la_el.dat",'a')
+       la_az = open(path_to_output + "/data/la_az.dat", 'a')
+       la_el = open(path_to_output + "/data/la_el.dat",'a')
        az_slew = azelslew_calc.calcAz(la_list, entry)
        el_slew = azelslew_calc.calcEl(la_list, entry)
        if az_slew > el_slew*az_c:
@@ -723,8 +723,8 @@ for entry in matched:
        la_el.close()
 
    elif entry[0] == "ro":
-       ro_az = open("data/ro_az.dat", 'a')
-       ro_el = open("data/ro_el.dat",'a')
+       ro_az = open(path_to_output + "/data/ro_az.dat", 'a')
+       ro_el = open(path_to_output + "/data/ro_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ro_list, entry)
        el_slew = azelslew_calc.calcEl(ro_list, entry)
        if az_slew > el_slew*az_c:
@@ -737,8 +737,8 @@ for entry in matched:
        ro_el.close()
 
    elif entry[0] == "mr":
-       mr_az = open("data/mr_az.dat", 'a')
-       mr_el = open("data/mr_el.dat",'a')
+       mr_az = open(path_to_output + "/data/mr_az.dat", 'a')
+       mr_el = open(path_to_output + "/data/mr_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mr_list, entry)
        el_slew = azelslew_calc.calcEl(mr_list, entry)
        if az_slew > el_slew*az_c:
@@ -751,8 +751,8 @@ for entry in matched:
        mr_el.close()
 
    elif entry[0] == "md":
-       md_az = open("data/md_az.dat", 'a')
-       md_el = open("data/md_el.dat",'a')
+       md_az = open(path_to_output + "/data/md_az.dat", 'a')
+       md_el = open(path_to_output + "/data/md_el.dat",'a')
        az_slew = azelslew_calc.calcAz(md_list, entry)
        el_slew = azelslew_calc.calcEl(md_list, entry)
        if az_slew > el_slew*az_c:
@@ -765,8 +765,8 @@ for entry in matched:
        md_el.close()
 
    elif entry[0] == "ma":
-       ma_az = open("data/ma_az.dat", 'a')
-       ma_el = open("data/ma_el.dat",'a')
+       ma_az = open(path_to_output + "/data/ma_az.dat", 'a')
+       ma_el = open(path_to_output + "/data/ma_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ma_list, entry)
        el_slew = azelslew_calc.calcEl(ma_list, entry)
        if az_slew > el_slew*az_c:
@@ -779,8 +779,8 @@ for entry in matched:
        ma_el.close()
 
    elif entry[0] == "mc":
-       mc_az = open("data/mc_az.dat", 'a')
-       mc_el = open("data/mc_el.dat",'a')
+       mc_az = open(path_to_output + "/data/mc_az.dat", 'a')
+       mc_el = open(path_to_output + "/data/mc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mc_list, entry)
        el_slew = azelslew_calc.calcEl(mc_list, entry)
        if az_slew > el_slew*az_c:
@@ -793,8 +793,8 @@ for entry in matched:
        mc_el.close()
 
    elif entry[0] == "mh":
-       mh_az = open("data/mh_az.dat", 'a')
-       mh_el = open("data/mh_el.dat",'a')
+       mh_az = open(path_to_output + "/data/mh_az.dat", 'a')
+       mh_el = open(path_to_output + "/data/mh_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mh_list, entry)
        el_slew = azelslew_calc.calcEl(mh_list, entry)
        if az_slew > el_slew*az_c:
@@ -807,8 +807,8 @@ for entry in matched:
        mh_el.close()
 
    elif entry[0] == "mi":
-       mi_az = open("data/mi_az.dat", 'a')
-       mi_el = open("data/mi_el.dat",'a')
+       mi_az = open(path_to_output + "/data/mi_az.dat", 'a')
+       mi_el = open(path_to_output + "/data/mi_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mi_list, entry)
        el_slew = azelslew_calc.calcEl(mi_list, entry)
        if az_slew > el_slew*az_c:
@@ -821,8 +821,8 @@ for entry in matched:
        mi_el.close()
 
    elif entry[0] == "mu":
-       mu_az = open("data/mu_az.dat", 'a')
-       mu_el = open("data/mu_el.dat",'a')
+       mu_az = open(path_to_output + "/data/mu_az.dat", 'a')
+       mu_el = open(path_to_output + "/data/mu_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mu_list, entry)
        el_slew = azelslew_calc.calcEl(mu_list, entry)
        if az_slew > el_slew*az_c:
@@ -835,8 +835,8 @@ for entry in matched:
        mu_el.close()
 
    elif entry[0] == "mz":
-       mz_az = open("data/mz_az.dat", 'a')
-       mz_el = open("data/mz_el.dat",'a')
+       mz_az = open(path_to_output + "/data/mz_az.dat", 'a')
+       mz_el = open(path_to_output + "/data/mz_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mz_list, entry)
        el_slew = azelslew_calc.calcEl(mz_list, entry)
        if az_slew > el_slew*az_c:
@@ -849,8 +849,8 @@ for entry in matched:
        mz_el.close()
 
    elif entry[0] == "mn":
-       mn_az = open("data/mn_az.dat", 'a')
-       mn_el = open("data/mn_el.dat",'a')
+       mn_az = open(path_to_output + "/data/mn_az.dat", 'a')
+       mn_el = open(path_to_output + "/data/mn_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mn_list, entry)
        el_slew = azelslew_calc.calcEl(mn_list, entry)
        if az_slew > el_slew*az_c:
@@ -863,8 +863,8 @@ for entry in matched:
        mn_el.close()
 
    elif entry[0] == "mk":
-       mk_az = open("data/mk_az.dat", 'a')
-       mk_el = open("data/mk_el.dat",'a')
+       mk_az = open(path_to_output + "/data/mk_az.dat", 'a')
+       mk_el = open(path_to_output + "/data/mk_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mk_list, entry)
        el_slew = azelslew_calc.calcEl(mk_list, entry)
        if az_slew > el_slew*az_c:
@@ -877,8 +877,8 @@ for entry in matched:
        mk_el.close()
 
    elif entry[0] == "mo":
-       mo_az = open("data/mo_az.dat", 'a')
-       mo_el = open("data/mo_el.dat",'a')
+       mo_az = open(path_to_output + "/data/mo_az.dat", 'a')
+       mo_el = open(path_to_output + "/data/mo_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mo_list, entry)
        el_slew = azelslew_calc.calcEl(mo_list, entry)
        if az_slew > el_slew*az_c:
@@ -891,8 +891,8 @@ for entry in matched:
        mo_el.close()
 
    elif entry[0] == "mp":
-       mp_az = open("data/mp_az.dat", 'a')
-       mp_el = open("data/mp_el.dat",'a')
+       mp_az = open(path_to_output + "/data/mp_az.dat", 'a')
+       mp_el = open(path_to_output + "/data/mp_el.dat",'a')
        az_slew = azelslew_calc.calcAz(mp_list, entry)
        el_slew = azelslew_calc.calcEl(mp_list, entry)
        if az_slew > el_slew*az_c:
@@ -905,8 +905,8 @@ for entry in matched:
        mp_el.close()
 
    elif entry[0] == "nl":
-       nl_az = open("data/nl_az.dat", 'a')
-       nl_el = open("data/nl_el.dat",'a')
+       nl_az = open(path_to_output + "/data/nl_az.dat", 'a')
+       nl_el = open(path_to_output + "/data/nl_el.dat",'a')
        az_slew = azelslew_calc.calcAz(nl_list, entry)
        el_slew = azelslew_calc.calcEl(nl_list, entry)
        if az_slew > el_slew*az_c:
@@ -919,8 +919,8 @@ for entry in matched:
        nl_el.close()
 
    elif entry[0] == "no":
-       no_az = open("data/no_az.dat", 'a')
-       no_el = open("data/no_el.dat",'a')
+       no_az = open(path_to_output + "/data/no_az.dat", 'a')
+       no_el = open(path_to_output + "/data/no_el.dat",'a')
        az_slew = azelslew_calc.calcAz(no_list, entry)
        el_slew = azelslew_calc.calcEl(no_list, entry)
        if az_slew > el_slew*az_c:
@@ -933,8 +933,8 @@ for entry in matched:
        no_el.close()
 
    elif entry[0] == "nt":
-       nt_az = open("data/nt_az.dat", 'a')
-       nt_el = open("data/nt_el.dat",'a')
+       nt_az = open(path_to_output + "/data/nt_az.dat", 'a')
+       nt_el = open(path_to_output + "/data/nt_el.dat",'a')
        az_slew = azelslew_calc.calcAz(nt_list, entry)
        el_slew = azelslew_calc.calcEl(nt_list, entry)
        if az_slew > el_slew*az_c:
@@ -947,8 +947,8 @@ for entry in matched:
        nt_el.close()
 
    elif entry[0] == "g3":
-       g3_az = open("data/g3_az.dat", 'a')
-       g3_el = open("data/g3_el.dat",'a')
+       g3_az = open(path_to_output + "/data/g3_az.dat", 'a')
+       g3_el = open(path_to_output + "/data/g3_el.dat",'a')
        az_slew = azelslew_calc.calcAz(g3_list, entry)
        el_slew = azelslew_calc.calcEl(g3_list, entry)
        if az_slew > el_slew*az_c:
@@ -961,8 +961,8 @@ for entry in matched:
        g3_el.close()
 
    elif entry[0] == "gb":
-       gb_az = open("data/gb_az.dat", 'a')
-       gb_el = open("data/gb_el.dat",'a')
+       gb_az = open(path_to_output + "/data/gb_az.dat", 'a')
+       gb_el = open(path_to_output + "/data/gb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gb_list, entry)
        el_slew = azelslew_calc.calcEl(gb_list, entry)
        if az_slew > el_slew*az_c:
@@ -975,8 +975,8 @@ for entry in matched:
        gb_el.close()
 
    elif entry[0] == "gt":
-       gt_az = open("data/gt_az.dat", 'a')
-       gt_el = open("data/gt_el.dat",'a')
+       gt_az = open(path_to_output + "/data/gt_az.dat", 'a')
+       gt_el = open(path_to_output + "/data/gt_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gt_list, entry)
        el_slew = azelslew_calc.calcEl(gt_list, entry)
        if az_slew > el_slew*az_c:
@@ -989,8 +989,8 @@ for entry in matched:
        gt_el.close()
 
    elif entry[0] == "gn":
-       gn_az = open("data/gn_az.dat", 'a')
-       gn_el = open("data/gn_el.dat",'a')
+       gn_az = open(path_to_output + "/data/gn_az.dat", 'a')
+       gn_el = open(path_to_output + "/data/gn_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gn_list, entry)
        el_slew = azelslew_calc.calcEl(gn_list, entry)
        if az_slew > el_slew*az_c:
@@ -1003,8 +1003,8 @@ for entry in matched:
        gn_el.close()
 
    elif entry[0] == "ny":
-       ny_az = open("data/ny_az.dat", 'a')
-       ny_el = open("data/ny_el.dat",'a')
+       ny_az = open(path_to_output + "/data/ny_az.dat", 'a')
+       ny_el = open(path_to_output + "/data/ny_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ny_list, entry)
        el_slew = azelslew_calc.calcEl(ny_list, entry)
        if az_slew > el_slew*az_c:
@@ -1017,8 +1017,8 @@ for entry in matched:
        ny_el.close()
 
    elif entry[0] == "oh":
-       oh_az = open("data/oh_az.dat", 'a')
-       oh_el = open("data/oh_el.dat",'a')
+       oh_az = open(path_to_output + "/data/oh_az.dat", 'a')
+       oh_el = open(path_to_output + "/data/oh_el.dat",'a')
        az_slew = azelslew_calc.calcAz(oh_list, entry)
        el_slew = azelslew_calc.calcEl(oh_list, entry)
        if az_slew > el_slew*az_c:
@@ -1031,8 +1031,8 @@ for entry in matched:
        oh_el.close()
 
    elif entry[0] == "on":
-       on_az = open("data/on_az.dat", 'a')
-       on_el = open("data/on_el.dat",'a')
+       on_az = open(path_to_output + "/data/on_az.dat", 'a')
+       on_el = open(path_to_output + "/data/on_el.dat",'a')
        az_slew = azelslew_calc.calcAz(on_list, entry)
        el_slew = azelslew_calc.calcEl(on_list, entry)
        if az_slew > el_slew*az_c:
@@ -1045,8 +1045,8 @@ for entry in matched:
        on_el.close()
 
    elif entry[0] == "o8":
-       o8_az = open("data/o8_az.dat", 'a')
-       o8_el = open("data/o8_el.dat",'a')
+       o8_az = open(path_to_output + "/data/o8_az.dat", 'a')
+       o8_el = open(path_to_output + "/data/o8_el.dat",'a')
        az_slew = azelslew_calc.calcAz(o8_list, entry)
        el_slew = azelslew_calc.calcEl(o8_list, entry)
        if az_slew > el_slew*az_c:
@@ -1059,8 +1059,8 @@ for entry in matched:
        o8_el.close()
 
    elif entry[0] == "gg":
-       gg_az = open("data/gg_az.dat", 'a')
-       gg_el = open("data/gg_el.dat",'a')
+       gg_az = open(path_to_output + "/data/gg_az.dat", 'a')
+       gg_el = open(path_to_output + "/data/gg_el.dat",'a')
        az_slew = azelslew_calc.calcAz(gg_list, entry)
        el_slew = azelslew_calc.calcEl(gg_list, entry)
        if az_slew > el_slew*az_c:
@@ -1073,8 +1073,8 @@ for entry in matched:
        gg_el.close()
 
    elif entry[0] == "ov":
-       ov_az = open("data/ov_az.dat", 'a')
-       ov_el = open("data/ov_el.dat",'a')
+       ov_az = open(path_to_output + "/data/ov_az.dat", 'a')
+       ov_el = open(path_to_output + "/data/ov_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ov_list, entry)
        el_slew = azelslew_calc.calcEl(ov_list, entry)
        if az_slew > el_slew*az_c:
@@ -1087,8 +1087,8 @@ for entry in matched:
        ov_el.close()
 
    elif entry[0] == "oo":
-       oo_az = open("data/oo_az.dat", 'a')
-       oo_el = open("data/oo_el.dat",'a')
+       oo_az = open(path_to_output + "/data/oo_az.dat", 'a')
+       oo_el = open(path_to_output + "/data/oo_el.dat",'a')
        az_slew = azelslew_calc.calcAz(oo_list, entry)
        el_slew = azelslew_calc.calcEl(oo_list, entry)
        if az_slew > el_slew*az_c:
@@ -1101,8 +1101,8 @@ for entry in matched:
        oo_el.close()
 
    elif entry[0] == "pa":
-       pa_az = open("data/pa_az.dat", 'a')
-       pa_el = open("data/pa_el.dat",'a')
+       pa_az = open(path_to_output + "/data/pa_az.dat", 'a')
+       pa_el = open(path_to_output + "/data/pa_el.dat",'a')
        az_slew = azelslew_calc.calcAz(pa_list, entry)
        el_slew = azelslew_calc.calcEl(pa_list, entry)
        if az_slew > el_slew*az_c:
@@ -1115,8 +1115,8 @@ for entry in matched:
        pa_el.close()
 
    elif entry[0] == "pe":
-       pe_az = open("data/pe_az.dat", 'a')
-       pe_el = open("data/pe_el.dat",'a')
+       pe_az = open(path_to_output + "/data/pe_az.dat", 'a')
+       pe_el = open(path_to_output + "/data/pe_el.dat",'a')
        az_slew = azelslew_calc.calcAz(pe_list, entry)
        el_slew = azelslew_calc.calcEl(pe_list, entry)
        if az_slew > el_slew*az_c:
@@ -1129,8 +1129,8 @@ for entry in matched:
        pe_el.close()
 
    elif entry[0] == "pt":
-       pt_az = open("data/pt_az.dat", 'a')
-       pt_el = open("data/pt_el.dat",'a')
+       pt_az = open(path_to_output + "/data/pt_az.dat", 'a')
+       pt_el = open(path_to_output + "/data/pt_el.dat",'a')
        az_slew = azelslew_calc.calcAz(pt_list, entry)
        el_slew = azelslew_calc.calcEl(pt_list, entry)
        if az_slew > el_slew*az_c:
@@ -1143,8 +1143,8 @@ for entry in matched:
        pt_el.close()
 
    elif entry[0] == "qb":
-       qb_az = open("data/qb_az.dat", 'a')
-       qb_el = open("data/qb_el.dat",'a')
+       qb_az = open(path_to_output + "/data/qb_az.dat", 'a')
+       qb_el = open(path_to_output + "/data/qb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(qb_list, entry)
        el_slew = azelslew_calc.calcEl(qb_list, entry)
        if az_slew > el_slew*az_c:
@@ -1157,8 +1157,8 @@ for entry in matched:
        qb_el.close()
 
    elif entry[0] == "yj":
-       yj_az = open("data/yj_az.dat", 'a')
-       yj_el = open("data/yj_el.dat",'a')
+       yj_az = open(path_to_output + "/data/yj_az.dat", 'a')
+       yj_el = open(path_to_output + "/data/yj_el.dat",'a')
        az_slew = azelslew_calc.calcAz(yj_list, entry)
        el_slew = azelslew_calc.calcEl(yj_list, entry)
        if az_slew > el_slew*az_c:
@@ -1171,8 +1171,8 @@ for entry in matched:
        yj_el.close()
 
    elif entry[0] == "a61":
-       a61_az = open("data/a61_az.dat", 'a')
-       a61_el = open("data/a61_el.dat",'a')
+       a61_az = open(path_to_output + "/data/a61_az.dat", 'a')
+       a61_el = open(path_to_output + "/data/a61_el.dat",'a')
        az_slew = azelslew_calc.calcAz(a61_list, entry)
        el_slew = azelslew_calc.calcEl(a61_list, entry)
        if az_slew > el_slew*az_c:
@@ -1185,8 +1185,8 @@ for entry in matched:
        a61_el.close()
 
    elif entry[0] == "st":
-       st_az = open("data/st_az.dat", 'a')
-       st_el = open("data/st_el.dat",'a')
+       st_az = open(path_to_output + "/data/st_az.dat", 'a')
+       st_el = open(path_to_output + "/data/st_el.dat",'a')
        az_slew = azelslew_calc.calcAz(st_list, entry)
        el_slew = azelslew_calc.calcEl(st_list, entry)
        if az_slew > el_slew*az_c:
@@ -1199,8 +1199,8 @@ for entry in matched:
        st_el.close()
 
    elif entry[0] == "sc":
-       sc_az = open("data/sc_az.dat", 'a')
-       sc_el = open("data/sc_el.dat",'a')
+       sc_az = open(path_to_output + "/data/sc_az.dat", 'a')
+       sc_el = open(path_to_output + "/data/sc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sc_list, entry)
        el_slew = azelslew_calc.calcEl(sc_list, entry)
        if az_slew > el_slew*az_c:
@@ -1213,8 +1213,8 @@ for entry in matched:
        sc_el.close()
 
    elif entry[0] == "s3":
-       s3_az = open("data/s3_az.dat", 'a')
-       s3_el = open("data/s3_el.dat",'a')
+       s3_az = open(path_to_output + "/data/s3_az.dat", 'a')
+       s3_el = open(path_to_output + "/data/s3_el.dat",'a')
        az_slew = azelslew_calc.calcAz(s3_list, entry)
        el_slew = azelslew_calc.calcEl(s3_list, entry)
        if az_slew > el_slew*az_c:
@@ -1227,8 +1227,8 @@ for entry in matched:
        s3_el.close()
 
    elif entry[0] == "kv":
-       kv_az = open("data/kv_az.dat", 'a')
-       kv_el = open("data/kv_el.dat",'a')
+       kv_az = open(path_to_output + "/data/kv_az.dat", 'a')
+       kv_el = open(path_to_output + "/data/kv_el.dat",'a')
        az_slew = azelslew_calc.calcAz(kv_list, entry)
        el_slew = azelslew_calc.calcEl(kv_list, entry)
        if az_slew > el_slew*az_c:
@@ -1241,8 +1241,8 @@ for entry in matched:
        kv_el.close()
 
    elif entry[0] == "sh":
-       sh_az = open("data/sh_az.dat", 'a')
-       sh_el = open("data/sh_el.dat",'a')
+       sh_az = open(path_to_output + "/data/sh_az.dat", 'a')
+       sh_el = open(path_to_output + "/data/sh_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sh_list, entry)
        el_slew = azelslew_calc.calcEl(sh_list, entry)
        if az_slew > el_slew*az_c:
@@ -1255,8 +1255,8 @@ for entry in matched:
        sh_el.close()
 
    elif entry[0] == "se":
-       se_az = open("data/se_az.dat", 'a')
-       se_el = open("data/se_el.dat",'a')
+       se_az = open(path_to_output + "/data/se_az.dat", 'a')
+       se_el = open(path_to_output + "/data/se_el.dat",'a')
        az_slew = azelslew_calc.calcAz(se_list, entry)
        el_slew = azelslew_calc.calcEl(se_list, entry)
        if az_slew > el_slew*az_c:
@@ -1269,8 +1269,8 @@ for entry in matched:
        se_el.close()
 
    elif entry[0] == "sy":
-       sy_az = open("data/sy_az.dat", 'a')
-       sy_el = open("data/sy_el.dat",'a')
+       sy_az = open(path_to_output + "/data/sy_az.dat", 'a')
+       sy_el = open(path_to_output + "/data/sy_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sy_list, entry)
        el_slew = azelslew_calc.calcEl(sy_list, entry)
        if az_slew > el_slew*az_c:
@@ -1283,8 +1283,8 @@ for entry in matched:
        sy_el.close()
 
    elif entry[0] == "sv":
-       sv_az = open("data/sv_az.dat", 'a')
-       sv_el = open("data/sv_el.dat",'a')
+       sv_az = open(path_to_output + "/data/sv_az.dat", 'a')
+       sv_el = open(path_to_output + "/data/sv_el.dat",'a')
        az_slew = azelslew_calc.calcAz(sv_list, entry)
        el_slew = azelslew_calc.calcEl(sv_list, entry)
        if az_slew > el_slew*az_c:
@@ -1297,8 +1297,8 @@ for entry in matched:
        sv_el.close()
 
    elif entry[0] == "ta":
-       ta_az = open("data/ta_az.dat", 'a')
-       ta_el = open("data/ta_el.dat",'a')
+       ta_az = open(path_to_output + "/data/ta_az.dat", 'a')
+       ta_el = open(path_to_output + "/data/ta_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ta_list, entry)
        el_slew = azelslew_calc.calcEl(ta_list, entry)
        if az_slew > el_slew*az_c:
@@ -1311,8 +1311,8 @@ for entry in matched:
        ta_el.close()
 
    elif entry[0] == "t6":
-       t6_az = open("data/t6_az.dat", 'a')
-       t6_el = open("data/t6_el.dat",'a')
+       t6_az = open(path_to_output + "/data/t6_az.dat", 'a')
+       t6_el = open(path_to_output + "/data/t6_el.dat",'a')
        az_slew = azelslew_calc.calcAz(t6_list, entry)
        el_slew = azelslew_calc.calcEl(t6_list, entry)
        if az_slew > el_slew*az_c:
@@ -1325,8 +1325,8 @@ for entry in matched:
        t6_el.close()
 
    elif entry[0] == "ti":
-       ti_az = open("data/ti_az.dat", 'a')
-       ti_el = open("data/ti_el.dat",'a')
+       ti_az = open(path_to_output + "/data/ti_az.dat", 'a')
+       ti_el = open(path_to_output + "/data/ti_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ti_list, entry)
        el_slew = azelslew_calc.calcEl(ti_list, entry)
        if az_slew > el_slew*az_c:
@@ -1339,8 +1339,8 @@ for entry in matched:
        ti_el.close()
 
    elif entry[0] == "tc":
-       tc_az = open("data/tc_az.dat", 'a')
-       tc_el = open("data/tc_el.dat",'a')
+       tc_az = open(path_to_output + "/data/tc_az.dat", 'a')
+       tc_el = open(path_to_output + "/data/tc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(tc_list, entry)
        el_slew = azelslew_calc.calcEl(tc_list, entry)
        if az_slew > el_slew*az_c:
@@ -1353,8 +1353,8 @@ for entry in matched:
        tc_el.close()
 
    elif entry[0] == "tr":
-       tr_az = open("data/tr_az.dat", 'a')
-       tr_el = open("data/tr_el.dat",'a')
+       tr_az = open(path_to_output + "/data/tr_az.dat", 'a')
+       tr_el = open(path_to_output + "/data/tr_el.dat",'a')
        az_slew = azelslew_calc.calcAz(tr_list, entry)
        el_slew = azelslew_calc.calcEl(tr_list, entry)
        if az_slew > el_slew*az_c:
@@ -1367,8 +1367,8 @@ for entry in matched:
        tr_el.close()
 
    elif entry[0] == "ts":
-       ts_az = open("data/ts_az.dat", 'a')
-       ts_el = open("data/ts_el.dat",'a')
+       ts_az = open(path_to_output + "/data/ts_az.dat", 'a')
+       ts_el = open(path_to_output + "/data/ts_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ts_list, entry)
        el_slew = azelslew_calc.calcEl(ts_list, entry)
        if az_slew > el_slew*az_c:
@@ -1381,8 +1381,8 @@ for entry in matched:
        ts_el.close()
 
    elif entry[0] == "uc":
-       uc_az = open("data/uc_az.dat", 'a')
-       uc_el = open("data/uc_el.dat",'a')
+       uc_az = open(path_to_output + "/data/uc_az.dat", 'a')
+       uc_el = open(path_to_output + "/data/uc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(uc_list, entry)
        el_slew = azelslew_calc.calcEl(uc_list, entry)
        if az_slew > el_slew*az_c:
@@ -1395,8 +1395,8 @@ for entry in matched:
        uc_el.close()
 
    elif entry[0] == "ur":
-       ur_az = open("data/ur_az.dat", 'a')
-       ur_el = open("data/ur_el.dat",'a')
+       ur_az = open(path_to_output + "/data/ur_az.dat", 'a')
+       ur_el = open(path_to_output + "/data/ur_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ur_list, entry)
        el_slew = azelslew_calc.calcEl(ur_list, entry)
        if az_slew > el_slew*az_c:
@@ -1409,8 +1409,8 @@ for entry in matched:
        ur_el.close()
 
    elif entry[0] == "us":
-       us_az = open("data/us_az.dat", 'a')
-       us_el = open("data/us_el.dat",'a')
+       us_az = open(path_to_output + "/data/us_az.dat", 'a')
+       us_el = open(path_to_output + "/data/us_el.dat",'a')
        az_slew = azelslew_calc.calcAz(us_list, entry)
        el_slew = azelslew_calc.calcEl(us_list, entry)
        if az_slew > el_slew*az_c:
@@ -1423,8 +1423,8 @@ for entry in matched:
        us_el.close()
 
    elif entry[0] == "vs":
-       vs_az = open("data/vs_az.dat", 'a')
-       vs_el = open("data/vs_el.dat",'a')
+       vs_az = open(path_to_output + "/data/vs_az.dat", 'a')
+       vs_el = open(path_to_output + "/data/vs_el.dat",'a')
        az_slew = azelslew_calc.calcAz(vs_list, entry)
        el_slew = azelslew_calc.calcEl(vs_list, entry)
        if az_slew > el_slew*az_c:
@@ -1437,8 +1437,8 @@ for entry in matched:
        vs_el.close()
 
    elif entry[0] == "vm":
-       vm_az = open("data/vm_az.dat", 'a')
-       vm_el = open("data/vm_el.dat",'a')
+       vm_az = open(path_to_output + "/data/vm_az.dat", 'a')
+       vm_el = open(path_to_output + "/data/vm_el.dat",'a')
        az_slew = azelslew_calc.calcAz(vm_list, entry)
        el_slew = azelslew_calc.calcEl(vm_list, entry)
        if az_slew > el_slew*az_c:
@@ -1451,8 +1451,8 @@ for entry in matched:
        vm_el.close()
 
    elif entry[0] == "y1":
-       y1_az = open("data/y1_az.dat", 'a')
-       y1_el = open("data/y1_el.dat",'a')
+       y1_az = open(path_to_output + "/data/y1_az.dat", 'a')
+       y1_el = open(path_to_output + "/data/y1_el.dat",'a')
        az_slew = azelslew_calc.calcAz(y1_list, entry)
        el_slew = azelslew_calc.calcEl(y1_list, entry)
        if az_slew > el_slew*az_c:
@@ -1465,8 +1465,8 @@ for entry in matched:
        y1_el.close()
 
    elif entry[0] == "ww":
-       ww_az = open("data/ww_az.dat", 'a')
-       ww_el = open("data/ww_el.dat",'a')
+       ww_az = open(path_to_output + "/data/ww_az.dat", 'a')
+       ww_el = open(path_to_output + "/data/ww_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ww_list, entry)
        el_slew = azelslew_calc.calcEl(ww_list, entry)
        if az_slew > el_slew*az_c:
@@ -1479,8 +1479,8 @@ for entry in matched:
        ww_el.close()
 
    elif entry[0] == "wf":
-       wf_az = open("data/wf_az.dat", 'a')
-       wf_el = open("data/wf_el.dat",'a')
+       wf_az = open(path_to_output + "/data/wf_az.dat", 'a')
+       wf_el = open(path_to_output + "/data/wf_el.dat",'a')
        az_slew = azelslew_calc.calcAz(wf_list, entry)
        el_slew = azelslew_calc.calcEl(wf_list, entry)
        if az_slew > el_slew*az_c:
@@ -1493,8 +1493,8 @@ for entry in matched:
        wf_el.close()
 
    elif entry[0] == "wb":
-       wb_az = open("data/wb_az.dat", 'a')
-       wb_el = open("data/wb_el.dat",'a')
+       wb_az = open(path_to_output + "/data/wb_az.dat", 'a')
+       wb_el = open(path_to_output + "/data/wb_el.dat",'a')
        az_slew = azelslew_calc.calcAz(wb_list, entry)
        el_slew = azelslew_calc.calcEl(wb_list, entry)
        if az_slew > el_slew*az_c:
@@ -1507,8 +1507,8 @@ for entry in matched:
        wb_el.close()
 
    elif entry[0] == "wn":
-       wn_az = open("data/wn_az.dat", 'a')
-       wn_el = open("data/wn_el.dat",'a')
+       wn_az = open(path_to_output + "/data/wn_az.dat", 'a')
+       wn_el = open(path_to_output + "/data/wn_el.dat",'a')
        az_slew = azelslew_calc.calcAz(wn_list, entry)
        el_slew = azelslew_calc.calcEl(wn_list, entry)
        if az_slew > el_slew*az_c:
@@ -1521,8 +1521,8 @@ for entry in matched:
        wn_el.close()
 
    elif entry[0] == "ws":
-       ws_az = open("data/ws_az.dat", 'a')
-       ws_el = open("data/ws_el.dat",'a')
+       ws_az = open(path_to_output + "/data/ws_az.dat", 'a')
+       ws_el = open(path_to_output + "/data/ws_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ws_list, entry)
        el_slew = azelslew_calc.calcEl(ws_list, entry)
        if az_slew > el_slew*az_c:
@@ -1535,8 +1535,8 @@ for entry in matched:
        ws_el.close()
 
    elif entry[0] == "wz":
-       wz_az = open("data/wz_az.dat", 'a')
-       wz_el = open("data/wz_el.dat",'a')
+       wz_az = open(path_to_output + "/data/wz_az.dat", 'a')
+       wz_el = open(path_to_output + "/data/wz_el.dat",'a')
        az_slew = azelslew_calc.calcAz(wz_list, entry)
        el_slew = azelslew_calc.calcEl(wz_list, entry)
        if az_slew > el_slew*az_c:
@@ -1549,8 +1549,8 @@ for entry in matched:
        wz_el.close()
 
    elif entry[0] == "yg":
-       yg_az = open("data/yg_az.dat", 'a')
-       yg_el = open("data/yg_el.dat",'a')
+       yg_az = open(path_to_output + "/data/yg_az.dat", 'a')
+       yg_el = open(path_to_output + "/data/yg_el.dat",'a')
        az_slew = azelslew_calc.calcAz(yg_list, entry)
        el_slew = azelslew_calc.calcEl(yg_list, entry)
        if az_slew > el_slew*az_c:
@@ -1563,8 +1563,8 @@ for entry in matched:
        yg_el.close()
 
    elif entry[0] == "ys":
-       ys_az = open("data/ys_az.dat", 'a')
-       ys_el = open("data/ys_el.dat",'a')
+       ys_az = open(path_to_output + "/data/ys_az.dat", 'a')
+       ys_el = open(path_to_output + "/data/ys_el.dat",'a')
        az_slew = azelslew_calc.calcAz(ys_list, entry)
        el_slew = azelslew_calc.calcEl(ys_list, entry)
        if az_slew > el_slew*az_c:
@@ -1577,8 +1577,8 @@ for entry in matched:
        ys_el.close()
 
    elif entry[0] == "zc":
-       zc_az = open("data/zc_az.dat", 'a')
-       zc_el = open("data/zc_el.dat",'a')
+       zc_az = open(path_to_output + "/data/zc_az.dat", 'a')
+       zc_el = open(path_to_output + "/data/zc_el.dat",'a')
        az_slew = azelslew_calc.calcAz(zc_list, entry)
        el_slew = azelslew_calc.calcEl(zc_list, entry)
        if az_slew > el_slew*az_c:

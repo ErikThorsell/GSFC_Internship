@@ -22,7 +22,6 @@ IMGDIR=""
 SESSIONPATH=""
 OPT=""
 GRAPH=""
-var=""
 
 if [ $# -gt 0 ]; then
     echo "# ERROR #"
@@ -35,7 +34,11 @@ echo "Running calculate_slew.sh"
 echo "For instructions on how to run the program, please see the README.md"
 echo " "
 echo "Please provide the path(s) to the sessions you wish to analyze:"
-IFS=' ' read -ra SESSIONPATH
+echo "Example: /500/* OR /500/r47?? OR /500/vgt001"
+read SESSIONPATH
+path_array=($SESSIONPATH)
+
+echo " "
 
 echo "Please provide the path to where you want the output to be stored:"
 read OUTPUTDIR
@@ -52,14 +55,10 @@ if [ ! -d $OUTPUTDIR ]; then
     mkdir $IMGDIR
 fi
 
-for SESSIONDIR in "${SESSIONPATH[@]}"; do
-    echo $SESSIONDIR
+for DIR in "${path_array[@]}"; do
+    python2 $SRC1 $OUTPUTDIR $DIR
 done
 
-#if [ ! -d $SKDDIR ]; then
-#    echo "Unable to locate" $SKDDIR "please read the README.md for more info on how to use the program."
-#    exit
-#fi
 #echo "Running program" $SRC1
 #echo " "
 #for f in $SKDDIR*; do
@@ -83,13 +82,13 @@ done
 #if [ $# -gt 0 ]; then
 #    OPT="$1"
 #fi
-#
-#echo " "
-#echo "Running program" $SRC2 $OPT
-#echo " "
-#python2 $SRC2 $OPT
-#
-#echo "Execution completed."
-#echo " "
-#echo "The data is stored in" $DATADIR "and any plots are stored in" $IMGDIR
+
+echo " "
+echo "Running program" $SRC2 $OPT
+echo " "
+python2 $SRC2 $OUTPUTDIR $OPT
+
+echo "Execution completed."
+echo " "
+echo "The data is stored in" $DATADIR "and any plots are stored in" $IMGDIR
 #

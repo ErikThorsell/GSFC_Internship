@@ -20,7 +20,7 @@ import numpy
 import math
 
 
-def plot_curve(data_tuple, modelTimes_original, station, orientation):
+def plot_curve(data_tuple, modelTimes_original, station, orientation, path):
     # data_tuple = (speed, offset, x, y, x_new, y_new, k_new)
     speed = data_tuple[0]
     offset = data_tuple[1]
@@ -60,13 +60,13 @@ def plot_curve(data_tuple, modelTimes_original, station, orientation):
     plt.ylabel('Time [s]')
     plt.suptitle('%s, %s' % (station.upper(),orientation.upper()) +\
                "\n"+ 'Speed: %.0f deg/min, offset: %.1f s'%(1/k_new*60,offset))
-    plt.savefig('./img/%s_%s.png' % (station, orientation))
+    plt.savefig(path + "/img/%s_%s.png" % (station, orientation))
     plt.close()
     return
 
 
 
-def speed_offset(xdata, ydata, station, time, source):
+def speed_offset(xdata, ydata, station, time, source, path):
     ysorted=[]
     xsorted=[]
     ydisc=[]
@@ -74,7 +74,7 @@ def speed_offset(xdata, ydata, station, time, source):
     ans = (0,0,0,0,0,0,0)
     k_old = 0.0
     threshold = numpy.mean(ydata)/10
-    discfile = open('./data/lsq_disc.dat', 'a')
+    discfile = open(path + "/data/lsq_disc.dat", 'a')
     discfile.write("# Station" + "," + "Date" + "," + "Source" + "," + "dAz" + "," + "dEl" + '\n')
 
     # First line

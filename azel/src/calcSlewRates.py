@@ -18,12 +18,12 @@ import os
 import sys
 import numpy
 
-path_to_dat = './data/'
+path_to_out = sys.argv[1]
 lines=[]
 graph = False
 
-if len(sys.argv) > 1:
-    if sys.argv[1] == "--graph":
+if len(sys.argv) > 2:
+    if sys.argv[2] == "--graph":
         graph = True
     else:
         graph = False
@@ -31,14 +31,14 @@ if len(sys.argv) > 1:
         print "Only valid flag is --graph"
         sys.exit()
 
-for subdir, dirs, files in os.walk(path_to_dat):
+for subdir, dirs, files in os.walk(path_to_out + "/data/"):
     for file in files:
         if file[-4:] == ".dat":
             station = file[0:2]
             station = gsn.getStationName(station)
             orientation = file[3:5]
 
-            with open(path_to_dat + file) as csvfile:
+            with open(path_to_out+ "/data/" + file) as csvfile:
                 readCSV = csv.reader(csvfile,delimiter=',')
                 realTimes = []
                 distance = []
@@ -70,7 +70,7 @@ for subdir, dirs, files in os.walk(path_to_dat):
 
                 if len(realTimes) != 0:
 
-                    solution = leastsq.speed_offset(distance, realTimes, stationname, timestamp, source)
+                    solution = leastsq.speed_offset(distance, realTimes, stationname, timestamp, source, path_to_out)
 
                     # Calculate current model
                     x = numpy.array(distance)
@@ -87,14 +87,14 @@ for subdir, dirs, files in os.walk(path_to_dat):
                     % (station.upper(), curoffset, curspeed) + '\n\n')
 
                     if graph == True and solution[0] != 0 and solution[1] != 0:
-                        leastsq.plot_curve(solution, modelTimes, station, orientation)
+                        leastsq.plot_curve(solution, modelTimes, station, orientation, path_to_out)
                 else:
                     lines.append( "No trakl or flagr for station: " + station.upper() + \
                     ',' + orientation.upper() + "\n\n")
 
 lines.sort()
 
-res = open('./data/lsq_result.dat', 'w')
+res = open(path_to_out + "/data/lsq_result.dat", 'w')
 for i in range(0,len(lines)):
     res.write(lines[i])
 res.close()
