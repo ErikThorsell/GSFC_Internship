@@ -32,6 +32,8 @@ if [ $# -gt 0 ]; then
 fi
 
 echo "Running calculate_slew.sh"
+echo "For instructions on how to run the program, please see the README.md"
+echo " "
 echo "Please provide the path(s) to the sessions you wish to analyze:"
 IFS=' ' read -ra SESSIONPATH
 
@@ -40,8 +42,15 @@ read OUTPUTDIR
 DATADIR=$OUTPUTDIR/data/
 IMGDIR=$OUTPUTDIR/img/
 
-echo $DATADIR
-echo $IMGDIR
+echo " "
+
+if [ ! -d $OUTPUTDIR ]; then
+    echo "Could not find the specified output path."
+    echo "Creating: $OUTPUTDIR."
+    mkdir $OUTPUTDIR
+    mkdir $DATADIR
+    mkdir $IMGDIR
+fi
 
 for SESSIONDIR in "${SESSIONPATH[@]}"; do
     echo $SESSIONDIR
