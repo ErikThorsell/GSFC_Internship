@@ -46,10 +46,29 @@ echo " "
 
 echo "Please provide the path to where you want the output to be stored."
 echo "# WARNING #"
-echo "# Note that the directory specified will be purged! #"
+echo "The directory specified will be purged!"
 read OUTPUTDIR
 DATADIR=$OUTPUTDIR/data/
 IMGDIR=$OUTPUTDIR/img/
+
+if [ ! -d $OUTPUTDIR ]; then
+    echo "Could not find the specified output path."
+    echo "Creating: $OUTPUTDIR."
+    mkdir $OUTPUTDIR
+    mkdir $DATADIR
+    mkdir $IMGDIR
+else
+    echo $OUTPUTDIR "already exists. Do you wish to purge (rm -rf $OUTPUTDIR)? [y/n]"
+    read ans
+    if [ $ans != 'y' ]; then
+        echo "You did not answer 'y'."
+        echo "Exiting program."
+        exit
+    fi
+    rm -rf $OUTPUTDIR/*
+    mkdir $DATADIR
+    mkdir $IMGDIR
+fi
 
 echo " "
 echo "Do you want to plot graphs? [y/n]"
@@ -59,17 +78,6 @@ if [ "$graph" == 'y' ]; then
     OPT="--graph"
 fi
 
-if [ ! -d $OUTPUTDIR ]; then
-    echo "Could not find the specified output path."
-    echo "Creating: $OUTPUTDIR."
-    mkdir $OUTPUTDIR
-    mkdir $DATADIR
-    mkdir $IMGDIR
-else
-    rm -rf $OUTPUTDIR/*
-    mkdir $DATADIR
-    mkdir $IMGDIR
-fi
 
 ## Starting execution of program
 
