@@ -38,14 +38,14 @@ def parseSkdTime(time):
 
 def getLogData(path_to_logs, tups):
     nstations = 0
-    acquirefound = False
+    sourceacquired = False
     station = ""
 
     for subdir, dirs, files in os.walk(path_to_logs):
         for file in files:
             if file[-4:] == ".log":
                 sourcefound = False
-                acquirefound = False
+                sourceacquired = False
                 nstations = nstations + 1
                 station = file[-6:-4].lower()
                 log = open(os.path.join(subdir, file), 'r')
@@ -56,21 +56,22 @@ def getLogData(path_to_logs, tups):
                     if ("source=" in line) and (("ccw" in line) \
                                            or ("cw" in line) \
                                            or ("neutral" in line)):
+                        sourcefound = True
                         sline = line.split(',')
                         source = sline[0]
                         ssource = source.split('=')
                         source = ssource[1]
                         direction = sline[len(sline)-1][:-1]
-                        sourcefound = True
                         sourcedate = parseLogTime(line[:20])
+
                     if ((("#trakl#Source acquired" in line) or \
                         ("#trakl# Source acquired" in line) or \
                         ('#flagr#flagr/antenna,acquired' in line)) and sourcefound):
-                        acquirefound = True
+                        sourceacquired = True
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
                             tups.append((station, sourcedate, source, trakldate, direction, file))
-                if not acquirefound:
+                if not sourceacquired:
                     print "# WARNING #"
                     print "Trakl or Flagr is not turned on for station " + station \
                         + " in session " + file[:-6] + '\n'
