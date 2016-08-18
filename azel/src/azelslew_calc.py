@@ -36,7 +36,7 @@ def parseSkdTime(time):
 
 ###############################################################################
 
-def getLogData(path_to_logs, tups):
+def getLogData(path_to_logs, log_data):
     nstations = 0
     sourceacquired = False
     station = ""
@@ -70,7 +70,7 @@ def getLogData(path_to_logs, tups):
                         sourceacquired = True
                         trakldate = parseLogTime(line[:20])
                         if (trakldate > sourcedate):
-                            tups.append((station, sourcedate, source, trakldate, direction, file))
+                            log_data.append((station, sourcedate, source, trakldate, direction, file))
                 if not sourceacquired:
                     print "# WARNING #"
                     print "Trakl or Flagr is not turned on for station " + station \

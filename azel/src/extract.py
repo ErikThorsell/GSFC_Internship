@@ -34,14 +34,14 @@ path_to_dir = sys.argv[2]
 
 filename = ""
 nstations = 0
-tups = []
+log_data = []
 scheduled_stations = []
 theo = []
 matched = []
 
-nstations = azelslew_calc.getLogData(path_to_dir, tups)
+nstations = azelslew_calc.getLogData(path_to_dir, log_data)
 azelslew_calc.getSkdData(path_to_dir, nstations, scheduled_stations, theo)
-azelslew_calc.matchSkdLog(tups, theo, matched)
+azelslew_calc.matchSkdLog(log_data, theo, matched)
 
 az_c = 1
 el_c = 1
