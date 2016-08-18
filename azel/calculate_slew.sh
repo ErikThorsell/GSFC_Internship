@@ -30,11 +30,12 @@ if [ $# -gt 0 ]; then
     exit
 fi
 
+echo " "
 echo "Running calculate_slew.sh"
 echo "For instructions on how to run the program, please see the README.md"
 echo " "
 echo "Please provide the path(s) to the sessions you wish to analyze:"
-echo "Example: /500/* OR /500/r47?? OR /500/vgt001"
+echo "You can specify arbitrarily many sessions, wildcards are allowed."
 read SESSIONPATH
 path_array=($SESSIONPATH)
 
@@ -47,6 +48,13 @@ IMGDIR=$OUTPUTDIR/img/
 
 echo " "
 
+echo "Do you want to plot graphs? [y/n]"
+read graph
+
+if [ graph == 'y' or graph == 'Y' or graph == "Yes" or graph == "yes" or graph=="YES" ]; then
+    OPT="--graph"
+fi
+
 if [ ! -d $OUTPUTDIR ]; then
     echo "Could not find the specified output path."
     echo "Creating: $OUTPUTDIR."
@@ -56,6 +64,8 @@ if [ ! -d $OUTPUTDIR ]; then
 fi
 
 for DIR in "${path_array[@]}"; do
+    echo " "
+    echo "Processing session" $DIR
     python2 $SRC1 $OUTPUTDIR $DIR
 done
 
