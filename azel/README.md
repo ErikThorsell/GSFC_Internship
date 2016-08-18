@@ -5,38 +5,49 @@ A simple way to calculate the slew time for an arbitrary VLBI (AZ/EL) antenna.
 
 ## Requirements
 
- - A folder named ``skds``, containing schedule summaries for each session.
-   These files should be named ``<session>.azel`` (e.g. r1727.azel). The
-   creation of these files are explained in section `Generate .azel`.
- - A folder named ``logs``, containing folders for each session, corresponding
-   to the .azel-files. Each of the folder holds the log files for that
-   particular session. (E.g logs/r1727/r1727ft.log)
- - That trakl or flagr is turned on for the antenna.
- - An up-to-date version of the file ``antenna.cat`` that holds a sumary of all
-   the antennas' specifications. This file should be placed in ``src/``.
- - The Python library [numpy](http://www.numpy.org/, "Numpy") in order to find
-   the least square solution.
- - The Python library [mathplotlib](http://matplotlib.org/, "Mathplotlib") in
-   order to utilize the ``--graph`` flag and get good looking graphs. (More
-   about this below.)
+- A folder that contains the .log-files as well as the .azel-file for an
+  arbitrary session. The log files should be named ``<session>.log`` and the
+  azel file ``<session>.azel``. The creation of the azel files are explained
+  in section `Generate .azel`.
 
-The folders ``skds`` and ``logs`` are currently present in this folder and are
-populated with data for pretty much all r1* and r4* sessions for 2016.
+    - **Note:** Defining the path as ``/500/year/*`` will give the result for
+      all sessions in that year. This is the "higest level" possible at the
+      moment. ``/500/*`` is not a valid path.
+
+- That trakl or flagr is turned on for the antenna.
+
+- An up-to-date version of the file ``antenna.cat`` that holds a sumary of all
+  the antennas' specifications. This file should be placed in ``src/``, or the
+  path in calculate_slew.sh should be changed.
+
+- The Python library [numpy](http://www.numpy.org/, "Numpy") in order to find
+  the least square solution.
+
+- The Python library [mathplotlib](http://matplotlib.org/, "Mathplotlib") in
+  order to utilize the ``--graph`` flag and get good looking graphs. (More
+  about this below.)
+
+
 
 ## Run the program
 
-``./calculate_slew.sh``, runs the program and the output is stored in
-``data/``. If one wishes to generate graphs to get a visual representation of
-the calculated models the flag ``--graph`` can be used as:
-``./calculate_slew.sh --graph``. These graphs are stored in ``img/``.
+``sh calculate_slew.sh``, runs the program. The user is faced with an
+interactive program that prompts the user for a couple of paths. The program
+also asks if graphs should be generated or not.
+
+**Note:** ``calculate_slew 3.0`` will feature a "commandline only mode" s.t.
+the script can be run as part of other scripts.
+
 
 ### House keeping
 
-There are two programs that should be run before ``./calculate_slew.sh``.
-``src/getStationSpecs.py`` pulls the antennas' specifications from the file
-``antenna.cat``. ``src/create_extract.py`` also uses ``antenna.cat``, it creates
-the file ``extract.py`` and ensures all the antennas in ``antenna.cat`` can be
-used. Both programs should be run in the folder ``src/``.
+There are two programs that run before ``./calculate_slew.sh``.
+
+1. ``src/getStationSpecs.py`` pulls the antennas' specifications from the file
+   ``antenna.cat``.
+
+2. ``src/create_extract.py`` also uses ``antenna.cat``, it creates the file
+   ``extract.py`` and ensures all the antennas in ``antenna.cat`` can be used.
 
 **Note:** If you have limited disk space, or are simply reluctant to waste
 space and time, remove the antennas not in use from *your copy of*
@@ -44,15 +55,15 @@ space and time, remove the antennas not in use from *your copy of*
 
 ## Output from the program
 
-If run without the ``--graph`` flag, the program stores two ``.dat``-files for
-each antenna. The files are named ``<station>_az.dat`` and ``<station>_el.dat``
-depending on if azimuth or elevation is calculated. ``data/`` also contains the
-file ``lsq_result.dat`` which holds the desired least square solution for each
-antenna, i.e. the antenna speed and offset.
+The program stores two ``.dat``-files for each antenna. The files are named
+``<station>_az.dat`` and ``<station>_el.dat`` depending on if azimuth or
+elevation is calculated. ``data/`` also contains the file ``lsq_result.dat``
+which holds the desired least square solution for each antenna, i.e. the
+antenna speed and offset.
 
-If the program is run *with* the ``--graph`` flag, all of the above is true,
-but the program also stores graphs showing the solution for each antenna - both
-in azimuth and elevation. These graphs are stored in ``img/``.
+If the user wishes to generate graphs all of the above is true, but the program
+also stores graphs showing the solution for each antenna - both in azimuth and
+elevation. These graphs are stored in ``img/``.
 
 ## Generate .azel
 
@@ -70,7 +81,6 @@ The ``.azel``-files are generated by the following commands:
 
 ``$> mv <session>.azel /path/to/calculate_slew/skds/``
 
-
-Unfortunately, this has to be done manually at the time. Maybe Mr. Gipson can
-shed more light on the matter of automatizing this.
+This can be done automatically, but is outside the scope of our knowledge at
+the moment.
 
