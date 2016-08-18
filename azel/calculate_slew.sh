@@ -23,10 +23,13 @@ SESSIONPATH=""
 OPT=""
 GRAPH=""
 
+###############################################################################
+### Pre program 
+
 if [ $# -gt 0 ]; then
-    echo "# ERROR #"
+    echo "## ERROR ##"
     echo "Invalid usage. The program will prompt you for the information
-          required."
+          required. Please do not enter any options!"
     exit
 fi
 
@@ -41,17 +44,18 @@ path_array=($SESSIONPATH)
 
 echo " "
 
-echo "Please provide the path to where you want the output to be stored:"
+echo "Please provide the path to where you want the output to be stored."
+echo "# WARNING #"
+echo "# Note that the directory specified will be purged! #"
 read OUTPUTDIR
 DATADIR=$OUTPUTDIR/data/
 IMGDIR=$OUTPUTDIR/img/
 
 echo " "
-
 echo "Do you want to plot graphs? [y/n]"
 read graph
 
-if [ graph == 'y' or graph == 'Y' or graph == "Yes" or graph == "yes" or graph=="YES" ]; then
+if [ "$graph" == 'y' ]; then
     OPT="--graph"
 fi
 
@@ -61,9 +65,20 @@ if [ ! -d $OUTPUTDIR ]; then
     mkdir $OUTPUTDIR
     mkdir $DATADIR
     mkdir $IMGDIR
+else
+    rm -rf $OUTPUTDIR/*
+    mkdir $DATADIR
+    mkdir $IMGDIR
 fi
 
+## Starting execution of program
+
 for DIR in "${path_array[@]}"; do
+    if [ ! -d $DIR ]; then
+        echo "Unable to locate" $DIR"."
+        echo "Please ensure that you have specified a valid path."
+        exit
+    fi
     echo " "
     echo "Processing session" $DIR
     python2 $SRC1 $OUTPUTDIR $DIR
