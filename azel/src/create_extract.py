@@ -62,14 +62,14 @@ def getStationNames(path_to_file):
                 "\n" +\
                 "filename = \"\"\n" +\
                 "nstations = 0\n" +\
-                "tups = []\n" +\
+                "log_data = []\n" +\
+                "skd_data = []\n" +\
                 "scheduled_stations = []\n" +\
-                "theo = []\n" +\
                 "matched = []\n" +\
                 "\n" +\
-                "nstations = azelslew_calc.getLogData(path_to_dir, tups)\n" +\
-                "azelslew_calc.getSkdData(path_to_dir, nstations, scheduled_stations, theo)\n" +\
-                "azelslew_calc.matchSkdLog(tups, theo, matched)\n" +\
+                "nstations = azelslew_calc.getLogData(path_to_dir, log_data)\n" +\
+                "azelslew_calc.getSkdData(path_to_dir, nstations, scheduled_stations, skd_data)\n" +\
+                "azelslew_calc.matchSkdLog(log_data, skd_data, matched)\n" +\
                 "\n" +\
                 "az_c = 1\n" +\
                 "el_c = 1\n" +\
