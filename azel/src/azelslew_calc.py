@@ -6,7 +6,8 @@ import sys
 
 
 ###############################################################################
-
+# Converts the date and time given in the log file to number of seconds since
+# the start of the year
 def parseLogTime(time):
     year  = float(time[:4])
     day   = float(time[5:8])
@@ -20,6 +21,8 @@ def parseLogTime(time):
     return time/100
 
 ###############################################################################
+# Converts the date and time given in the skd file to number of seconds since
+# the start of the year
 
 def parseSkdTime(time):
 
@@ -35,6 +38,13 @@ def parseSkdTime(time):
     return time/100
 
 ###############################################################################
+# Read in data from a log file (.log file)
+# Find when the antenna is given the command to go to a new source, what source
+# that is, what cablewrap it is on (cw, ccw, neutral) 
+# Find if trakl or flagr is being used, and if so find the time when a source
+# was acquired. 
+# Also, store information about which session (which log file) the information
+# comes from.
 
 def getLogData(path_to_logs, log_data):
     nstations = 0
@@ -79,6 +89,9 @@ def getLogData(path_to_logs, log_data):
         return nstations
 
 ###############################################################################
+# Read in data from a skd file (.azel file) 
+# Find scheduled sources and their respective positions in az and el, and what
+# time they are supposed to be observed for all the stations in the session.
 
 def getSkdData(path_to_dir, nstations, scheduled_stations, skd_data):
     azelfound = False
@@ -116,7 +129,9 @@ def getSkdData(path_to_dir, nstations, scheduled_stations, skd_data):
                            "README.md for info on how to generate one."
             
 ###############################################################################
-
+# Matches data from skd and log files. 
+# For matched points, save: (station, slewingtime, d_az, d_el, timestamp, source)
+            
 def matchSkdLog(log, skd, matched):
     # log(station, sourcetime, source, trakltime, direction, filename)
     # skd(station, timestamp, source, az, el)
@@ -132,33 +147,38 @@ def matchSkdLog(log, skd, matched):
                 if skd[j][1] < log[i][1] < skd[j+1][1]:     #Are we between two contigous measurements in the skd file?
                     if log[i][2] == skd[j+1][2]:            #Are we on the same source?
                         station = log[i][0]                 #Save station name
-                        timediff = log[i][3] - log[i][1]    #Save the actual time the antenna slewed
+                        slewingtime = log[i][3] - log[i][1]    #Save the actual time the antenna slewed
                         az_before = skd[j][3]                    
                         az_after = skd[j+1][3]
                         el_before = skd[j][4]
                         el_after = skd[j+1][4]
                         d_az = abs(az_after - az_before)    #Save Delta_Azimuth
                         d_el = abs(el_after - el_before)    #Save Delta_Elevation
-                        skdtime = skd[j][1]                 #Save timestamp from skd file
+                        timestamp = skd[j][1]               #Save timestamp from skd file
                         source = skd[j][2]                  #Save source name
-                        matched.append((station, timediff, d_az, d_el, skdtime, source))
+                        matched.append((station, slewingtime, d_az, d_el, timestamp, source))
 
 ###############################################################################
+# Calculates theoretical azimuth slewing time
 
-# time = (acc + (distance/(vel/60))
-# sec  = sec  +  deg/((deg/min)/(sec/min))
+def calcAz(antenna_spec, rotdata):
+    az_offset = antenna_spec[4]
+    d_az = rotdata[2]
+    az_speed = antenna_spec[2]
 
-def calcAz(spec, rotdata):
+    az_slewtime = (az_offset + d_az/(az_speed/60))  #Divide by 60 to get sec to min conversion right
 
-    az_slew = (spec[4] + rotdata[2]/(spec[2]/60))
-
-    return az_slew
+    return az_slewtime
 
 ###############################################################################
+# Calculates theoretical elevation slewing time
 
-def calcEl(spec, rotdata):
+def calcEl(antenna_spec, rotdata):
+    el_offset = antenna_spec[5]
+    d_el = rotdata[3]
+    el_speed = antenna_spec[3]
 
-    el_slew = (spec[4] + rotdata[3]/(spec[3]/60))
+    el_slewtime = (el_offset + d_el/(el_speed/60))  #Divide by 60 to get sec to min conversion right
 
-    return el_slew
+    return el_slewtime
 
