@@ -1,4 +1,5 @@
 import time
+import sys
 
 def isNumber(s):
     try:
@@ -8,9 +9,9 @@ def isNumber(s):
         return False
 
 
-def getStationNames(path_to_file):
+def getStationNames(path_to_input, path_to_output):
     
-    source = open(path_to_file, 'r')
+    source = open(path_to_input, 'r')
     stationList = source.readlines()
     source.close()
     
@@ -23,8 +24,8 @@ def getStationNames(path_to_file):
             if isNumber(st[0:1]):
                 st = "a" + st
             stationName.append(st)
-            
-    main = open("extract.py", "w")
+
+    main = open(path_to_output, "w")
     
     main.write( \
 "###############################################################################\n"+\
@@ -121,4 +122,12 @@ def getStationNames(path_to_file):
     main.close()
 ###############################################################################
 
-getStationNames("./antenna.cat") 
+if len(sys.argv) < 3:
+    print "Invalid usage!"
+    print "Usage $> python create_extract.py antenna.cat output_file"
+    sys.exit()
+
+path_to_antenna = sys.argv[1]
+path_to_output = sys.argv[2]
+
+getStationNames(path_to_antenna, path_to_output)

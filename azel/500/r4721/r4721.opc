@@ -1,0 +1,24 @@
+OPC ver. 2.5  Updated on 2016.04.13-12:23:41
+#
+Experiment:            r4721
+Database:              16JAN07XE
+Arc_line:              ! r4721
+#
+Global_arclist_update: + D
+Superfile:             + D
+Site_weights:          + D
+Baseline_weights:      + D
+EOP_solution:          + D
+Multi-EOP_solution:    ? ?
+Standalone_solution:   + D
+EOPK_series:           + D
+SNR_analysis:          + D
+VDB_update:            + D
+VMF_creation:          + D
+#
+Database_submission:   ? ?
+EOP_submission:        + D
+EOPS_XY_submission:    + D
+Multi-EOP_submission:  ? ?
+SINEX_submission:      + D
+#

@@ -7,6 +7,7 @@
 ###############################################################################
 
 import time
+import sys
 
 def isNumber(s):
     try:
@@ -82,7 +83,16 @@ def getStationData(path_to_file):
     parseStationData(sourcelines)
 
 ### MAIN PROGRAM ###
-sp = open("station_specs.py",'w')
+if len(sys.argv) < 4:
+    print "Invalid number of arguments."
+    print "Usage $> python getStationSpecs.py antenna.cat output_specs output_names"
+    sys.exit()
+
+path_to_antenna = sys.argv[1]
+path_to_specs = sys.argv[2]
+path_to_data  = sys.argv[3]
+
+sp = open(path_to_specs,'w')
 sp.write( \
     "###############################################################################\n" + \
     "# This is an automatically generated spec file (created by the script         #\n" + \
@@ -98,9 +108,9 @@ sp.write( \
 # can generate a list of all station names by writing to pl. Note that you have
 # to tinker a bit with the file once its created!
 
-pl = open("station_names.dat", 'w')
+pl = open(path_to_data, 'w')
 pl.write("list = [ \\\n")
-getStationData("./antenna.cat")
+getStationData(path_to_antenna)
 pl.write("]")
 
 pl.close()

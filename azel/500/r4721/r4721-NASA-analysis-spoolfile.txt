@@ -1,0 +1,370 @@
+1Run 16104-1618
+ Analysis center: GSF -- NASA Goddard Space Flight Center
+ Analyst:         Sergei Bolotin ( sergei.bolotin@nasa.gov )
+ Machine:         lacerta  i686  Linux 3.11.10-25-desktop
+ Executables:     /space/p3/home/slb/Projects/=NS=/libGPGeo/src/nuSolve/.libs
+ Solve initials:  SB
+ Spool format:    SgLib-0.2.10 (Cmok)
+ Local time:      2016.04.13-12:18:10
+ Correlator type: difx    
+ Mark-3 db_name:
+
+ Data base $16JAN07XE Ver  3
+
+ Matrix Condition Number =   2.394540506755285E+12
+
+ Listing_Options:  CRES_EMULATION NO  BASELINES NO  MINIMUM NO
+ Listing_Options:  MAPPED_EOP_OUTPUT NO  SEG_OUTPUT NO  APRIORI_ZENDEL NO
+ Listing_Options:  NRD_TABLE YES  CHI_TABLE NO  SRC_STAT PRE2004  SEG_STYLE PRE2005
+ SGLib release  :  2015 Dec 11
+
+  Flyby Station Cals:    DB Station Cals:              | DB Non-station Cals: | Atmosphere Partial:
+ --------------------------------------------------------------------------------------------------
+    FORTLEZA:NMFDRFLY    cable                         | Pol Tide             | NMFWTFLY              
+    HART15M :NMFDRFLY                                  | WobXCont             |                       
+    KOKEE   :NMFDRFLY                                  | WobYCont             |                       
+    NYALES20:NMFDRFLY    cable                         | EarthTid             |                       
+    RAEGYEB :NMFDRFLY                                  | Ocean                |                       
+    WETTZELL:NMFDRFLY    cable                         | UT1Ortho             |                       
+    YEBES40M:NMFDRFLY    cable                         | XpYpOrth             |                       
+                                                       | XpYpLib              |                       
+                                                       | UT1Libra             |                       
+                                                       | OPTLCont             |                       
+ --------------------------------------------------------------------------------------------------
+ CALC Version:  11.02  SgLib-0.2.10 (Cmok)
+
+          $16JAN07SE  2  NOT IN SOLUTION
+
+  Met Statistics:
+                    Temperature      Pressure        Humidity
+   Station         average   rms   average   rms   average   rms
+   FORTLEZA  MET   -999.0     0.0  -999.0     0.0-99900.0     0.0
+   HART15M   MET     26.7     4.7   863.8     1.5    45.7    19.4
+   KOKEE     MET     17.3     2.0   889.6     1.0    85.8     8.2
+   NYALES20  MET    -10.8     1.4  1013.7     1.8    68.5     7.3
+   RAEGYEB   MET      9.8     0.7   907.7     1.7    89.1     6.2
+   WETTZELL  MET      2.2     0.8   933.5     2.7    89.3     7.7
+   YEBES40M  MET      9.8     0.7   907.7     1.7    89.2     6.2
+
+ Run 16104-1618         3787 Observation Pairs Available 
+ Session started on:    2457395.271181   2016.01.07 18:30:30.000  UTC
+ Actual duration:       86324.000  sec           00 23:58:44.000  sec
+ Solution type: Group delay X-band    
+
+ Data Type     Number of   Weighted RMS    Normalized RMS   Chi Square
+             Observations    Residual         Residual      (precis)
+                 Used
+ 
+   Delay     3240             40.425 ps              1.00       1.0000
+   Rate         0                  0 fs/s            0.00       0.0000
+Combined        0                                    0.00       0.0000
+----------------------------------------------------------------------- 
+ Used quality_code_limit:                                  5            
+ Number of potentially recoverable observations:        3481            
+ Number of potentially good observations with QC 5-9:   3481           
+ Number of used observations:                           3240  ( 93.08%) 
+ Number of suppressed observations:                      241  (  6.92%) 
+----------------------------------------------------------------------- 
+
+
+
+ Baseline Statistics
+      Baseline        # W.Obs   W.RMS Del   N.R.D.   N.R.D. W.RMS Rate   N.R.R.  D.RW   R.RW 
+                    used/recov     ps     standard ( 15ps+i)  fs/s                ps    fs/s  
+
+ FORTLEZA-HART15M   126/  129    86.8       0.96      2.63     0.0        0.00   83.7    0.0
+ FORTLEZA-KOKEE      63/   66    55.9       0.91      1.92     0.0        0.00   53.9    0.0
+ FORTLEZA-NYALES20   63/   64    44.1       0.93      1.42     0.0        0.00   39.2    0.0
+ FORTLEZA-RAEGYEB   112/  112    64.0       0.95      2.42     0.0        0.00   62.0    0.0
+ FORTLEZA-WETTZELL   77/   81    28.4       0.87      1.21     0.0        0.00   27.1    0.0
+ FORTLEZA-YEBES40M  118/  118    86.3       0.97      3.89     0.0        0.00   87.5    0.0
+ HART15M -NYALES20  114/  114    55.2       0.95      1.68     0.0        0.00   49.7    0.0
+ HART15M -RAEGYEB   182/  184    59.0       0.95      2.10     0.0        0.00   55.2    0.0
+ HART15M -WETTZELL  178/  178    46.1       0.93      1.83     0.0        0.00   44.0    0.0
+ HART15M -YEBES40M  191/  191    81.1       0.96      3.71     0.0        0.00   81.8    0.0
+ KOKEE   -NYALES20  207/  209    27.8       0.92      1.12     0.0        0.00   22.9    0.0
+ KOKEE   -RAEGYEB   121/  122    66.7       0.97      2.12     0.0        0.00   62.1    0.0
+ KOKEE   -WETTZELL  148/  153    34.0       0.94      1.32     0.0        0.00   30.5    0.0
+ KOKEE   -YEBES40M  126/  126    76.9       0.97      3.23     0.0        0.00   76.5    0.0
+ NYALES20-RAEGYEB   248/  250    52.7       0.96      2.14     0.0        0.00   50.0    0.0
+ NYALES20-WETTZELL  266/  269    16.9       0.91      0.86     0.0        0.00   13.7    0.0
+ NYALES20-YEBES40M  264/  267    69.6       0.97      3.47     0.0        0.00   70.0    0.0
+ WETTZELL-RAEGYEB   311/  312    55.4       0.97      2.78     0.0        0.00   55.3    0.0
+ WETTZELL-YEBES40M  325/  325    75.6       0.97      4.29     0.0        0.00   77.0    0.0
+
+
+ Not included:                                                                          
+
+ HART15M -KOKEE       0/    0    deselected
+ RAEGYEB -YEBES40M    0/  211    deselected
+
+
+ Source Statistics 
+     Source           # W.Obs   W.RMS Del   N.R.D.   N.R.D. W.RMS Rate   N.R.R. 
+                                   ps     standard  ( 15ps)   fs/s  
+ 
+     0017+200 A     111/  117    35.5        0.88     2.55     0.0        0.00
+     0016+731 B     208/  224    28.9        0.83     2.55     0.0        0.00
+     0019+058 C       9/   10    60.7        1.02     2.10     0.0        0.00
+     0048-097 D       8/    9    62.0        1.00     2.54     0.0        0.00
+     0104-408 E      10/   11    74.5        0.99     2.55     0.0        0.00
+     0119+041 F       4/    5    74.5        1.12     3.10     0.0        0.00
+     0133+476 G     167/  180    27.2        0.76     2.13     0.0        0.00
+     0202+319 H      97/  102    27.2        0.78     2.21     0.0        0.00
+     0229+131 I      86/   89    42.9        1.04     2.56     0.0        0.00
+     0256-005 J      19/   19    70.0        1.08     2.71     0.0        0.00
+     0308-611 K       5/    5   114.2        1.12     1.89     0.0        0.00
+     0322+222 L      34/   35    50.4        1.12     2.35     0.0        0.00
+     0332-403 M       9/    9    90.7        1.08     2.25     0.0        0.00
+     0338-214 N       1/    1    63.2        1.20     1.93     0.0        0.00
+     0420-014 O      83/   85    45.4        0.99     3.05     0.0        0.00
+     0444+634 P      27/   34    46.3        1.07     2.71     0.0        0.00
+     0454-234 Q      31/   35    57.1        0.94     4.04     0.0        0.00
+     0459+135 R       9/   10    41.3        1.08     3.85     0.0        0.00
+     0530-727 S       5/    5    66.0        0.74     2.06     0.0        0.00
+     0537-441 T       4/    5    46.3        0.71     2.36     0.0        0.00
+     0552+398 U      40/   42    39.1        1.06     3.86     0.0        0.00
+     0556+238 V       2/    3    72.8        1.04     2.36     0.0        0.00
+     0606-223 W      21/   24    64.1        1.02     2.96     0.0        0.00
+     0646-306 X      19/   21    58.4        0.91     2.34     0.0        0.00
+     0656+082 Y       3/    4    55.9        0.78     1.84     0.0        0.00
+     0716+714 Z     187/  195    36.3        0.92     2.40     0.0        0.00
+     0723+219 A      43/   47    51.1        1.12     2.72     0.0        0.00
+     0727-115 B      39/   41    57.6        1.06     4.69     0.0        0.00
+     0738+491 C     137/  147    40.1        0.95     2.43     0.0        0.00
+     0808+019 D      49/   50    38.6        1.00     3.43     0.0        0.00
+     0821+394 E      64/   69    47.8        1.17     3.42     0.0        0.00
+     0834-201 F      22/   23    78.6        1.15     3.43     0.0        0.00
+     OJ287    G      24/   25    51.7        1.13     4.04     0.0        0.00
+     0912+029 H      15/   16    72.5        1.21     2.42     0.0        0.00
+     0920-397 I       6/    8    75.9        0.92     2.20     0.0        0.00
+     0955+476 J      56/   61    46.9        1.15     3.06     0.0        0.00
+     0955+326 K      26/   28    44.2        0.99     2.41     0.0        0.00
+     1039+811 L      86/   95    48.0        1.08     2.29     0.0        0.00
+     1057-797 M       6/    6    61.8        0.71     2.45     0.0        0.00
+     1101+384 N       9/   10    52.7        1.13     3.32     0.0        0.00
+     1104-445 O       1/    1    83.1        0.89     1.88     0.0        0.00
+     1124-186 P      24/   27    59.1        0.97     2.77     0.0        0.00
+     1133-032 Q      13/   16    46.3        0.67     1.64     0.0        0.00
+     1156+295 R      88/   96    30.9        0.78     2.41     0.0        0.00
+     1243-072 S      23/   25    51.0        0.78     2.37     0.0        0.00
+     1244-255 T       4/    5    39.2        0.61     1.58     0.0        0.00
+     1252+119 U      26/   27    35.7        0.89     2.75     0.0        0.00
+     1300+580 V      91/  102    38.6        0.95     2.98     0.0        0.00
+     1306+360 W       2/    2    35.1        1.03     1.61     0.0        0.00
+     1324+224 X       3/    3    44.2        1.07     2.38     0.0        0.00
+     1352-104 Y       5/    5    39.4        0.66     1.78     0.0        0.00
+     1406-267 Z      12/   14    60.4        0.92     2.78     0.0        0.00
+     1424-418 A       8/   11    93.4        1.23     5.18     0.0        0.00
+     1428+370 B       3/    3    45.1        1.01     1.09     0.0        0.00
+     1432+200 C       1/    1    11.2        0.25     0.27     0.0        0.00
+     1502+036 D      18/   18    36.1        0.88     2.59     0.0        0.00
+     1519-294 E      10/   10    36.8        0.57     1.72     0.0        0.00
+     1538+149 F      94/  100    38.1        0.86     2.09     0.0        0.00
+     1616+063 G       6/    6    23.0        0.59     0.89     0.0        0.00
+     1639-062 H      27/   27    47.0        0.84     2.40     0.0        0.00
+     1657-261 I      11/   12    37.2        0.69     1.80     0.0        0.00
+     1722+330 J      55/   59    54.9        1.10     2.17     0.0        0.00
+     1726+455 K     147/  157    34.4        0.97     2.90     0.0        0.00
+     1741-038 L      72/   77    46.1        0.90     3.32     0.0        0.00
+     1758-651 M       3/    3    84.0        0.93     2.45     0.0        0.00
+     3C371    N     205/  226    41.4        0.99     2.33     0.0        0.00
+     1846+322 O      20/   24    45.1        0.88     1.91     0.0        0.00
+     1921-293 P      21/   22    65.5        1.00     4.63     0.0        0.00
+     1923+210 Q      15/   17    32.4        0.75     1.85     0.0        0.00
+     2000+472 R      54/   62    43.4        1.00     2.26     0.0        0.00
+     2008-159 S      27/   30    50.7        0.84     2.80     0.0        0.00
+     2013+163 T      44/   46    45.0        0.93     2.25     0.0        0.00
+     2052-474 U       6/    6   153.3        1.77     5.79     0.0        0.00
+     2059+034 V       5/    5    36.2        0.88     2.15     0.0        0.00
+     2113+293 W       7/    9    45.0        0.65     1.68     0.0        0.00
+     2141+175 X      81/   82    38.3        0.89     2.53     0.0        0.00
+     2149+056 Y       5/    5    44.1        1.08     2.87     0.0        0.00
+     2214+350 Z      18/   20    46.7        0.84     1.60     0.0        0.00
+     2255-282 A      18/   19    39.8        0.60     1.67     0.0        0.00
+     2300-683 B       1/    2    21.7        0.22     0.41     0.0        0.00
+     2318+049 C      74/   76    38.7        0.81     2.30     0.0        0.00
+     2319+317 D      60/   64    53.9        1.00     2.15     0.0        0.00
+     2319+444 E       2/    2    39.1        0.89     1.08     0.0        0.00
+     2355-534 F       6/    7   120.9        1.39     3.60     0.0        0.00
+     2355-106 G      43/   45    64.4        1.12     3.81     0.0        0.00
+
+
+ Station Statistics 
+     Station          # W.Obs   W.RMS Del   N.R.D.   N.R.D. W.RMS Rate   N.R.R. 
+                                   ps     standard  ( 15ps)   fs/s   
+ 
+     FORTLEZA       559/  570    53.5        0.94     2.60     0.0        0.00
+     HART15M        791/  796    60.4        0.95     2.57     0.0        0.00
+     KOKEE          665/  676    38.3        0.94     1.98     0.0        0.00
+     NYALES20      1162/ 1173    29.4        0.94     2.12     0.0        0.00
+     RAEGYEB        974/ 1191    57.2        0.96     2.38     0.0        0.00
+     WETTZELL      1305/ 1318    31.4        0.94     2.70     0.0        0.00
+     YEBES40M      1024/ 1238    75.9        0.97     3.81     0.0        0.00
+
+
+                       *** Flyby Status ***
+
+                    directory: /space/p3/home/slb/nuSolve/af_
+
+Station   Source    Nutation  Nutation  Earth     Earth     Station   Pressure  EOP Intp. EOP Intp. High Freq Axis      
+Positions Positions Model     Time      Rotation  Rotation  Velocity  Loading   Smoothing Smoothing EOP       Offset    
+                              Series    Series    Interpol. Model               CALC      Mod File  Model     Mod File  
+--------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
+glo.sit   glo.src   NONE      NONE      NONE      NONE      glo.vel   NONE      NO_ZONAL  N/A       NONE      glo.axis  
+
+Site Plate Map: /space/p3/home/slb/nuSolve/af_/sitpl.dat           
+
+ Parameter adjustments for run 16104-1618 User=SB
+                                        Parameter               Adjustment              a-sigma              m-sigma
+      KOKEE    CLCK 16/01/07 19:39 Reference
+Station positions are for epoch: 2016.01.08-06:55:42
+    1. FORTLEZA 7297 SOAM  X Comp       4985369990.27 mm         -9.189 mm              6.793 mm              6.793 mm
+    2. FORTLEZA 7297 SOAM  Y Comp      -3955020405.35 mm         -6.582 mm              5.196 mm              5.196 mm
+    3. FORTLEZA 7297 SOAM  Z Comp       -428472062.47 mm         -8.987 mm              3.500 mm              3.500 mm
+       FORTLEZA 7297       U Comp               -2.49 mm         -2.493 mm              8.047 mm              8.047 mm
+       FORTLEZA 7297       E Comp              -10.87 mm        -10.867 mm              2.680 mm              2.680 mm
+       FORTLEZA 7297       N Comp               -9.18 mm         -9.177 mm              3.670 mm              3.670 mm
+    4. FORTLEZA CL 0 16/01/07 18:30                           -7405.111 ns              0.140 ns              0.140 ns        
+    5. FORTLEZA CL 1 16/01/07 18:30                              40.880 D-14            0.586 D-14            0.586 D-14      
+    6. FORTLEZA CL 2 16/01/07 18:30                              -3.099 D-14/day        0.754 D-14/day        0.754 D-14/day  
+   31. FORTLEZA AT 0 16/01/07 18:30                            1081.517 ps             12.314 ps             12.315 ps
+       FORTLEZA Atm  2016.01.08-01:17:47.993  Avg:   -24.187 ps   Rms:      44.971 ps   Tot_Rms:      44.972 ps
+   56. FORTLEZA NG 16/01/07 18:30                                -1.277 mm              0.400 mm              0.400 mm        
+   57. FORTLEZA EG 16/01/07 18:30                                 2.250 mm              0.463 mm              0.463 mm        
+   58. FORTLEZA NG 16/01/08 18:29                                -1.277 mm              0.400 mm              0.400 mm        
+   59. FORTLEZA EG 16/01/08 18:29                                 2.250 mm              0.463 mm              0.463 mm        
+
+Station positions are for epoch: 2016.01.08-07:08:04
+   60. HART15M  7378 AFRC  X Comp       5085490808.00 mm          7.718 mm              7.231 mm              7.231 mm
+   61. HART15M  7378 AFRC  Y Comp       2668161558.69 mm          8.145 mm              3.354 mm              3.354 mm
+   62. HART15M  7378 AFRC  Z Comp      -2768692589.03 mm        -11.013 mm              3.744 mm              3.744 mm
+       HART15M  7378       U Comp               14.36 mm         14.361 mm              7.288 mm              7.288 mm
+       HART15M  7378       E Comp                3.63 mm          3.627 mm              2.363 mm              2.363 mm
+       HART15M  7378       N Comp               -5.27 mm         -5.271 mm              4.343 mm              4.343 mm
+   63. HART15M  CL 0 16/01/07 18:30                             -50.833 ns              0.139 ns              0.139 ns        
+   64. HART15M  CL 1 16/01/07 18:30                              33.011 D-14            0.587 D-14            0.587 D-14      
+   65. HART15M  CL 2 16/01/07 18:30                              -1.061 D-14/day        0.750 D-14/day        0.750 D-14/day  
+   90. HART15M  AT 0 16/01/07 18:30                             442.220 ps             13.883 ps             13.884 ps
+       HART15M  Atm  2016.01.08-01:26:38.610  Avg:     0.515 ps   Rms:      60.228 ps   Tot_Rms:      60.230 ps
+  115. HART15M  NG 16/01/07 18:30                                -3.748 mm              0.605 mm              0.605 mm        
+  116. HART15M  EG 16/01/07 18:30                                 2.717 mm              0.482 mm              0.482 mm        
+  117. HART15M  NG 16/01/08 18:29                                -3.748 mm              0.605 mm              0.605 mm        
+  118. HART15M  EG 16/01/08 18:29                                 2.717 mm              0.482 mm              0.482 mm        
+
+Station positions are for epoch: 2016.01.08-06:29:45
+  119. KOKEE    7298 PCFC  X Comp      -5543837812.48 mm        -10.108 mm              4.165 mm              4.165 mm
+  120. KOKEE    7298 PCFC  Y Comp      -2054566650.24 mm          7.727 mm              2.166 mm              2.166 mm
+  121. KOKEE    7298 PCFC  Z Comp       2387852529.53 mm        -23.345 mm              4.511 mm              4.512 mm
+       KOKEE    7298       U Comp               -2.50 mm         -2.500 mm              5.062 mm              5.062 mm
+       KOKEE    7298       E Comp              -10.76 mm        -10.758 mm              1.525 mm              1.525 mm
+       KOKEE    7298       N Comp              -24.18 mm        -24.184 mm              3.801 mm              3.801 mm
+  122. KOKEE    AT 0 16/01/07 18:30                             209.646 ps             40.920 ps             40.921 ps
+       KOKEE    Atm  2016.01.08-05:41:25.129  Avg:    40.920 ps   Rms:      24.620 ps   Tot_Rms:      24.620 ps
+  147. KOKEE    NG 16/01/07 18:30                                 0.832 mm              0.168 mm              0.168 mm        
+  148. KOKEE    EG 16/01/07 18:30                                -0.037 mm              0.155 mm              0.155 mm        
+  149. KOKEE    NG 16/01/08 18:29                                 0.832 mm              0.168 mm              0.168 mm        
+  150. KOKEE    EG 16/01/08 18:29                                -0.037 mm              0.155 mm              0.155 mm        
+
+Station positions are for epoch: 2016.01.08-06:58:49
+  151. NYALES20 7331 EURA  X Comp       1202462467.59 mm        -14.651 mm              1.670 mm              1.670 mm
+  152. NYALES20 7331 EURA  Y Comp        252734545.79 mm          1.251 mm              0.951 mm              0.951 mm
+  153. NYALES20 7331 EURA  Z Comp       6237766213.42 mm        -20.360 mm              3.040 mm              3.040 mm
+       NYALES20 7331       U Comp              -22.68 mm        -22.685 mm              3.230 mm              3.230 mm
+       NYALES20 7331       E Comp                4.24 mm          4.238 mm              0.902 mm              0.902 mm
+       NYALES20 7331       N Comp                9.91 mm          9.909 mm              1.301 mm              1.301 mm
+  154. NYALES20 CL 0 16/01/07 18:30                           45859.304 ns              0.137 ns              0.137 ns        
+  155. NYALES20 CL 1 16/01/07 18:30                             255.306 D-14            0.580 D-14            0.580 D-14      
+  156. NYALES20 CL 2 16/01/07 18:30                              -0.605 D-14/day        0.731 D-14/day        0.731 D-14/day  
+  181. NYALES20 AT 0 16/01/07 18:30                              58.262 ps              7.040 ps              7.040 ps
+       NYALES20 Atm  2016.01.08-00:49:10.354  Avg:   -24.648 ps   Rms:      11.944 ps   Tot_Rms:      11.945 ps
+  206. NYALES20 NG 16/01/07 18:30                                -0.332 mm              0.281 mm              0.281 mm        
+  207. NYALES20 EG 16/01/07 18:30                                 0.188 mm              0.190 mm              0.190 mm        
+  208. NYALES20 NG 16/01/08 18:29                                -0.332 mm              0.281 mm              0.281 mm        
+  209. NYALES20 EG 16/01/08 18:29                                 0.188 mm              0.190 mm              0.190 mm        
+
+Station positions are for epoch: 2016.01.08-06:44:45
+  210. RAEGYEB  7389 EURA  X Comp       4848831059.79 mm        -49.211 mm              3.837 mm              3.837 mm
+  211. RAEGYEB  7389 EURA  Y Comp       -261629477.22 mm         58.778 mm              1.748 mm              1.748 mm
+  212. RAEGYEB  7389 EURA  Z Comp       4122976498.30 mm         10.298 mm              3.927 mm              3.927 mm
+       RAEGYEB  7389       U Comp              -33.07 mm        -33.069 mm              5.249 mm              5.249 mm
+       RAEGYEB  7389       E Comp               56.04 mm         56.041 mm              1.773 mm              1.773 mm
+       RAEGYEB  7389       N Comp               41.81 mm         41.815 mm              1.583 mm              1.583 mm
+  213. RAEGYEB  CL 0 16/01/07 18:30                            8665.990 ns              0.137 ns              0.138 ns        
+  214. RAEGYEB  CL 1 16/01/07 18:30                              87.507 D-14            0.582 D-14            0.582 D-14      
+  215. RAEGYEB  CL 2 16/01/07 18:30                              -0.800 D-14/day        0.739 D-14/day        0.739 D-14/day  
+  240. RAEGYEB  AT 0 16/01/07 18:30                             230.709 ps             12.861 ps             12.862 ps
+       RAEGYEB  Atm  2016.01.08-01:55:05.923  Avg:    -5.283 ps   Rms:      36.942 ps   Tot_Rms:      36.943 ps
+  265. RAEGYEB  NG 16/01/07 18:30                                -0.653 mm              0.271 mm              0.271 mm        
+  266. RAEGYEB  EG 16/01/07 18:30                                 0.098 mm              0.221 mm              0.221 mm        
+  267. RAEGYEB  NG 16/01/08 18:29                                -0.653 mm              0.271 mm              0.271 mm        
+  268. RAEGYEB  EG 16/01/08 18:29                                 0.098 mm              0.221 mm              0.221 mm        
+
+  269. WETTZELL CL 0 16/01/07 19:39                          -41309.624 ns              0.138 ns              0.138 ns        
+  270. WETTZELL CL 1 16/01/07 19:39                              11.223 D-14            0.614 D-14            0.614 D-14      
+  271. WETTZELL CL 2 16/01/07 19:39                              -1.026 D-14/day        0.768 D-14/day        0.768 D-14/day  
+  296. WETTZELL AT 0 16/01/07 18:30                             224.752 ps             40.294 ps             40.295 ps
+       WETTZELL Atm  2016.01.08-05:41:52.676  Avg:    17.435 ps   Rms:      45.669 ps   Tot_Rms:      45.670 ps
+  321. WETTZELL NG 16/01/07 18:30                                -0.444 mm              0.161 mm              0.161 mm        
+  322. WETTZELL EG 16/01/07 18:30                                -0.092 mm              0.192 mm              0.192 mm        
+  323. WETTZELL NG 16/01/08 18:29                                -0.444 mm              0.161 mm              0.161 mm        
+  324. WETTZELL EG 16/01/08 18:29                                -0.092 mm              0.192 mm              0.192 mm        
+
+Station positions are for epoch: 2016.01.08-06:49:02
+  325. YEBES40M 7386 EURA  X Comp       4848761783.15 mm        -37.413 mm              4.662 mm              4.662 mm
+  326. YEBES40M 7386 EURA  Y Comp       -261484133.84 mm         -3.676 mm              2.140 mm              2.140 mm
+  327. YEBES40M 7386 EURA  Z Comp       4123085062.68 mm        -34.150 mm              4.704 mm              4.704 mm
+       YEBES40M 7386       U Comp              -50.44 mm        -50.437 mm              6.333 mm              6.333 mm
+       YEBES40M 7386       E Comp               -5.69 mm         -5.685 mm              2.160 mm              2.160 mm
+       YEBES40M 7386       N Comp               -1.81 mm         -1.812 mm              1.914 mm              1.914 mm
+  328. YEBES40M CL 0 16/01/07 18:30                            7062.080 ns              0.138 ns              0.138 ns        
+  329. YEBES40M CL 1 16/01/07 18:30                              87.432 D-14            0.584 D-14            0.584 D-14      
+  330. YEBES40M CL 2 16/01/07 18:30                              -0.737 D-14/day        0.743 D-14/day        0.743 D-14/day  
+  355. YEBES40M AT 0 16/01/07 18:30                             206.074 ps             14.699 ps             14.699 ps
+       YEBES40M Atm  2016.01.08-01:47:27.390  Avg:   -14.090 ps   Rms:      36.893 ps   Tot_Rms:      36.893 ps
+  380. YEBES40M NG 16/01/07 18:30                                -0.478 mm              0.311 mm              0.311 mm        
+  381. YEBES40M EG 16/01/07 18:30                                 0.062 mm              0.253 mm              0.253 mm        
+  382. YEBES40M NG 16/01/08 18:29                                -0.478 mm              0.311 mm              0.311 mm        
+  383. YEBES40M EG 16/01/08 18:29                                 0.062 mm              0.253 mm              0.253 mm        
+
+ Atmosphere Constraint Statistics
+  1. FORTLEZA Input  40.00 ps/h RMS  32.09 ps/h NRMS  0.80 share ???? count  24
+  2. HART15M  Input  40.00 ps/h RMS  46.91 ps/h NRMS  1.17 share ???? count  24
+  3. KOKEE    Input  40.00 ps/h RMS  24.29 ps/h NRMS  0.61 share ???? count  24
+  4. NYALES20 Input  40.00 ps/h RMS  11.20 ps/h NRMS  0.28 share ???? count  24
+  5. RAEGYEB  Input  40.00 ps/h RMS  17.31 ps/h NRMS  0.43 share ???? count  24
+  6. WETTZELL Input  40.00 ps/h RMS  12.65 ps/h NRMS  0.32 share ???? count  24
+  7. YEBES40M Input  40.00 ps/h RMS  16.94 ps/h NRMS  0.42 share ???? count  24
+     Overall                    RMS  23.06 ps/h NRMS  0.58 share ???? count 168
+
+ Clock Constraint Statistics
+  1. FORTLEZA Input   2.00 D-14 RMS   1.91 D-14 NRMS  0.95 share ???? count  24
+  2. HART15M  Input   2.00 D-14 RMS   1.63 D-14 NRMS  0.81 share ???? count  24
+  3. NYALES20 Input   2.00 D-14 RMS   2.17 D-14 NRMS  1.09 share ???? count  24
+  4. RAEGYEB  Input   2.00 D-14 RMS   1.57 D-14 NRMS  0.79 share ???? count  24
+  5. WETTZELL Input   2.00 D-14 RMS   1.39 D-14 NRMS  0.70 share ???? count  24
+  6. YEBES40M Input   2.00 D-14 RMS   2.13 D-14 NRMS  1.07 share ???? count  24
+     Overall                    RMS   1.80 D-14 NRMS  0.90 share ???? count 144
+
+  384. UT1-TAI   1,  16/01/08 07:00       -1.7685  ms/d     -24.19 micros/d        6.49 micros/d        6.49 micros/d
+ EOP with included hi-freq variations  (a-sigmas)  
+                      XWOB          YWOB          UT1-TAI          XSIG         YSIG         USIG
+                       mas           mas            ms           microasec    microasec    microsec
+16/01/08 07:00        0.0000         0.0000         0.0000          0.00         0.00         0.00
+
+ EOP epoch (TT)   MJD: 57395.293024        NUT epoch (TT)   MJD: 57395.293024
+  385. Nutation offset in longitude (Psi)                0.091 mas       87.6 microasec       87.6 microasec       
+       Nutation offset around X-axis       (dX)          0.036 mas       34.8 microasec       34.8 microasec       
+       Nutation offset wrt IAU 1980 model (Psi)        -93.924 mas       87.6 microasec       87.6 microasec       
+  386. Nutation offset in obliquity (Eps)               -0.243 mas       35.4 microasec       35.4 microasec       
+       Nutation offset around Y-axis       (dY)         -0.243 mas       35.4 microasec       35.4 microasec       
+       Nutation offset wrt IAU 1980 model (Eps)         -9.030 mas       35.4 microasec       35.4 microasec       
+
+ 
+ General constraints usage information:                                                                                 
+ 
+ 1) CLO_RATE "Clock rate between segments     " sigma  2.000E+00 10^-14 sec/sec
+ 2) ATM_RATE "Atmosphere rate between segments" sigma  4.000E+01 psec/hr
+ 
+ Corrected Reduced Chi-Square   1.0000
+
