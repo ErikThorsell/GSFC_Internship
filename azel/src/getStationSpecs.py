@@ -9,12 +9,17 @@
 import time
 import sys
 
+
+###############################################################################
+
 def isNumber(s):
     try:
         float(s)
         return True
     except ValueError:
         return False
+
+###############################################################################
 
 def parseStationData(specs):
     id = ""
@@ -74,6 +79,7 @@ def parseStationData(specs):
                      "\n\n"
                      )
 
+###############################################################################
 def getStationData(path_to_file):
 
     specs = open(path_to_file, 'r')
@@ -82,6 +88,7 @@ def getStationData(path_to_file):
 
     parseStationData(sourcelines)
 
+###############################################################################
 ### MAIN PROGRAM ###
 if len(sys.argv) < 4:
     print "Invalid number of arguments."

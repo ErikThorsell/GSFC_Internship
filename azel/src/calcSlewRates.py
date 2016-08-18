@@ -35,24 +35,29 @@ for subdir, dirs, files in os.walk(path_to_out + "/data/"):
     for file in files:
         if file[-4:] == ".dat":
             station = file[0:2]
-            station = gsn.getStationName(station)
-            orientation = file[3:5]
+            station = gsn.getStationName(station)   #The name behind the two letter abbreviation?
+            orientation = file[3:5]                 #Azimuth or elevation?
 
-            with open(path_to_out+ "/data/" + file) as csvfile:
-                readCSV = csv.reader(csvfile,delimiter=',')
+            with open(path_to_out + "/data/" + file) as datafile:
+                parsedData = csv.reader(datafile,delimiter=',')
                 realTimes = []
                 distance = []
                 modelTimes = []
                 stationname = []
                 source = []
                 timestamp = []
-                for row in readCSV:
+                for row in parsedData:
                     modelTimes.append(float(row[0]))
                     realTimes.append(float(row[1]))
                     distance.append(float(row[2]))
+
+                    #The following things appended were used for finding 
+                    #specific  points of interest, by looking at time tags. 
+                    #Strictly not necessary for the main program though.
+
                     stationname.append(str(row[3]))
 
-                    ## Convert hundreds back to the date used in Sked.
+                    ## Convert timestamp in seconds back to the date format used in Sked.
                     time = float(row[4])
                     days = int(time / 86400)
                     time = time % 86400
@@ -68,7 +73,7 @@ for subdir, dirs, files in os.walk(path_to_out + "/data/"):
 
                     source.append(str(row[5]))
 
-                if len(realTimes) != 0:
+                if len(realTimes) != 0:     # No point in doing anything unless we got some data from the log files (is trakl/flagr on?)
 
                     solution = leastsq.speed_offset(distance, realTimes, stationname, timestamp, source, path_to_out)
 

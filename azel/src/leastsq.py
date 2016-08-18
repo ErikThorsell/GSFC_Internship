@@ -66,7 +66,7 @@ def plot_curve(data_tuple, modelTimes_original, station, orientation, path):
 
 
 
-def speed_offset(xdata, ydata, station, time, source, path):
+def speed_offset(xdata, ydata, station, timestamp, source, path):
     ysorted=[]
     xsorted=[]
     ydisc=[]
@@ -97,7 +97,7 @@ def speed_offset(xdata, ydata, station, time, source, path):
                 ysorted.append(ydata[i])
                 xsorted.append(xdata[i])
             else:
-                discfile.write(station[i] + "," + time[i] + "," + source[i] + "," + str(xdata[i]) + "," + str(ydata[i]) + '\n')
+                discfile.write(station[i] + "," + timestamp[i] + "," + source[i] + "," + str(xdata[i]) + "," + str(ydata[i]) + '\n')
 
         x_new = numpy.array(xsorted)
         y_new = numpy.array(ysorted)
