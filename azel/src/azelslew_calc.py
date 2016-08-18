@@ -80,7 +80,7 @@ def getLogData(path_to_logs, log_data):
 
 ###############################################################################
 
-def getSkdData(path_to_dir, nstations, scheduled_stations, theo):
+def getSkdData(path_to_dir, nstations, scheduled_stations, skd_data):
     azelfound = False
     station = ""
     nLines = 0
@@ -105,10 +105,10 @@ def getSkdData(path_to_dir, nstations, scheduled_stations, theo):
                                 index = ((i-23)/8)
                                 station = scheduled_stations[index].lower()
                                 source = line[0:8]
-                                date = parseSkdTime(line[9:21])
+                                timestamp = parseSkdTime(line[9:21])
                                 az = float(line[i:i+3])
                                 el = float(line[i+4:i+6])
-                                theo.append((station, date, source, az, el))
+                                skd_data.append((station, timestamp, source, az, el))
             
                 if not azelfound:
                     print "Unable to locate .azel file in " + path_to_dir
