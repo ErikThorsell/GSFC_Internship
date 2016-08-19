@@ -141,8 +141,8 @@ def matchSkdLog(log, skd, matched):
     maxrange = 0.0
     d_az = 0.0
 
-    for i in range(len(log)):
-        for j in range(len(skd)):
+    for i in range(len(log)-1):
+        for j in range(len(skd)-1):
             if log[i][0] == skd[j][0]:                      #Are we on the same station?
                 if skd[j][1] < log[i][1] < skd[j+1][1]:     #Are we between two contigous measurements in the skd file?
                     if log[i][2] == skd[j+1][2]:            #Are we on the same source?

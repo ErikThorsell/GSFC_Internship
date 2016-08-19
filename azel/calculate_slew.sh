@@ -18,6 +18,7 @@ SRC1=$ROOTDIR/src/extract.py
 SRC2=$ROOTDIR/src/calcSlewRates.py
 SRC3=$ROOTDIR/src/getStationSpecs.py
 SRC4=$ROOTDIR/src/create_extract.py
+SRC5=$ROOTDIR/src/azel.sh
 SRCANTENNA=/shared/gemini/ftp/pub/sked/catalogs/antenna.cat
 SRCANTENNA=$ROOTDIR/src/antenna.cat
 
@@ -116,6 +117,19 @@ for DIR in "${path_array[@]}"; do
         echo "Unable to locate" $DIR"."
         echo "Please ensure that you have specified a valid path."
         exit
+    fi
+
+    shopt -s nullglob
+    if [ ! -f $DIR/*.azel]; then
+        echo "No .azel found, trying to generate!"
+        if [ -f $DIR/*.skd ]
+            skdtmp=$(find $DIR -name "*.skd")
+            echo "Found .skd file in"$DIR
+            echo "Generating .azel file."
+            sh $SRC5 $skdtmp
+        else
+            echo "No .skd file found in"$DIR
+        fi
     fi
     echo " "
     echo "Processing session" $DIR
