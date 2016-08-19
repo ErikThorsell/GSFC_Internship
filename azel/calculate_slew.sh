@@ -29,15 +29,16 @@ OPT=""
 GRAPH=""
 
 ###############################################################################
-### Pre program 
+######################### Pre program and House keeping #######################
 
 if [ ! $# -gt 0 ]; then
     echo "## ERROR ##"
     echo "Invalid usage."
+    echo "Usage $> bash calculate_slew.sh -o output -g -i path/to/session(s)"
     exit
 fi
 
-while [ $# -gt 1 ]; do
+while [ $# -gt 0 ]; do
     key="$1"
     case $key in
         -o|--output)
@@ -46,14 +47,24 @@ while [ $# -gt 1 ]; do
         ;;
         -g|--graph)
         OPT="--graph"
-        shift
         ;;
         -i|--input)
         shift
         SESSIONPATH=$@
         ;;
+        -h|--help)
+        echo "Usage: bash calculate_slew.sh [FLAG] [FILE]"
+        echo "The valid flags are:"
+        echo -e "-g, --graph  \t\t Enable plotting of graphs (req. matplotlib)."
+        echo -e "-i, --input  \t\t Path to where the session(s) are."
+        echo -e "-o, --output \t\t Path to where you wish to store the output data."
+        echo " "
+        echo "You must specify at least the session(s) path. If you choose to use any other flags, the -i|--input flag must be positioned last!"
+        exit
+        ;;
         *)
-            # 
+            #
+        ;;
     esac
     shift
 done
@@ -61,6 +72,13 @@ done
 path_array=($SESSIONPATH)
 DATADIR=$OUTPUTDIR/data/
 IMGDIR=$OUTPUTDIR/img/
+
+if [ ! $path_array ]; then
+    echo "## ERROR ##"
+    echo "You did not provide a path for your sessions."
+    echo ""
+    exit
+fi
 
 if [ ! -d $OUTPUTDIR ]; then
     echo "Creating: $OUTPUTDIR."
