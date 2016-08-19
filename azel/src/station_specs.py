@@ -4,7 +4,7 @@
 # should be fine, but use at own risk!                                        #
 #                                                                             #
 #                                                                             #
-# This version of the spec file was generated on: 2016-08-18                  #
+# This version of the spec file was generated on: 2016-08-19                  #
 ###############################################################################
 
 # AGGO

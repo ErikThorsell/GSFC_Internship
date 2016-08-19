@@ -11,9 +11,6 @@
 # Author: Erik Thorsell, Summer Internship 2016                               #
 ###############################################################################
 
-CURRENTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $CURRENTDIR
-
 SRC=./src/
 SRC1=./src/extract.py
 SRC2=./src/calcSlewRates.py
@@ -22,8 +19,7 @@ SRC4=./src/create_extract.py
 SRCANTENNA=/shared/gemini/ftp/pub/sked/catalogs/antenna.cat
 SRCANTENNA=./src/antenna.cat
 
-OUTPUTDIR="output"
-WORKDIR="/tmp"
+OUTPUTDIR=""
 DATADIR=""
 IMGDIR=""
 SESSIONPATH=""
@@ -33,47 +29,66 @@ GRAPH=""
 ###############################################################################
 ### Pre program 
 
-if [ ! $# -gt 0 ]; then
+if [ $# -gt 0 ]; then
     echo "## ERROR ##"
-    echo "Invalid usage."
+    echo "Invalid usage. The program will prompt you for the information required."
+    echo "Please do not enter any options!"
     exit
 fi
 
-while [ $# -gt 1 ]; do
-    key="$1"
-    case $key in
-        -o|--output)
-        OUTPUTDIR="$2"
-        shift
-        ;;
-        -g|--graph)
-        OPT="--graph"
-        shift
-        ;;
-        -i|--input)
-        shift
-        SESSIONPATH=$@
-        ;;
-        *)
-            # 
-    esac
-    shift
-done
-
+echo "Running calculate_slew.sh"
+echo "For instructions on how to run the program, please see the README.md"
+echo " "
+echo "Please provide the path(s) to the sessions you wish to analyze:"
+echo "You can specify arbitrarily many sessions, wildcards are allowed."
+read SESSIONPATH
 path_array=($SESSIONPATH)
+
+echo " "
+
+echo "Please provide the path to where you want the output to be stored."
+echo "# WARNING #"
+echo "The directory specified will be purged!"
+read OUTPUTDIR
 DATADIR=$OUTPUTDIR/data/
 IMGDIR=$OUTPUTDIR/img/
 
 if [ ! -d $OUTPUTDIR ]; then
+    echo "Could not find the specified output path."
+    echo "Do you wish to create" $OUTPUTDIR"? [y/n]"
+    read ans
+    if [ $ans != 'y' ]; then
+        echo "You did not answer 'y'."
+        echo "Exiting program."
+        exit
+    fi
     echo "Creating: $OUTPUTDIR."
     mkdir $OUTPUTDIR
     mkdir $DATADIR
     mkdir $IMGDIR
 else
+    echo $OUTPUTDIR "already exists. Do you wish to purge (rm -rf $OUTPUTDIR)? [y/n]"
+    read ans
+    if [ $ans != 'y' ]; then
+        echo "You did not answer 'y'."
+        echo "Exiting program."
+        exit
+    fi
     rm -rf $OUTPUTDIR/*
     mkdir $DATADIR
     mkdir $IMGDIR
 fi
+
+echo " "
+echo "Do you want to plot graphs? [y/n]"
+read graph
+
+if [ "$graph" == 'y' ]; then
+    OPT="--graph"
+fi
+
+echo "The graphs will be stored in" $IMGDIR
+
 
 ######################## Starting execution of program ########################
 
@@ -83,8 +98,8 @@ if [ ! -f $SRCANTENNA ]; then
     exit
 fi
 
-#python2 $SRC3 $SRCANTENNA $SRC"/station_specs.py" $SRC"/station_names.dat"
-#python2 $SRC4 $SRCANTENNA $SRC1
+python2 $SRC3 $SRCANTENNA $SRC"/station_specs.py" $SRC"/station_names.dat"
+python2 $SRC4 $SRCANTENNA $SRC1
 
 echo "Generated" $SRC1
 echo " "
@@ -97,13 +112,13 @@ for DIR in "${path_array[@]}"; do
     fi
     echo " "
     echo "Processing session" $DIR
-#    python2 $SRC1 $OUTPUTDIR $DIR
+    python2 $SRC1 $OUTPUTDIR $DIR
 done
 
 echo " "
 echo "Running program" $SRC2 $OPT
 echo " "
-#python2 $SRC2 $OUTPUTDIR $OPT
+python2 $SRC2 $OUTPUTDIR $OPT
 
 echo "Execution completed."
 echo " "
