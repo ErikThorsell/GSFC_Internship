@@ -11,19 +11,17 @@
 # Author: Erik Thorsell, Summer Internship 2016                               #
 ###############################################################################
 
-CURRENTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $CURRENTDIR
+ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-SRC=./src/
-SRC1=./src/extract.py
-SRC2=./src/calcSlewRates.py
-SRC3=./src/getStationSpecs.py
-SRC4=./src/create_extract.py
+SRC=$ROOTDIR/src/
+SRC1=$ROOTDIR/src/extract.py
+SRC2=$ROOTDIR/src/calcSlewRates.py
+SRC3=$ROOTDIR/src/getStationSpecs.py
+SRC4=$ROOTDIR/src/create_extract.py
 SRCANTENNA=/shared/gemini/ftp/pub/sked/catalogs/antenna.cat
-SRCANTENNA=./src/antenna.cat
+SRCANTENNA=$ROOTDIR/src/antenna.cat
 
-OUTPUTDIR="output"
-WORKDIR="/tmp"
+OUTPUTDIR="/tmp/output"
 DATADIR=""
 IMGDIR=""
 SESSIONPATH=""
@@ -83,8 +81,8 @@ if [ ! -f $SRCANTENNA ]; then
     exit
 fi
 
-#python2 $SRC3 $SRCANTENNA $SRC"/station_specs.py" $SRC"/station_names.dat"
-#python2 $SRC4 $SRCANTENNA $SRC1
+python2 $SRC3 $SRCANTENNA $SRC"/station_specs.py" $SRC"/station_names.dat"
+python2 $SRC4 $SRCANTENNA $SRC1
 
 echo "Generated" $SRC1
 echo " "
@@ -97,13 +95,13 @@ for DIR in "${path_array[@]}"; do
     fi
     echo " "
     echo "Processing session" $DIR
-#    python2 $SRC1 $OUTPUTDIR $DIR
+    python2 $SRC1 $OUTPUTDIR $DIR
 done
 
 echo " "
 echo "Running program" $SRC2 $OPT
 echo " "
-#python2 $SRC2 $OUTPUTDIR $OPT
+python2 $SRC2 $OUTPUTDIR $OPT
 
 echo "Execution completed."
 echo " "
