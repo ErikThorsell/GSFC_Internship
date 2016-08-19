@@ -34,7 +34,7 @@ GRAPH=""
 if [ ! $# -gt 0 ]; then
     echo "## ERROR ##"
     echo "Invalid usage."
-    echo "Usage $> bash calculate_slew.sh -o output -g -i path/to/session(s)"
+    echo "run: $> bash calculate_slew.sh -h for help"
     exit
 fi
 
@@ -55,9 +55,9 @@ while [ $# -gt 0 ]; do
         -h|--help)
         echo "Usage: bash calculate_slew.sh [FLAG] [FILE]"
         echo "The valid flags are:"
-        echo -e "-g, --graph  \t\t Enable plotting of graphs (req. matplotlib)."
-        echo -e "-i, --input  \t\t Path to where the session(s) are."
-        echo -e "-o, --output \t\t Path to where you wish to store the output data."
+        echo -e "-g, --graph  \t Enable plotting of graphs (req. matplotlib)."
+        echo -e "-i, --input  \t Path to where the session(s) are."
+        echo -e "-o, --output \t Path to where you wish to store the output data."
         echo " "
         echo "You must specify at least the session(s) path. If you choose to use any other flags, the -i|--input flag must be positioned last!"
         exit
