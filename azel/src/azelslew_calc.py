@@ -123,10 +123,10 @@ def getSkdData(path_to_dir, nstations, scheduled_stations, skd_data):
                                 el = float(line[i+4:i+6])
                                 skd_data.append((station, timestamp, source, az, el))
             
-                if not azelfound:
-                    print "Unable to locate .azel file in " + path_to_dir
-                    print "Make sure there is a .azel file before you proceed. See the " + \
-                           "README.md for info on how to generate one."
+            if not azelfound:
+                print "Unable to locate .azel file in " + path_to_dir
+                print "Make sure there is a .azel file before you proceed. See the " + \
+                        "README.md for info on how to generate one."
             
 ###############################################################################
 # Matches data from skd and log files. 
