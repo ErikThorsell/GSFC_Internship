@@ -116,17 +116,18 @@ for DIR in "${path_array[@]}"; do
     if [ ! -d $DIR ]; then
         echo "Unable to locate" $DIR"."
         echo "Please ensure that you have specified a valid path."
-        exit
+        continue
     fi
 
     shopt -s nullglob
-    if [ ! -f $DIR/*.azel]; then
+    findazel=$(find $DIR -name "*.azel")
+    if [ ! -e "$findazel" ]; then
         echo "No .azel found, trying to generate!"
-        if [ -f $DIR/*.skd ]
-            skdtmp=$(find $DIR -name "*.skd")
+        findskd=$(find $DIR -name "*.skd")
+        if [ -e "$findskd" ]; then
             echo "Found .skd file in"$DIR
-            echo "Generating .azel file."
-            sh $SRC5 $skdtmp
+            echo "Generating .azel file from .skd file."
+            sh $SRC5 $findskd
         else
             echo "No .skd file found in"$DIR
         fi
