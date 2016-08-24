@@ -42,7 +42,7 @@ other flags, the -i|--input flag must be positioned last!
 
 ### Example usage
 
-![Example Usage](http://imgur.com/a/yxgsH)
+![Example Usage](http://i.imgur.com/iZVv4mh.gif)
 
 ### Flags
 
