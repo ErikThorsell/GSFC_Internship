@@ -40,6 +40,10 @@ Usage: bash calculate_slew.sh [FLAG] [FILE]
 You must specify at least the session(s) path (-i). If you choose to use any
 other flags, the -i|--input flag must be positioned last!
 
+### Example usage
+
+![Example Usage](http://imgur.com/a/yxgsH "Example Usage")
+
 ### Flags
 
 The valid flags are:
